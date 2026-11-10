@@ -1,0 +1,6 @@
+name = "muisyle-ai-agent"
+main = "worker/index.js"
+compatibility_date = "2026-11-11"
+
+[vars]
+ALLOWED_ORIGIN = "https://memeelysium.github.io"
