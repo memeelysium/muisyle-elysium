@@ -20,7 +20,7 @@
 <a class="brand" href="#home" aria-label="Muisyle home"><img src="assets/muisyle-profile.jpg" alt=""> <span>MUISYLE</span></a>
 <button class="menu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
 <nav aria-label="Main navigation">
-<a href="#about">About</a><a href="#vision">Our vision</a><a href="#gallery">Universe</a><a href="#meme-lab">Meme Lab</a><a href="#community">Community</a><a href="https://github.com/memeelysium" target="_blank" rel="noreferrer">GitHub ↗</a>
+<a href="#about">About</a><a href="#vision">Our vision</a><a href="#gallery">Universe</a><a href="#ai-agent">AI Agent</a><a href="#community">Community</a><a href="https://github.com/memeelysium" target="_blank" rel="noreferrer">GitHub ↗</a>
 <a class="nav-buy" href="#coming-soon">BUY <span>↗</span></a><a class="nav-cta" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Join the movement <span>↗</span></a>
 </nav>
 </header>
@@ -74,41 +74,25 @@
 </section>
 
 
-<section class="section meme-lab-section reveal" id="meme-lab">
-<div class="section-kicker">04 <span>/</span> CREATE & SHARE</div>
-<div class="section-intro"><h2>YOUR MEME.<br><em>YOUR UNIVERSE.</em></h2><p>Create an original MUISYLE meme in seconds. Choose a style, add your words, or upload a photo from your device.</p></div>
-<div class="meme-lab">
-  <div class="meme-preview-wrap">
-    <div class="meme-preview-heading"><span>LIVE PREVIEW</span><span class="preview-live"><i></i> READY TO CREATE</span></div>
-    <canvas id="meme-canvas" width="900" height="900" aria-label="Live meme preview"></canvas>
-    <p class="meme-hint">Your meme is rendered in your browser. Your uploaded image stays on your device.</p>
-  </div>
-  <div class="meme-controls">
-    <div class="meme-control-group"><label>01 / CHOOSE A STYLE</label><div class="meme-presets">
-      <button class="meme-preset active" type="button" data-theme="cosmic">✦ Cosmic</button>
-      <button class="meme-preset" type="button" data-theme="classic">◈ Classic</button>
-      <button class="meme-preset" type="button" data-theme="nebula">✧ Nebula</button>
-    </div></div>
-    <div class="meme-control-group"><label for="meme-upload">02 / YOUR IMAGE</label><label class="meme-upload-button" for="meme-upload">＋ Upload from device</label><input id="meme-upload" type="file" accept="image/*" hidden><button class="meme-clear-image" id="meme-clear" type="button">Use selected style background</button></div>
-    <div class="meme-control-group"><label for="meme-top">03 / TOP TEXT</label><input id="meme-top" class="meme-input" maxlength="70" placeholder="WHEN THE VIBES ARE..." value="WHEN THE VIBES ARE"></div>
-    <div class="meme-control-group"><label for="meme-bottom">04 / BOTTOM TEXT</label><input id="meme-bottom" class="meme-input" maxlength="70" placeholder="...OUT OF THIS WORLD" value="OUT OF THIS WORLD"></div>
-    <div class="meme-control-row">
-      <div class="meme-control-group"><label for="meme-size">TEXT SIZE</label><input id="meme-size" type="range" min="28" max="76" value="54"></div>
-      <div class="meme-control-group"><label for="meme-color">TEXT COLOR</label><input id="meme-color" class="meme-color" type="color" value="#ffffff"></div>
-    </div>
-    <button class="button button-primary meme-download" id="meme-download" type="button">Download meme PNG <span>↓</span></button>
-    <p class="meme-privacy">✦ No account needed · No upload to a server · Made for the culture</p>
-  </div>
+<section class="section ai-agent-section reveal" id="ai-agent">
+<div class="section-kicker">04 <span>/</span> YOUR COSMIC ASSISTANT</div>
+<div class="section-intro"><h2>MEET YOUR<br><em>AI COMPANION.</em></h2><p>Ask about MUISYLE, Elysium, community culture, or explore ideas with the MUISYLE AI Agent.</p></div>
+<div class="ai-chat-shell">
+  <div class="ai-chat-top"><div class="ai-avatar">M</div><div><strong>MUISYLE AI</strong><span><i></i> COSMIC ASSISTANT</span></div><span class="ai-model-tag">AI POWERED</span></div>
+  <div class="ai-chat-messages" id="ai-chat-messages" aria-live="polite"><div class="ai-message assistant"><span class="ai-message-label">MUISYLE AI</span><p>Welcome to the MUISYLE universe. ✦ I'm your AI companion. What would you like to explore today?</p></div></div>
+  <div class="ai-suggestions"><button type="button" data-prompt="What is MUISYLE?">What is MUISYLE?</button><button type="button" data-prompt="Tell me about Elysium.">Explore Elysium</button><button type="button" data-prompt="Give me a creative meme idea.">Meme ideas</button></div>
+  <form class="ai-chat-form" id="ai-chat-form"><label class="sr-only" for="ai-chat-input">Your message</label><textarea id="ai-chat-input" rows="1" maxlength="2000" placeholder="Message the MUISYLE AI..." required></textarea><button type="submit" aria-label="Send message">↑</button></form>
+  <div class="ai-chat-foot"><span>✦ Powered by AI</span><span>Never share passwords or sensitive information.</span></div>
 </div>
 </section>
 
 <section class="community-section reveal" id="community">
-<div class="community-glow"></div><div class="section-kicker">04 <span>/</span> FIND YOUR PEOPLE</div>
+<div class="community-glow"></div><div class="section-kicker">05 <span>/</span> FIND YOUR PEOPLE</div>
 <div class="community-content"><div><h2>THE UNIVERSE<br>IS BETTER <em>TOGETHER.</em></h2><p>Bring your ideas. Bring your humor. Bring your own kind of energy. Follow the journey and join the conversation.</p><div class="hero-actions"><a class="button button-primary" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Join MUISYLE on X <span>↗</span></a><a class="button button-ghost" href="https://github.com/memeelysium" target="_blank" rel="noreferrer">Explore on GitHub <span>↗</span></a></div></div><div class="community-stamp"><span>✳</span><b>STAY<br>CURIOUS</b><small>YOU BELONG<br>IN THE ORBIT</small></div></div>
 </section>
 
 <section class="section faq-section reveal" id="faq">
-<div class="section-kicker">05 <span>/</span> GOOD TO KNOW</div><div class="faq-layout"><h2>CURIOUS?<br><em>START HERE.</em></h2><div class="faq-list">
+<div class="section-kicker">06 <span>/</span> GOOD TO KNOW</div><div class="faq-layout"><h2>CURIOUS?<br><em>START HERE.</em></h2><div class="faq-list">
 <details><summary>What is MUISYLE?<span>+</span></summary><p>MUISYLE is an independent, community-first creative identity inspired by internet culture and the Elysium ecosystem.</p></details>
 <details><summary>Is MUISYLE an official Elysium project?<span>+</span></summary><p>No. MUISYLE is an independent community project and is not affiliated with or officially endorsed by Elysium.</p></details>
 <details><summary>How can I get involved?<span>+</span></summary><p>Follow <a href="https://x.com/memeelysium" target="_blank" rel="noreferrer">@memeelysium on X</a> to follow updates and join the conversation.</p></details>
@@ -116,7 +100,7 @@
 </div></div>
 </section>
 
-<section class="coming-soon-section reveal" id="coming-soon"><div class="coming-soon-orbit" aria-hidden="true"><span>✦</span></div><div class="section-kicker">06 <span>/</span> COMING SOON</div><p class="coming-soon-label">THE NEXT CHAPTER IS LOADING</p><h2>READY FOR<br><em>THE TAKEOFF?</em></h2><p class="coming-soon-copy">The MUISYLE buy experience is not available yet. Stay tuned and follow our official channel for launch announcements.</p><span class="coming-soon-status"><i></i> COMING SOON</span><a class="button button-ghost" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Follow updates on X <span>↗</span></a></section>
+<section class="coming-soon-section reveal" id="coming-soon"><div class="coming-soon-orbit" aria-hidden="true"><span>✦</span></div><div class="section-kicker">07 <span>/</span> COMING SOON</div><p class="coming-soon-label">THE NEXT CHAPTER IS LOADING</p><h2>READY FOR<br><em>THE TAKEOFF?</em></h2><p class="coming-soon-copy">The MUISYLE buy experience is not available yet. Stay tuned and follow our official channel for launch announcements.</p><span class="coming-soon-status"><i></i> COMING SOON</span><a class="button button-ghost" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Follow updates on X <span>↗</span></a></section>
 
 <section class="final-cta reveal"><div class="final-stars">✦　　✧　　　　✦　　　✧</div><p>YOUR NEXT CHAPTER STARTS HERE</p><h2>STAY CURIOUS.<br><em>STAY COSMIC.</em></h2><a class="button button-primary" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Follow the journey <span>↗</span></a></section>
 </main>
