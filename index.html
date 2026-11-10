@@ -20,7 +20,7 @@
 <a class="brand" href="#home" aria-label="Muisyle home"><img src="assets/muisyle-profile.jpg" alt=""> <span>MUISYLE</span></a>
 <button class="menu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
 <nav aria-label="Main navigation">
-<a href="#about">About</a><a href="#vision">Our vision</a><a href="#gallery">Universe</a><a href="#community">Community</a><a href="https://github.com/memeelysium" target="_blank" rel="noreferrer">GitHub ↗</a>
+<a href="#about">About</a><a href="#vision">Our vision</a><a href="#gallery">Universe</a><a href="#meme-lab">Meme Lab</a><a href="#community">Community</a><a href="https://github.com/memeelysium" target="_blank" rel="noreferrer">GitHub ↗</a>
 <a class="nav-buy" href="#coming-soon">BUY <span>↗</span></a><a class="nav-cta" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Join the movement <span>↗</span></a>
 </nav>
 </header>
@@ -70,6 +70,35 @@
 <article class="universe-card"><div class="artwork artwork-signal"><div class="signal-rings"></div><span>✳</span></div><div class="art-caption"><span>03 / COMMUNITY</span><b>One signal. Many voices.</b></div></article>
 </div>
 <p class="gallery-note">Original decorative concepts for the MUISYLE visual identity.</p>
+</div>
+</section>
+
+
+<section class="section meme-lab-section reveal" id="meme-lab">
+<div class="section-kicker">04 <span>/</span> CREATE & SHARE</div>
+<div class="section-intro"><h2>YOUR MEME.<br><em>YOUR UNIVERSE.</em></h2><p>Create an original MUISYLE meme in seconds. Choose a style, add your words, or upload a photo from your device.</p></div>
+<div class="meme-lab">
+  <div class="meme-preview-wrap">
+    <div class="meme-preview-heading"><span>LIVE PREVIEW</span><span class="preview-live"><i></i> READY TO CREATE</span></div>
+    <canvas id="meme-canvas" width="900" height="900" aria-label="Live meme preview"></canvas>
+    <p class="meme-hint">Your meme is rendered in your browser. Your uploaded image stays on your device.</p>
+  </div>
+  <div class="meme-controls">
+    <div class="meme-control-group"><label>01 / CHOOSE A STYLE</label><div class="meme-presets">
+      <button class="meme-preset active" type="button" data-theme="cosmic">✦ Cosmic</button>
+      <button class="meme-preset" type="button" data-theme="classic">◈ Classic</button>
+      <button class="meme-preset" type="button" data-theme="nebula">✧ Nebula</button>
+    </div></div>
+    <div class="meme-control-group"><label for="meme-upload">02 / YOUR IMAGE</label><label class="meme-upload-button" for="meme-upload">＋ Upload from device</label><input id="meme-upload" type="file" accept="image/*" hidden><button class="meme-clear-image" id="meme-clear" type="button">Use selected style background</button></div>
+    <div class="meme-control-group"><label for="meme-top">03 / TOP TEXT</label><input id="meme-top" class="meme-input" maxlength="70" placeholder="WHEN THE VIBES ARE..." value="WHEN THE VIBES ARE"></div>
+    <div class="meme-control-group"><label for="meme-bottom">04 / BOTTOM TEXT</label><input id="meme-bottom" class="meme-input" maxlength="70" placeholder="...OUT OF THIS WORLD" value="OUT OF THIS WORLD"></div>
+    <div class="meme-control-row">
+      <div class="meme-control-group"><label for="meme-size">TEXT SIZE</label><input id="meme-size" type="range" min="28" max="76" value="54"></div>
+      <div class="meme-control-group"><label for="meme-color">TEXT COLOR</label><input id="meme-color" class="meme-color" type="color" value="#ffffff"></div>
+    </div>
+    <button class="button button-primary meme-download" id="meme-download" type="button">Download meme PNG <span>↓</span></button>
+    <p class="meme-privacy">✦ No account needed · No upload to a server · Made for the culture</p>
+  </div>
 </div>
 </section>
 
