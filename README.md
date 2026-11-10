@@ -1,6 +1,8 @@
 <div align="center">
 
-# 🌌 MUISYLE
+<img src="assets/readme-logo.svg" width="180" alt="MUISYLE emblem" />
+
+# MUISYLE
 ### ELYSIUM CULTURE · MORE THAN A MEME. A WHOLE NEW VIBE.
 
 **A community-led creative space celebrating memes, imagination, and onchain culture around the Elysium ecosystem.**
