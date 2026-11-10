@@ -53,3 +53,37 @@ body::after{
 @media(prefers-reduced-motion:reduce){
   body::before,body::after{animation:none}
 }
+
+
+/* Seamless animated cosmic ticker */
+.ticker{
+  display:flex;
+  align-items:center;
+  text-align:left;
+  overflow:hidden;
+  padding:18px 0;
+  border-block:1px solid var(--line);
+  color:#b8c5eb;
+  font:600 11px 'Space Grotesk';
+  letter-spacing:2px;
+}
+.ticker-track{
+  display:flex;
+  flex:0 0 auto;
+  width:max-content;
+  animation:ticker-scroll 30s linear infinite;
+}
+.ticker-track span{
+  display:block;
+  flex:0 0 auto;
+  white-space:nowrap;
+  padding-right:48px;
+}
+.ticker:hover .ticker-track{animation-play-state:paused}
+@keyframes ticker-scroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .ticker-track{animation:none}
+}
