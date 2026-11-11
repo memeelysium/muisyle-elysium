@@ -109,15 +109,27 @@ window.addEventListener('load',function renderLucideIcons(){
   loader.classList.add('is-active');
   document.documentElement.classList.add('loading-active');
   const startedAt=Date.now();
+  const minimumDuration=5000;
+  const fill=document.getElementById('loader-progress-fill');
+  const percent=document.getElementById('loader-percent');
+  const progressTrack=()=>{
+    const elapsed=Date.now()-startedAt;
+    const value=Math.min(100,Math.floor((elapsed/minimumDuration)*100));
+    if(fill)fill.style.width=value+'%';
+    if(percent)percent.textContent=value+'%';
+    if(loader.querySelector('.loader-progress'))loader.querySelector('.loader-progress').setAttribute('aria-valuenow',String(value));
+    if(value<100&&!finished)window.requestAnimationFrame(progressTrack);
+  };
   let finished=false;
+  window.requestAnimationFrame(progressTrack);
   const finishAfterMinimum=()=>{
     if(finished)return;
     finished=true;
-    const remaining=Math.max(0,5000-(Date.now()-startedAt));
+    const remaining=Math.max(0,minimumDuration-(Date.now()-startedAt));
     window.setTimeout(finish,remaining);
   };
   window.addEventListener('load',finishAfterMinimum,{once:true});
-  window.setTimeout(finishAfterMinimum,5000);
+  window.setTimeout(finishAfterMinimum,minimumDuration);
   const skip=document.getElementById('loader-skip');
   if(skip)skip.addEventListener('click',()=>{finished=true;finish();});
 })();
