@@ -33,3 +33,10 @@
 .meme-download{width:100%;justify-content:center;cursor:pointer;border:0}
 .meme-privacy{text-align:center;margin-top:-10px}
 @media(max-width:760px){.meme-lab{grid-template-columns:1fr;gap:16px}.meme-preview-wrap,.meme-controls{padding:15px}.meme-lab-section{padding-top:75px}}
+
+
+/* Subtle interactive cosmic particle background */
+#tsparticles{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.52;overflow:hidden}
+#tsparticles canvas{pointer-events:none!important}
+.site-header,main,.site-footer{position:relative;z-index:1}
+@media(prefers-reduced-motion:reduce){#tsparticles{display:none}}
