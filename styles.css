@@ -203,3 +203,51 @@
 .profile-disclaimer{margin:14px 0 0;color:#7585a7;font-size:9px;line-height:1.7}
 @media(max-width:850px){.profile-layout{grid-template-columns:1fr}.profile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.profile-panel,.profile-directory{padding:17px}.profile-grid{grid-template-columns:1fr}.profile-card{padding:12px}}
+
+
+/* The Visual Universe — premium editorial showcase */
+.universe-intro{margin-bottom:34px}
+.universe-showcase{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.85fr);gap:16px;align-items:stretch}
+.universe-feature,.universe-art-card{min-width:0;overflow:hidden;border:1px solid #ffffff20;border-radius:21px;background:linear-gradient(145deg,#141d3b,#090f21);box-shadow:0 18px 55px #02061135}
+.universe-feature-art{height:390px;position:relative;display:grid;place-items:center;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 60%,#394caa66,transparent 47%),radial-gradient(ellipse at 50% 100%,#3cdbdc20,transparent 55%),linear-gradient(145deg,#1a2149,#080d1d 72%)}
+.universe-feature-art:before,.universe-art-visual:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1px 1px at 12% 22%,#fff 99%,transparent),radial-gradient(1px 1px at 77% 18%,#a9eefa 99%,transparent),radial-gradient(1.5px 1.5px at 84% 76%,#fff 99%,transparent),radial-gradient(1px 1px at 25% 78%,#b8aaff 99%,transparent);background-size:190px 170px,230px 210px,270px 240px,210px 190px;opacity:.75}
+.universe-art-label{position:absolute;z-index:4;top:19px;left:21px;color:#a9b8dc;font:700 8px var(--display);letter-spacing:2px}
+.feature-planet{position:relative;z-index:2;width:190px;height:190px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 31% 24%,#fff 0%,#c8d2ff 8%,#9295ed 25%,#4c5bb4 62%,#1b255b 100%);box-shadow:inset -28px -22px 38px #070b2888,0 0 45px #8c91ff88,0 0 110px #6975ff55}
+.feature-planet:after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(125deg,transparent 35%,#06091d88 90%)}
+.feature-planet span{z-index:1;color:#f4f5ff;font:700 82px var(--display);text-shadow:0 4px 28px #111b5e}
+.feature-orbit{position:absolute;z-index:3;width:330px;height:105px;border:1px solid #a7eaf0aa;border-radius:50%;pointer-events:none}
+.feature-orbit-a{transform:rotate(-24deg)}
+.feature-orbit-b{width:370px;height:145px;border-color:#aaa0ff66;transform:rotate(31deg)}
+.feature-star{position:absolute;z-index:4;color:#a7f4f2;text-shadow:0 0 22px #7ce8ed;font-size:27px}
+.feature-star-one{top:23%;right:23%}.feature-star-two{bottom:22%;left:22%;font-size:20px;color:#b6a5ff}
+.feature-coordinate{position:absolute;right:20px;bottom:18px;color:#8295bd;font:600 7px var(--display);letter-spacing:1.8px}
+.universe-feature-copy{display:flex;justify-content:space-between;align-items:end;gap:22px;padding:23px 25px 25px}
+.universe-overline{color:#8de8ef;font:700 8px var(--display);letter-spacing:1.8px}
+.universe-feature-copy h3{margin:10px 0 0;font:600 clamp(22px,3vw,31px)/1.1 var(--display);letter-spacing:-.8px}
+.universe-feature-copy h3 em{font-style:normal}
+.universe-feature-copy p{max-width:230px;margin:0;color:var(--muted);font-size:10px;line-height:1.8}
+.universe-side{display:grid;grid-template-rows:1fr 1fr;gap:16px}
+.universe-art-card{display:flex;flex-direction:column}
+.universe-art-visual{position:relative;flex:1;min-height:185px;display:grid;place-items:center;overflow:hidden}
+.nebula-card .universe-art-visual{background:radial-gradient(ellipse at 50% 55%,#5742a8,#20224d 45%,#0a1023 82%)}
+.nebula-cloud{position:absolute;width:145px;height:100px;border-radius:50%;filter:blur(18px);transform:rotate(-30deg)}
+.nebula-cloud-a{background:#a27affaa;box-shadow:0 0 45px #a27aff88}
+.nebula-cloud-b{width:105px;height:75px;background:#53dbe5aa;transform:translate(25px,10px) rotate(35deg);filter:blur(22px)}
+.nebula-star{z-index:2;color:#fff;font-size:42px;text-shadow:0 0 22px #fff}
+.art-visual-word{position:absolute;z-index:3;bottom:15px;left:18px;color:#fff;font:700 14px/1 var(--display);letter-spacing:1.2px;text-shadow:0 2px 15px #08091b}
+.signal-card .universe-art-visual{background:radial-gradient(circle at 50% 50%,#14536d,#0a1b34 62%,#091020)}
+.signal-core{position:relative;z-index:2;color:#b5fff4;font-size:43px;text-shadow:0 0 25px #68e4d9}
+.signal-wave{position:absolute;width:95px;height:95px;border:1px solid #83eaf0aa;border-radius:50%;box-shadow:0 0 22px #68e4d955}
+.signal-wave-a{width:130px;height:130px}.signal-wave-b{width:175px;height:175px;opacity:.55}.signal-wave-c{width:220px;height:220px;opacity:.25}
+.universe-art-caption{padding:13px 16px 15px;border-top:1px solid #ffffff16}
+.universe-art-caption span{display:block;margin-bottom:6px;color:#8296bf;font-size:7px;letter-spacing:1.8px}
+.universe-art-caption b{font:600 12px var(--display)}
+.universe-community-strip{display:flex;align-items:center;gap:17px;margin-top:17px;padding:19px 22px;border:1px solid #7c8cff38;border-radius:16px;background:linear-gradient(100deg,#172044aa,#10172dcc)}
+.universe-community-mark{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;border:1px solid #8de8ef66;border-radius:50%;color:var(--cyan);font-size:20px;box-shadow:0 0 22px #70e4ed22}
+.universe-community-strip>div:nth-child(2){flex:1;min-width:0}
+.universe-community-strip h3{margin:5px 0;color:#f0f3ff;font:600 15px var(--display)}
+.universe-community-strip p{margin:0;color:var(--muted);font-size:10px;line-height:1.6}
+.universe-community-strip .button{padding:12px 15px;gap:12px;font-size:10px;white-space:nowrap}
+@media(max-width:850px){.universe-showcase{grid-template-columns:1fr}.universe-feature-art{height:340px}.universe-side{grid-template-columns:1fr 1fr;grid-template-rows:auto}.universe-art-visual{min-height:175px}.universe-feature-copy{align-items:flex-start;flex-direction:column;gap:10px}.universe-feature-copy p{max-width:450px}}
+@media(max-width:560px){.universe-feature-art{height:270px}.feature-planet{width:145px;height:145px}.feature-planet span{font-size:65px}.feature-orbit{width:260px;height:85px}.feature-orbit-b{width:290px;height:115px}.universe-side{grid-template-columns:1fr}.universe-art-visual{min-height:190px}.universe-community-strip{align-items:flex-start;flex-wrap:wrap;padding:17px}.universe-community-strip>div:nth-child(2){flex-basis:calc(100% - 60px)}.universe-community-strip .button{width:100%;justify-content:center;white-space:normal}}
+@media(prefers-reduced-motion:reduce){.feature-planet{animation:none}}
