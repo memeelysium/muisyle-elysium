@@ -59,3 +59,32 @@ document.addEventListener('click',event=>{
   const control=event.target.closest(cosmicControlSelector);
   if(control&&!control.matches(':disabled,[aria-disabled="true"]'))playCosmicClick();
 },true);
+
+
+// tsParticles: subtle cosmic stars with gentle movement and connections.
+(async function initCosmicParticles(){
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  if(!window.tsParticles||!window.loadSlim)return;
+  try{
+    await window.loadSlim(window.tsParticles);
+    await window.tsParticles.load({
+      id:'tsparticles',
+      options:{
+        fullScreen:{enable:false},
+        detectRetina:true,
+        fpsLimit:45,
+        particles:{
+          number:{value:42,density:{enable:true,area:1000}},
+          color:{value:['#ffffff','#8defff','#a99bff']},
+          shape:{type:'circle'},
+          opacity:{value:{min:.16,max:.62},animation:{enable:true,speed:.45,sync:false}},
+          size:{value:{min:1,max:2.2}},
+          links:{enable:true,distance:135,color:'#8daaff',opacity:.13,width:1},
+          move:{enable:true,speed:.42,direction:'none',random:true,straight:false,outModes:{default:'out'}}
+        },
+        interactivity:{events:{onHover:{enable:false},onClick:{enable:false}}},
+        background:{color:{value:'transparent'}}
+      }
+    });
+  }catch(error){console.warn('Cosmic particles could not be loaded:',error)}
+})();
