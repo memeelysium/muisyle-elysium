@@ -112,9 +112,9 @@ The following is a **curated sample** of tokens currently surfaced by the tracke
 | Token | Symbol | Contract address |
 | --- | --- | --- |
 | [Montra](https://elyscan.live/token/0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327) | `MONTRA` | `0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327` |
-| [Wrapped HYPE](https://elyscan.live/token/0xbA87) | `WHYPE` | See live tracker |
-| [USDC](https://elyscan.live/tokens) | `USDC` | Multiple token entries; verify the exact contract |
-| [Kinetiq Governance Token](https://elyscan.live/tokens) | `KNTQ` | See live tracker |
+| [Wrapped HYPE](https://elyscan.live/token/0xbA876237B0F021A6c6D852d6c26E107997cC5E81) | `WHYPE` | `0xbA876237B0F021A6c6D852d6c26E107997cC5E81` |
+| [USDC](https://elyscan.live/token/0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65) | `USDC` | `0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65` |
+| [Kinetiq Governance Token](https://elyscan.live/token/0xe45a355d9e9cAd2aD85F2d03E3eE3102A036acF0) | `KNTQ` | `0xe45a355d9e9cAd2aD85F2d03E3eE3102A036acF0` |
 | [Elysium Pepe Acceleration](https://elyscan.live/token/0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0) | `ep/acc` | `0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0` |
 | [MAXIMUS CAT](https://elyscan.live/token/0x979e08A83900336b1BCCb0818E55c7748aB438BE) | `MAXIMUS` | `0x979e08A83900336b1BCCb0818E55c7748aB438BE` |
 | [BoxaV2](https://elyscan.live/token/0xb6825cC93Cc20CC37270C056969136dc439bDFC6) | `$BOXA` | `0xb6825cC93Cc20CC37270C056969136dc439bDFC6` |
