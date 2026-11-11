@@ -68,6 +68,50 @@ MUISYLE is built as a lightweight web experience using browser-native technologi
 
 The project is designed to run as a static website; no local build step is required for the basic experience.
 
+## Elysium on-chain structure
+
+MUISYLE is designed around the wider Elysium ecosystem. The following overview separates the website experience from the underlying blockchain infrastructure and provides a clear foundation for future on-chain integrations.
+
+```text
+                  MUISYLE COMMUNITY
+                         │
+                         ▼
+                MUISYLE WEB EXPERIENCE
+          Website · Meme Gallery · Profiles
+                         │
+             Wallet connection / dApp layer
+                  (future integration)
+                         │
+                         ▼
+                ELYSIUM EVM NETWORK
+             Smart contracts · Transactions
+                         │
+              ┌──────────┴──────────┐
+              ▼                     ▼
+        On-chain assets       Blockchain explorer
+        & interactions        Verification & data
+```
+
+### Network reference
+
+The Elysium Foundation's developer documentation identifies the following network configuration:
+
+| Network | Chain ID | RPC endpoint | Explorer |
+| --- | ---: | --- | --- |
+| Elysium Mainnet | `1339` | [rpc.elysiumchain.tech](https://rpc.elysiumchain.tech) | [explorer.elysiumchain.tech](https://explorer.elysiumchain.tech) |
+| Atlantis Testnet | `1338` | [rpc.atlantischain.network](https://rpc.atlantischain.network) | [explorer.atlantischain.network](https://explorer.atlantischain.network) |
+
+Useful ecosystem resources: [Elysium developer documentation](https://github.com/elysium-foundation/elysium-docs) · [Elysium Foundation](https://github.com/elysium-foundation/elysium).
+
+### What this means for MUISYLE
+
+- **Community layer:** the website is the public-facing home for MUISYLE content and participation.
+- **Wallet layer:** wallet connectivity can provide a user-controlled way to interact with compatible dApps.
+- **Smart-contract layer:** on-chain features should be implemented through verified contracts and clearly documented addresses.
+- **Verification layer:** transactions and deployed contracts can be inspected through the network's block explorer.
+
+**Implementation status:** this section documents the intended ecosystem architecture and network reference. It does not claim that MUISYLE has deployed its own smart contracts, issued an on-chain token, or enabled wallet transactions. Any future integration will be documented here only after it is implemented and verified. Always confirm network details against the Elysium documentation before connecting a wallet or signing a transaction.
+
 ## Run locally
 
 Clone the repository:
