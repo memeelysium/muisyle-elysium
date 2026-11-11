@@ -47,3 +47,16 @@
 .vision-icon svg{width:34px;height:34px;stroke:var(--cyan);stroke-width:1.6}
 .nav-cta .inline-icon{margin-left:7px}
 .button .inline-icon{margin-left:2px}
+
+
+/* Three.js cosmic hero planet */
+.hero-visual{overflow:visible}
+.three-cosmic-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;display:block;touch-action:pan-y}
+.hero-visual.has-three .planet-core,
+.hero-visual.has-three .orbit,
+.hero-visual.has-three .satellite{opacity:0;pointer-events:none}
+.hero-visual.has-three .visual-halo{opacity:.75}
+.hero-visual.has-three .visual-label{z-index:2;text-shadow:0 2px 12px #070916}
+@media(max-width:760px){
+  .three-cosmic-canvas{max-width:100%}
+}
