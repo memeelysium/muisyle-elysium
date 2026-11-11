@@ -383,3 +383,10 @@
 .token-safety-note b{color:#e8d7a7}
 @media(max-width:620px){.token-ecosystem-section{padding:70px 0}.token-network-panel{padding:17px 12px}.token-flow-branches{gap:6px}.token-flow-branches .token-flow-node{font-size:7px;letter-spacing:.4px;overflow-wrap:anywhere}.token-card-grid{grid-template-columns:1fr}.token-list-heading{align-items:flex-start;flex-direction:column}.token-list-heading h3{font-size:19px}.token-list-heading>a{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.token-card,.token-explorer-node{transition:none}}
+
+
+/* MUISYLE routed pages: show one focused destination at a time. */
+.page-hidden{display:none!important}
+.site-header .bubble-nav>a[aria-current="page"]{background:#76e6ed20!important;border-color:#76e6ed66!important;color:#a8f5f5!important}
+main{min-height:calc(100vh - 170px)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
