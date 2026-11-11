@@ -40,3 +40,10 @@
 #tsparticles canvas{pointer-events:none!important}
 .site-header,main,.site-footer{position:relative;z-index:1}
 @media(prefers-reduced-motion:reduce){#tsparticles{display:none}}
+
+
+/* Lucide icon system */
+.inline-icon{width:14px;height:14px;stroke-width:2;vertical-align:-2px;flex:0 0 auto}
+.vision-icon svg{width:34px;height:34px;stroke:var(--cyan);stroke-width:1.6}
+.nav-cta .inline-icon{margin-left:7px}
+.button .inline-icon{margin-left:2px}
