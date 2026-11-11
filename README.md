@@ -3,94 +3,122 @@
 <img src="assets/readme-logo.svg" width="180" alt="MUISYLE emblem" />
 
 # MUISYLE
+
 ### ELYSIUM CULTURE · MORE THAN A MEME. A WHOLE NEW VIBE.
 
-**A community-led creative space celebrating memes, imagination, and onchain culture around the Elysium ecosystem.**
+A community-first creative universe shaped by internet culture, visual imagination, and the spirit of the Elysium ecosystem.
 
 <br />
 
-<a href="https://memeelysium.github.io/muisyle-elysium/">
-  <img src="https://img.shields.io/badge/ENTER%20THE%20UNIVERSE-6D5DFB?style=for-the-badge&logo=githubpages&logoColor=white" alt="Visit MUISYLE website" />
+<a href="https://memeelysium.github.io/">
+  <img src="https://img.shields.io/badge/EXPLORE_MUISYLE-Visit_the_Universe-7667F8?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Explore MUISYLE" />
 </a>
 <a href="https://github.com/memeelysium/muisyle-elysium">
-  <img src="https://img.shields.io/badge/VIEW%20SOURCE-111827?style=for-the-badge&logo=github&logoColor=white" alt="View source code" />
+  <img src="https://img.shields.io/badge/OPEN_SOURCE-View_Repository-171923?style=for-the-badge&logo=github&logoColor=white" alt="View repository" />
 </a>
 
 <br /><br />
 
-<img src="https://img.shields.io/badge/PROJECT-COMMUNITY%20CULTURE-8B5CF6?style=flat-square" alt="Community culture project" />
-<img src="https://img.shields.io/badge/STATUS-ONLINE-16A34A?style=flat-square" alt="Online" />
-<img src="https://img.shields.io/badge/LICENSE-MIT-64748B?style=flat-square" alt="MIT license" />
+<img src="https://img.shields.io/badge/IDENTITY-COMMUNITY_CULTURE-8B7CF6?style=flat-square" alt="Community culture" />
+<img src="https://img.shields.io/badge/EXPERIENCE-COSMIC_WEB-38BDF8?style=flat-square" alt="Cosmic web experience" />
+<img src="https://img.shields.io/badge/PLATFORM-GITHUB_PAGES-64748B?style=flat-square" alt="GitHub Pages" />
 
 </div>
 
 ---
 
-## ✦ Welcome to MUISYLE
+## The MUISYLE universe
 
-MUISYLE is an independent, fan-made brand concept inspired by the creative energy of the Elysium ecosystem. It brings together meme culture, visual creativity, and the spirit of building onchain.
+MUISYLE is an independent creative identity inspired by the energy of internet culture and the possibilities of the Elysium ecosystem.
 
-Our idea is simple: **culture is more than a trend — it is something people create together.**
+We see memes as more than passing jokes. They are a shared language — a way for people to express ideas, create connections, and build a culture together.
 
-> More than a meme. A whole new vibe.
+> **More than a meme. A whole new vibe.**
 
-## 🚀 Explore the experience
+Our universe brings that idea to life through a distinctive cosmic aesthetic and a growing set of community-focused experiences.
 
-- **Cosmic identity** — a space-inspired visual world and distinctive project aesthetic.
-- **Culture & creativity** — a home for ideas, memes, and community expression.
-- **Community connection** — discover the project and find its social channels.
-- **Responsive experience** — designed to work across desktop and mobile screens.
+## Explore
 
-## 🪐 Our vision
+| Experience | Description |
+| --- | --- |
+| **The Visual Universe** | A space-inspired visual world built around the MUISYLE identity. |
+| **Community Meme Gallery** | Explore featured meme concepts and discover how to submit community creations. |
+| **Community Profiles** | Create a public profile, introduce yourself, and find other members in orbit. |
+| **Community Hub** | Follow the project and join the conversation through its official social channels. |
+| **Responsive Interface** | A carefully styled experience for desktop and mobile screens. |
 
-To grow a recognizable creative identity around memes and onchain culture — welcoming curious minds, creators, and community members to take part.
+## Our direction
 
-MUISYLE is an evolving community concept. Follow the project channels for updates and new releases.
+We want to build a recognizable home for creativity, humor, and community participation around the Elysium ecosystem.
 
-## 🔗 Official destination
+- **Create freely** — make room for original ideas and unexpected perspectives.
+- **Build together** — give community members ways to participate and be discovered.
+- **Stay curious** — keep exploring new formats, creative tools, and experiences.
+- **Keep it welcoming** — make the universe accessible to newcomers and long-time community members alike.
+
+## Technology
+
+MUISYLE is built as a lightweight web experience using browser-native technologies and selected open-source tools.
+
+- HTML, CSS, and JavaScript
+- Three.js for selected visual experiences
+- Lucide icons
+- Supabase-powered community functionality
+- GitHub Pages for website hosting
+
+The project is designed to run as a static website; no local build step is required for the basic experience.
+
+## Run locally
+
+Clone the repository:
+
+```bash
+git clone https://github.com/memeelysium/muisyle-elysium.git
+cd muisyle-elysium
+```
+
+Then open `index.html` in a modern browser.
+
+> Some community features rely on the configured Supabase project and may require an internet connection.
+
+## Project structure
+
+```text
+.
+├── assets/             # Visual and brand assets
+├── brand-kit/          # Brand resources
+├── supabase/           # Supabase-related project files
+├── index.html          # Main website
+├── styles.css          # Interface and responsive styling
+├── script.js           # Main client-side interactions
+├── three-scene.js      # Three.js visual experience
+├── motion-effects.js   # Motion effects
+├── chart-effects.js    # Chart-related effects
+└── community-profile.js# Community profile functionality
+```
+
+## Community
+
+The MUISYLE universe grows through the people who take part in it.
+
+- **Website:** [memeelysium.github.io](https://memeelysium.github.io/)
+- **X:** [@memeelysium](https://x.com/memeelysium)
+- **GitHub:** [memeelysium](https://github.com/memeelysium)
+
+Have an idea or something worth building? Open an issue or submit a pull request. Thoughtful contributions and creative suggestions are welcome.
+
+## Independence & disclaimer
+
+MUISYLE is an independent, fan-made community project. It is not an official Elysium product and is not affiliated with, endorsed by, or operated by the Elysium team.
+
+Any references to Elysium are for ecosystem context only. Nothing in this repository or on the website constitutes financial, investment, or token-performance advice.
+
+---
 
 <div align="center">
 
-### Ready to explore?
+**MADE FOR THE CULTURE. POWERED BY COMMUNITY.**
 
-<a href="https://memeelysium.github.io/muisyle-elysium/">
-  <img src="https://img.shields.io/badge/LAUNCH%20MUISYLE-Visit%20Website-7C3AED?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Launch MUISYLE" />
-</a>
+*Stay curious. Stay cosmic.*
 
 </div>
-
-## 🛠️ Run locally
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/memeelysium/muisyle-elysium.git
-   ```
-2. Open the project folder.
-3. Open `index.html` in your browser.
-
-No build step is required for the static site.
-
-## 🌐 Deployment
-
-This is a lightweight static website hosted with **GitHub Pages**:
-
-1. Open **Settings → Pages** in the repository.
-2. Choose **Deploy from a branch**.
-3. Select **GitHub Actions** as the deployment source.
-4. Save and wait for the deployment workflow to finish.
-
-Live website: https://memeelysium.github.io/muisyle-elysium/
-
-## 🤝 Be part of the culture
-
-Have an idea, suggestion, or creative contribution? Open an issue or submit a pull request. Constructive contributions are welcome.
-
-## ⚠️ Disclaimer
-
-MUISYLE is an independent, fan-made community and brand concept. It is **not an official Elysium product**, and this repository does not imply endorsement, partnership, or affiliation with the Elysium team.
-
-Nothing on this page should be interpreted as financial advice or a promise of token performance.
-
-## 📄 License
-
-This project is released under the MIT License.
