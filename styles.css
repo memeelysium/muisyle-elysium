@@ -108,3 +108,11 @@
 @keyframes loader-logo-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @keyframes loader-twinkle{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.2)}}
 @media(prefers-reduced-motion:reduce){.loader-logo,.loader-orbit,.loader-stars span,.loader-progress span{animation:none!important}.loading-screen{transition:none}}
+
+
+/* Reown AppKit wallet entry — matched to the MUISYLE cosmic navigation */
+.wallet-connect-root{display:inline-flex;align-items:center;justify-content:center;min-width:124px}
+.wallet-connect-root appkit-button{--w3m-accent:#75e6ed;--w3m-border-radius-master:12px;--w3m-font-family:var(--font)}
+.wallet-setup-link{display:inline-flex;align-items:center;justify-content:center;padding:11px 15px;border:1px solid #75e6ed88;border-radius:999px;color:#9deaf0;font:700 10px var(--display);letter-spacing:1.1px;white-space:nowrap;transition:.2s}
+.wallet-setup-link:hover{background:#75e6ed16;border-color:#75e6ed;box-shadow:0 0 18px #69dce733}
+@media(max-width:760px){.wallet-connect-root{width:100%;justify-content:center}.wallet-connect-root appkit-button{width:100%}.wallet-setup-link{width:100%}}
