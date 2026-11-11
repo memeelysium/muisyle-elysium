@@ -75,16 +75,3 @@
 @media(max-width:760px){.pulse-panel{padding:17px}.pulse-chart-wrap{height:230px}.pulse-heading h3{font-size:16px}.pulse-badge{font-size:7px;padding:7px 9px}}
 @media(prefers-reduced-motion:reduce){.pulse-panel{scroll-behavior:auto}}
 
-
-/* Live Elysium DEX Screener embed */
-.market-panel{padding:24px;border:1px solid #7c8cff3d;border-radius:20px;background:linear-gradient(145deg,#111a34e8,#0b1021f2);box-shadow:0 18px 65px #02051155}
-.market-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:18px}
-.market-heading h3{font:600 19px var(--display);margin:8px 0 0;color:#f1f4ff}
-.market-live{display:inline-flex;align-items:center;gap:8px;padding:8px 11px;border:1px solid #72e5b655;border-radius:30px;color:#a8f2d1;font-size:8px;letter-spacing:1.5px;white-space:nowrap}
-.market-live i{width:6px;height:6px;border-radius:50%;background:#75e6b0;box-shadow:0 0 10px #75e6b0}
-.market-frame-wrap{height:720px;overflow:hidden;border:1px solid #ffffff1c;border-radius:13px;background:#0b0e16}
-.market-frame-wrap iframe{display:block;width:100%;height:100%;border:0;background:#0b0e16}
-.market-footer{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-top:15px;color:#8290b2;font-size:10px;line-height:1.7}
-.market-footer a{color:var(--cyan);font-weight:700}
-.market-footer a:hover{text-decoration:underline}
-@media(max-width:760px){.market-panel{padding:14px}.market-frame-wrap{height:680px}.market-heading h3{font-size:16px}.market-footer{align-items:flex-start;flex-direction:column;gap:7px}}
