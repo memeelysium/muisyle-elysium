@@ -1,3 +1,6 @@
 .wallet-connect-root appkit-button{display:inline-flex;vertical-align:middle}
 .wallet-connect-root appkit-button::part(button){font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:1px}
 @media(max-width:760px){.wallet-connect-root appkit-button{width:100%;justify-content:center}}
+
+.wallet-setup-link{display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;border:1px solid rgba(117,230,237,.55);border-radius:10px;color:#9deaf0;text-decoration:none;font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:1px;white-space:nowrap;background:rgba(117,230,237,.08)}
+.wallet-setup-link:hover{background:rgba(117,230,237,.16);border-color:#75e6ed}
