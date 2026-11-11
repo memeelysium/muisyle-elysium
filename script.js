@@ -133,3 +133,28 @@ window.addEventListener('load',function renderLucideIcons(){
   const skip=document.getElementById('loader-skip');
   if(skip)skip.addEventListener('click',()=>{finished=true;finish();});
 })();
+
+
+// Community Meme Gallery category filters.
+(function initCommunityMemeGallery(){
+  const gallery=document.getElementById('community-meme-grid');
+  if(!gallery)return;
+  const cards=[...gallery.querySelectorAll('.community-meme-card')];
+  const filters=[...document.querySelectorAll('.meme-filter')];
+  const empty=document.getElementById('meme-gallery-empty');
+  filters.forEach(button=>button.addEventListener('click',()=>{
+    const selected=button.dataset.filter||'all';
+    filters.forEach(filter=>{
+      const active=filter===button;
+      filter.classList.toggle('active',active);
+      filter.setAttribute('aria-pressed',String(active));
+    });
+    let visible=0;
+    cards.forEach(card=>{
+      const show=selected==='all'||card.dataset.category===selected;
+      card.hidden=!show;
+      if(show)visible++;
+    });
+    if(empty)empty.hidden=visible!==0;
+  }));
+})();
