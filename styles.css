@@ -203,3 +203,18 @@
 .profile-disclaimer{margin:14px 0 0;color:#7585a7;font-size:9px;line-height:1.7}
 @media(max-width:850px){.profile-layout{grid-template-columns:1fr}.profile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.profile-panel,.profile-directory{padding:17px}.profile-grid{grid-template-columns:1fr}.profile-card{padding:12px}}
+
+
+/* The Community Signal — embedded X timeline */
+.community-signal-section{max-width:1120px;margin:0 auto;padding:90px 28px}
+.community-signal-panel{max-width:780px;margin:0 auto;padding:20px;border:1px solid #7c8cff44;border-radius:18px;background:linear-gradient(145deg,#111a34e8,#0b1021f2);overflow:hidden}
+.community-signal-heading{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:15px;padding-bottom:14px;border-bottom:1px solid #ffffff18}
+.community-signal-heading>div{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.community-signal-label{color:#8de8ef;font:700 8px var(--display);letter-spacing:1.7px}
+.community-signal-heading strong{color:#edf2ff;font:600 12px var(--display)}
+.signal-live-dot{width:7px;height:7px;border-radius:50%;background:#76e6b1;box-shadow:0 0 11px #76e6b1}
+.community-signal-heading>a{color:#8de8ef;font:700 8px var(--display);letter-spacing:1px;white-space:nowrap}
+.community-signal-panel .twitter-timeline{display:block;min-height:250px}
+.community-signal-fallback{margin:12px 0 0;color:#8290b2;font-size:10px;text-align:center}
+.community-signal-fallback a{color:#8de8ef;text-decoration:underline}
+@media(max-width:760px){.community-signal-section{padding:70px 18px}.community-signal-panel{padding:14px}.community-signal-heading{align-items:flex-start}}
