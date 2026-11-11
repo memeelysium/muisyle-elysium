@@ -182,7 +182,7 @@ window.addEventListener('load',function renderLucideIcons(){
 // MUISYLE multi-page experience: lightweight client-side routes with shareable URLs.
 (function initMuisylePages(){
   const pageMap={
-    home:["home","coming-soon","final-cta"],
+    home:["home","ticker","coming-soon","final-cta"],
     about:["about","vision","faq"],
     universe:["gallery"],
     onchain:["token-ecosystem"],
@@ -199,7 +199,7 @@ window.addEventListener('load',function renderLucideIcons(){
   const menu=document.querySelector(".menu");
   const main=document.querySelector("main");
   if(!nav||!main)return;
-  const sections=[...main.children].filter(el=>el.id);
+  const sections=[...main.children].filter(el=>el.id||el.classList.contains("ticker")||el.classList.contains("final-cta"));
   const pageUrl=(page)=>"?page="+encodeURIComponent(page);
   nav.innerHTML=labels.map(([key,label])=>'<a href="'+pageUrl(key)+'" data-page-link="'+key+'">'+label+'</a>').join("")
     +'<a class="nav-buy" href="'+pageUrl("home")+'#coming-soon">BUY <span>↗</span></a>'
@@ -210,7 +210,8 @@ window.addEventListener('load',function renderLucideIcons(){
     const active=pageMap[page]?page:"home";
     document.body.dataset.page=active;
     sections.forEach(section=>{
-      section.classList.toggle("page-hidden",!pageMap[active].includes(section.id));
+      const key=section.id||(section.classList.contains("ticker")?"ticker":"final-cta");
+      section.classList.toggle("page-hidden",!pageMap[active].includes(key));
     });
     nav.querySelectorAll("[data-page-link]").forEach(link=>{
       if(link.dataset.pageLink===active)link.setAttribute("aria-current","page");
