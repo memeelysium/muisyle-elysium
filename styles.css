@@ -75,3 +75,36 @@
 @media(max-width:760px){.pulse-panel{padding:17px}.pulse-chart-wrap{height:230px}.pulse-heading h3{font-size:16px}.pulse-badge{font-size:7px;padding:7px 9px}}
 @media(prefers-reduced-motion:reduce){.pulse-panel{scroll-behavior:auto}}
 
+
+
+/* Premium Cosmic loading screen */
+.loading-screen{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#20295b 0%,#0b1025 42%,#050711 100%);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .65s ease,visibility .65s ease}
+.loading-screen.is-active{opacity:1;visibility:visible;pointer-events:auto}
+.loading-screen.is-leaving{opacity:0;visibility:hidden;pointer-events:none}
+.loader-content{position:relative;z-index:2;width:min(330px,78vw);display:flex;align-items:center;flex-direction:column;text-align:center}
+.loader-logo-wrap{position:relative;width:94px;height:94px;display:grid;place-items:center;margin-bottom:27px}
+.loader-logo{width:72px;height:72px;object-fit:cover;border-radius:50%;border:1px solid #9beaf0aa;box-shadow:0 0 28px #6de5ed55,0 0 70px #7b83ff44;animation:loader-logo-float 2.8s ease-in-out infinite}
+.loader-orbit{position:absolute;inset:-8px;border:1px solid #8ceaf077;border-radius:50%;transform:rotate(-25deg) scaleY(.55);animation:loader-orbit-spin 7s linear infinite}
+.loader-orbit:after{content:"";position:absolute;width:7px;height:7px;right:9px;top:13px;border-radius:50%;background:#8ceaf0;box-shadow:0 0 13px #8ceaf0}
+.loader-overline{margin:0 0 9px;color:#9deaf0;font-size:8px;font-weight:700;letter-spacing:3px}
+.loader-wordmark{font:700 clamp(38px,11vw,52px)/1 var(--display);letter-spacing:8px;padding-left:8px;background:linear-gradient(100deg,#fff 10%,#a8a7ff 52%,#7ce7ed 90%);background-clip:text;color:transparent;text-shadow:0 0 35px #8e9cff22}
+.loader-wordmark span{color:#7ce7ed}
+.loader-caption{margin:15px 0 18px;color:#8e9cbd;font-size:8px;letter-spacing:2px}
+.loader-progress{width:100%;height:2px;overflow:hidden;border-radius:5px;background:#ffffff18}
+.loader-progress span{display:block;width:38%;height:100%;border-radius:5px;background:linear-gradient(90deg,#8f83ff,#78e9ef);box-shadow:0 0 12px #79e8ef;animation:loader-progress-run 1.65s ease-in-out infinite}
+.loader-skip{margin-top:24px;padding:8px 12px;border:0;background:transparent;color:#a6b2d0;font:600 8px var(--display);letter-spacing:2px;cursor:pointer}
+.loader-skip span{margin-left:6px;color:#81e8ef}
+.loader-version{position:absolute;z-index:2;bottom:27px;color:#69799f;font-size:7px;letter-spacing:2.5px}
+.loader-version span{color:#80e8ef;margin-left:7px}
+.loader-stars{position:absolute;inset:0;pointer-events:none;color:#9deaf0}
+.loader-stars span{position:absolute;opacity:.65;text-shadow:0 0 15px currentColor;animation:loader-twinkle 2.4s ease-in-out infinite}
+.loader-stars span:nth-child(1){left:17%;top:24%;font-size:17px}
+.loader-stars span:nth-child(2){right:19%;top:30%;font-size:24px;animation-delay:.6s;color:#b3a4ff}
+.loader-stars span:nth-child(3){left:25%;bottom:23%;font-size:11px;animation-delay:1.1s}
+.loader-stars span:nth-child(4){right:26%;bottom:21%;font-size:30px;animation-delay:.3s;color:#b3a4ff}
+.loader-stars span:nth-child(5){right:12%;top:62%;font-size:14px;animation-delay:1.4s}
+@keyframes loader-progress-run{0%{transform:translateX(-110%)}100%{transform:translateX(270%)}}
+@keyframes loader-orbit-spin{to{transform:rotate(335deg) scaleY(.55)}}
+@keyframes loader-logo-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes loader-twinkle{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.2)}}
+@media(prefers-reduced-motion:reduce){.loader-logo,.loader-orbit,.loader-stars span,.loader-progress span{animation:none!important}.loading-screen{transition:none}}
