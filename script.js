@@ -95,12 +95,10 @@ window.addEventListener('load',function renderLucideIcons(){
 });
 
 
-// Premium Cosmic intro: show once per browser tab session for exactly 3 seconds.
+// Premium Cosmic intro: keep the screen visible for at least 5 seconds on every page load.
 (function initPremiumLoader(){
   const loader=document.getElementById('loading-screen');
   if(!loader)return;
-  let alreadySeen=false;
-  try{alreadySeen=sessionStorage.getItem('muisyle-intro-seen')==='1';}catch(error){}
   const finish=()=>{
     if(!loader.classList.contains('is-active'))return;
     loader.classList.add('is-leaving');
@@ -108,8 +106,6 @@ window.addEventListener('load',function renderLucideIcons(){
     document.documentElement.classList.remove('loading-active');
     window.setTimeout(()=>loader.remove(),700);
   };
-  if(alreadySeen){loader.remove();return;}
-  try{sessionStorage.setItem('muisyle-intro-seen','1');}catch(error){}
   loader.classList.add('is-active');
   document.documentElement.classList.add('loading-active');
   const startedAt=Date.now();
@@ -117,11 +113,11 @@ window.addEventListener('load',function renderLucideIcons(){
   const finishAfterMinimum=()=>{
     if(finished)return;
     finished=true;
-    const remaining=Math.max(0,3000-(Date.now()-startedAt));
+    const remaining=Math.max(0,5000-(Date.now()-startedAt));
     window.setTimeout(finish,remaining);
   };
   window.addEventListener('load',finishAfterMinimum,{once:true});
-  window.setTimeout(finishAfterMinimum,3000);
+  window.setTimeout(finishAfterMinimum,5000);
   const skip=document.getElementById('loader-skip');
   if(skip)skip.addEventListener('click',()=>{finished=true;finish();});
 })();
