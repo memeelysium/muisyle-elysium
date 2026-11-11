@@ -103,6 +103,51 @@ The Elysium Foundation's developer documentation identifies the following networ
 
 Useful ecosystem resources: [Elysium developer documentation](https://github.com/elysium-foundation/elysium-docs) · [Elysium Foundation](https://github.com/elysium-foundation/elysium).
 
+### Elysium Mainnet token ecosystem
+
+Elysium Mainnet already has an active token ecosystem. The public [Elyscan Token Tracker](https://elyscan.live/tokens) lists ERC-20 assets on the network and provides token pages for checking contract details, supply, holders, and activity.
+
+The following is a **curated sample** of tokens currently surfaced by the tracker, not a complete list or a ranking. Token listings, holder counts, liquidity, and market data can change.
+
+| Token | Symbol | Contract address |
+| --- | --- | --- |
+| [Montra](https://elyscan.live/token/0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327) | `MONTRA` | `0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327` |
+| [Wrapped HYPE](https://elyscan.live/token/0xbA87) | `WHYPE` | See live tracker |
+| [USDC](https://elyscan.live/tokens) | `USDC` | Multiple token entries; verify the exact contract |
+| [Kinetiq Governance Token](https://elyscan.live/tokens) | `KNTQ` | See live tracker |
+| [Elysium Pepe Acceleration](https://elyscan.live/token/0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0) | `ep/acc` | `0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0` |
+| [MAXIMUS CAT](https://elyscan.live/token/0x979e08A83900336b1BCCb0818E55c7748aB438BE) | `MAXIMUS` | `0x979e08A83900336b1BCCb0818E55c7748aB438BE` |
+| [BoxaV2](https://elyscan.live/token/0xb6825cC93Cc20CC37270C056969136dc439bDFC6) | `$BOXA` | `0xb6825cC93Cc20CC37270C056969136dc439bDFC6` |
+| [Volta](https://elyscan.live/token/0x6721083BB7E56A8b5398f32a02D0AB55C87B63C8) | `VOLTA` | `0x6721083BB7E56A8b5398f32a02D0AB55C87B63C8` |
+| [GOTEM](https://elyscan.live/token/0xA4d91152e453eAc3D6148bc25909b214D6225560) | `GOTEM` | `0xA4d91152e453eAc3D6148bc25909b214D6225560` |
+| [e/acc](https://elyscan.live/token/0x62dC5b1DE5e1D3894639aEdC2ddd23d404BbfB70) | `e/acc` | `0x62dC5b1DE5e1D3894639aEdC2ddd23d404BbfB70` |
+
+**How the token layer fits into the network**
+
+```text
+                 ELYSIUM MAINNET
+                  Chain ID: 1339
+                         │
+                  EVM / ERC-20
+                         │
+              Deployed token contracts
+                         │
+          ┌──────────────┼──────────────┐
+          ▼              ▼              ▼
+      Ecosystem       Community       Stablecoin /
+       tokens          tokens        wrapped assets
+          │              │              │
+          └──────────────┼──────────────┘
+                         ▼
+               Wallets · DEXs · dApps
+                         │
+                         ▼
+                 Elyscan Explorer
+          Contract · Holders · Transfers
+```
+
+**Important:** token names and symbols are not unique. Some assets may have multiple contracts or similarly named copies on the same network. Always verify the full contract address, network, liquidity, and contract details in the explorer before interacting. Inclusion here is informational only and is not an endorsement or investment recommendation. These are ecosystem assets, not MUISYLE-issued tokens.
+
 ### What this means for MUISYLE
 
 - **Community layer:** the website is the public-facing home for MUISYLE content and participation.
