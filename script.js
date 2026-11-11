@@ -85,3 +85,11 @@ window.addEventListener('load',async function initCosmicParticles(){
     });
   }catch(error){console.warn('Cosmic particles could not be loaded:',error)}
 });
+
+
+// Render consistent Lucide outline icons once the deferred library is ready.
+window.addEventListener('load',function renderLucideIcons(){
+  if(window.lucide&&typeof window.lucide.createIcons==='function'){
+    window.lucide.createIcons({attrs:{'stroke-width':1.8}});
+  }
+});
