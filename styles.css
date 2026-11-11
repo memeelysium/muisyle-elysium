@@ -251,3 +251,21 @@
 @media(max-width:850px){.universe-showcase{grid-template-columns:1fr}.universe-feature-art{height:340px}.universe-side{grid-template-columns:1fr 1fr;grid-template-rows:auto}.universe-art-visual{min-height:175px}.universe-feature-copy{align-items:flex-start;flex-direction:column;gap:10px}.universe-feature-copy p{max-width:450px}}
 @media(max-width:560px){.universe-feature-art{height:270px}.feature-planet{width:145px;height:145px}.feature-planet span{font-size:65px}.feature-orbit{width:260px;height:85px}.feature-orbit-b{width:290px;height:115px}.universe-side{grid-template-columns:1fr}.universe-art-visual{min-height:190px}.universe-community-strip{align-items:flex-start;flex-wrap:wrap;padding:17px}.universe-community-strip>div:nth-child(2){flex-basis:calc(100% - 60px)}.universe-community-strip .button{width:100%;justify-content:center;white-space:normal}}
 @media(prefers-reduced-motion:reduce){.feature-planet{animation:none}}
+
+
+/* MUISYLE Bubble Navigation — distinct floating capsules */
+.site-header{position:sticky;top:0;height:auto;min-height:82px;gap:18px;background:rgba(7,9,22,.96);border-bottom:1px solid #ffffff12;backdrop-filter:blur(18px)}
+.site-header .bubble-nav{display:flex;align-items:center;justify-content:center;gap:7px;padding:8px;border:1px solid #8daaff30;border-radius:999px;background:linear-gradient(135deg,rgba(22,30,61,.96),rgba(10,17,37,.98));box-shadow:0 8px 30px #0007,inset 0 1px #ffffff0c}
+.site-header .bubble-nav>a:not(.nav-buy):not(.nav-cta){display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:0 13px;border:1px solid transparent;border-radius:999px;background:#ffffff08;color:#d9e2ff;font-size:11px;white-space:nowrap;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.site-header .bubble-nav>a:not(.nav-buy):not(.nav-cta):hover,.site-header .bubble-nav>a:not(.nav-buy):not(.nav-cta):focus-visible{background:#76e6ed18;border-color:#76e6ed66;color:#a8f5f5;transform:translateY(-1px)}
+.site-header .bubble-nav .nav-buy{min-height:38px;padding:0 17px}
+.site-header .bubble-nav .nav-cta{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:0 15px;border:1px solid #9b8cff55;border-radius:999px;background:#8d7cff1b;color:#e7e2ff;font-size:11px;white-space:nowrap}
+.site-header .bubble-nav .nav-cta:hover{background:#8d7cff35;border-color:#b3a8ff}
+@media(max-width:1000px) and (min-width:761px){.site-header{padding:0 16px}.site-header .bubble-nav{gap:4px;padding:6px}.site-header .bubble-nav>a:not(.nav-buy):not(.nav-cta){padding:0 9px;font-size:10px}.site-header .bubble-nav .nav-cta{padding:0 10px;font-size:10px}}
+@media(max-width:760px){
+ .site-header{height:70px;min-height:70px;padding:0 20px;background:rgba(7,9,22,.98)}
+ .site-header .bubble-nav{display:none;position:absolute;top:78px;left:14px;right:14px;padding:14px;flex-direction:row;flex-wrap:wrap;justify-content:center;gap:9px;border:1px solid #8daaff55;border-radius:24px;background:rgba(9,14,32,.99);box-shadow:0 18px 45px #000b}
+ .site-header .bubble-nav.open{display:flex}
+ .site-header .bubble-nav>a:not(.nav-buy):not(.nav-cta){min-height:40px;padding:0 14px;border:1px solid #ffffff1c;background:#ffffff0a;font-size:11px}
+ .site-header .bubble-nav .nav-buy,.site-header .bubble-nav .nav-cta{width:auto;min-height:40px;padding:0 16px}
+}
