@@ -95,7 +95,7 @@ window.addEventListener('load',function renderLucideIcons(){
 });
 
 
-// Premium Cosmic intro: show once per browser tab session.
+// Premium Cosmic intro: show once per browser tab session for exactly 3 seconds.
 (function initPremiumLoader(){
   const loader=document.getElementById('loading-screen');
   if(!loader)return;
@@ -117,11 +117,11 @@ window.addEventListener('load',function renderLucideIcons(){
   const finishAfterMinimum=()=>{
     if(finished)return;
     finished=true;
-    const remaining=Math.max(0,850-(Date.now()-startedAt));
+    const remaining=Math.max(0,3000-(Date.now()-startedAt));
     window.setTimeout(finish,remaining);
   };
   window.addEventListener('load',finishAfterMinimum,{once:true});
-  window.setTimeout(finishAfterMinimum,2600);
+  window.setTimeout(finishAfterMinimum,3000);
   const skip=document.getElementById('loader-skip');
   if(skip)skip.addEventListener('click',()=>{finished=true;finish();});
 })();
