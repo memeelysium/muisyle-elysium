@@ -72,13 +72,12 @@ No build step is required for the static site.
 
 ## 🌐 Deployment
 
-This project uses **Vite + React** for its wallet integration and can be hosted with **GitHub Pages**:
+This is a lightweight static website hosted with **GitHub Pages**:
 
 1. Open **Settings → Pages** in the repository.
 2. Choose **Deploy from a branch**.
 3. Select **GitHub Actions** as the deployment source.
-4. Under **Settings → Secrets and variables → Actions → Variables**, add `REOWN_PROJECT_ID` with your public Reown Project ID.
-5. Save and wait for the deployment workflow to finish.
+4. Save and wait for the deployment workflow to finish.
 
 Live website: https://memeelysium.github.io/muisyle-elysium/
 
