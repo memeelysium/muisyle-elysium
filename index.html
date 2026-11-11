@@ -40,7 +40,7 @@
 <a class="brand" href="#home" aria-label="Muisyle home"><img src="assets/muisyle-profile.jpg" alt=""> <span>MUISYLE</span></a>
 <button class="menu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
 <nav aria-label="Main navigation">
-<a href="#about">About</a><a href="#vision">Our vision</a><a href="#gallery">Universe</a><a href="#meme-gallery">Meme Gallery</a><a href="#community">Community</a><a href="https://github.com/memeelysium" target="_blank" rel="noreferrer">GitHub <i data-lucide="github" class="inline-icon" aria-hidden="true"></i></a>
+<a href="#about">About</a><a href="#vision">Our vision</a><a href="#gallery">Universe</a><a href="#meme-gallery">Meme Gallery</a><a href="#community-profiles">Profiles</a><a href="#community">Community</a><a href="https://github.com/memeelysium" target="_blank" rel="noreferrer">GitHub <i data-lucide="github" class="inline-icon" aria-hidden="true"></i></a>
 <a class="nav-buy" href="#coming-soon">BUY <span>↗</span></a><a class="nav-cta" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Join the movement <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a>
 </nav>
 </header>
@@ -131,6 +131,35 @@
 </div>
 </section>
 
+<section class="section profile-section reveal" id="community-profiles">
+<div class="section-kicker">04 <span>/</span> COMMUNITY PROFILES</div>
+<div class="section-intro"><h2>FIND YOUR<br><em>PLACE IN ORBIT.</em></h2><p>Create a public MUISYLE identity, introduce yourself, and discover other members of the community.</p></div>
+<div class="profile-layout">
+<div class="profile-panel">
+<div class="profile-panel-heading"><span class="profile-panel-kicker">YOUR COSMIC IDENTITY</span><span class="profile-status"><i></i> COMMUNITY</span></div>
+<form id="community-profile-form">
+<label for="profile-display-name">DISPLAY NAME</label>
+<input id="profile-display-name" name="display_name" maxlength="24" required placeholder="Your name in the universe">
+<label for="profile-x-username">X USERNAME <span class="profile-optional">OPTIONAL</span></label>
+<div class="profile-input-prefix"><span>@</span><input id="profile-x-username" name="x_username" maxlength="15" placeholder="yourusername" autocomplete="off"></div>
+<p class="profile-field-note">X usernames are self-reported and are not verified.</p>
+<label for="profile-bio">SHORT BIO</label>
+<textarea id="profile-bio" name="bio" maxlength="160" rows="3" placeholder="A little about you..."></textarea>
+<label for="profile-avatar">AVATAR IMAGE URL <span class="profile-optional">OPTIONAL</span></label>
+<input id="profile-avatar" name="avatar_url" type="url" maxlength="500" placeholder="https://...">
+<p class="profile-field-note">Use a public image URL. Leave blank to use a cosmic avatar.</p>
+<button class="button button-primary profile-save" type="submit" id="profile-save">Create my profile <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></button>
+<p class="profile-message" id="profile-message" role="status" aria-live="polite">Your profile will be public to all MUISYLE visitors.</p>
+</form>
+</div>
+<div class="profile-directory">
+<div class="profile-directory-heading"><div><span class="profile-panel-kicker">THE COMMUNITY</span><h3>Members in orbit</h3></div><span class="profile-count" id="profile-count">— MEMBERS</span></div>
+<div class="profile-grid" id="community-profile-grid"><div class="profile-loading">Loading community profiles...</div></div>
+</div>
+</div>
+<p class="profile-disclaimer">Profiles are public. Do not add private information. Anonymous profile ownership is tied to this browser until an account recovery option is added.</p>
+</section>
+
 <section class="community-section reveal" id="community">
 <div class="community-glow"></div><div class="section-kicker">04 <span>/</span> FIND YOUR PEOPLE</div>
 <div class="community-content"><div><h2>THE UNIVERSE<br>IS BETTER <em>TOGETHER.</em></h2><p>Bring your ideas. Bring your humor. Bring your own kind of energy. Follow the journey and join the conversation.</p><div class="hero-actions"><a class="button button-primary" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Join MUISYLE on X <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a><a class="button button-ghost" href="https://github.com/memeelysium" target="_blank" rel="noreferrer">Explore on GitHub <i data-lucide="github" class="inline-icon" aria-hidden="true"></i></a></div></div><div class="community-stamp"><span>✳</span><b>STAY<br>CURIOUS</b><small>YOU BELONG<br>IN THE ORBIT</small></div></div>
@@ -150,5 +179,5 @@
 <section class="final-cta reveal"><div class="final-stars">✦　　✧　　　　✦　　　✧</div><p>YOUR NEXT CHAPTER STARTS HERE</p><h2>STAY CURIOUS.<br><em>STAY COSMIC.</em></h2><a class="button button-primary" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Follow the journey <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></section>
 </main>
 <footer class="site-footer"><a class="brand" href="#home"><img src="assets/muisyle-profile.jpg" alt=""> <span>MUISYLE</span></a><p>Made for the culture. Powered by community.</p><div class="footer-links"><a class="footer-social" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">@memeelysium on X ↗</a><a class="footer-social" href="https://github.com/memeelysium" target="_blank" rel="noreferrer">GitHub ↗</a></div><small>© <span id="year"></span> MUISYLE. Independent community project.</small></footer>
-<script src="script.js"></script>
+<script src="script.js"></script>\n<script type="module" src="community-profile.js"></script>
 </body></html>
