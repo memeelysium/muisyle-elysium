@@ -2,11 +2,24 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { createAppKit } from '@reown/appkit/react'
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
-import { mainnet } from '@reown/appkit/networks'
+import { defineChain } from '@reown/appkit/networks'
 import './wallet.css'
 
 const projectId = import.meta.env.VITE_REOWN_PROJECT_ID?.trim()
-const networks = [mainnet]
+
+// Kinetiq Elysium mainnet (Chain ID 99901)
+const elysium = defineChain({
+  id: 99901,
+  caipNetworkId: 'eip155:99901',
+  chainNamespace: 'eip155',
+  name: 'Kinetiq Elysium',
+  nativeCurrency: { name: 'HYPE', symbol: 'HYPE', decimals: 18 },
+  rpcUrls: {
+    default: { http: ['https://rpc.elysium.kinetiq.xyz'] }
+  }
+})
+
+const networks = [elysium]
 
 if (projectId && projectId !== 'YOUR_PROJECT_ID') {
   const wagmiAdapter = new WagmiAdapter({ networks, projectId, ssr: false })
@@ -14,7 +27,7 @@ if (projectId && projectId !== 'YOUR_PROJECT_ID') {
     adapters: [wagmiAdapter],
     networks,
     projectId,
-    defaultNetwork: mainnet,
+    defaultNetwork: elysium,
     metadata: {
       name: 'MUISYLE',
       description: 'MUISYLE — More than a meme. A whole new vibe.',
