@@ -1,4 +1,23 @@
-const menu=document.querySelector('.menu');const nav=document.querySelector('nav');if(menu&&nav){menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'×':'☰'});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'}))}const year=document.querySelector('#year');if(year)year.textContent=new Date().getFullYear();const revealItems=document.querySelectorAll('.reveal');if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}),{threshold:.12});revealItems.forEach(item=>observer.observe(item))}else{revealItems.forEach(item=>item.classList.add('is-visible'))}
+const menu=document.querySelector('.menu');
+const nav=document.querySelector('#primary-navigation');
+if(menu&&nav){
+  const icon=menu.querySelector('.menu-icon');
+  const isMobile=()=>window.matchMedia('(max-width:760px)').matches;
+  const setMenu=(open)=>{
+    nav.classList.toggle('open',open);
+    menu.setAttribute('aria-expanded',String(open));
+    menu.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+    if(icon)icon.textContent=open?'×':'☰';
+    document.body.classList.toggle('navigation-open',open&&isMobile());
+  };
+  menu.addEventListener('click',()=>setMenu(menu.getAttribute('aria-expanded')!=='true'));
+  nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenu(false)));
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('open')){setMenu(false);menu.focus()}});
+  document.addEventListener('click',event=>{
+    if(nav.classList.contains('open')&&!nav.contains(event.target)&&!menu.contains(event.target))setMenu(false);
+  });
+  window.addEventListener('resize',()=>{if(!isMobile())setMenu(false)});
+}const year=document.querySelector('#year');if(year)year.textContent=new Date().getFullYear();const revealItems=document.querySelectorAll('.reveal');if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}),{threshold:.12});revealItems.forEach(item=>observer.observe(item))}else{revealItems.forEach(item=>item.classList.add('is-visible'))}
 
 // Cosmic touch sparkles: create a brief star burst when visitors tap empty space.
 const sparkleStyle = document.createElement('style');
