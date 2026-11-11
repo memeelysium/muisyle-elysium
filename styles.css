@@ -60,3 +60,17 @@
 @media(max-width:760px){
   .three-cosmic-canvas{max-width:100%}
 }
+
+
+/* Chart.js cosmic pulse panel */
+.pulse-section{padding-top:85px}
+.pulse-panel{padding:26px;border:1px solid #7c8cff3d;border-radius:20px;background:linear-gradient(145deg,#111a34e8,#0b1021f2);box-shadow:0 18px 65px #02051155}
+.pulse-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:22px}
+.pulse-overline{font-size:8px;letter-spacing:2px;color:#8fa4d1}
+.pulse-heading h3{font:600 19px var(--display);margin:8px 0 0;color:#f1f4ff}
+.pulse-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 11px;border:1px solid #8d9bff44;border-radius:30px;color:#c3c8ff;font-size:8px;letter-spacing:1.5px;white-space:nowrap}
+.pulse-badge i{width:6px;height:6px;border-radius:50%;background:#9a91ff;box-shadow:0 0 10px #9a91ff}
+.pulse-chart-wrap{height:280px;position:relative;width:100%}
+.pulse-disclaimer{margin:15px 0 0;color:#8290b2;font-size:10px;line-height:1.7}
+@media(max-width:760px){.pulse-panel{padding:17px}.pulse-chart-wrap{height:230px}.pulse-heading h3{font-size:16px}.pulse-badge{font-size:7px;padding:7px 9px}}
+@media(prefers-reduced-motion:reduce){.pulse-panel{scroll-behavior:auto}}
