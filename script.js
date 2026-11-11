@@ -177,3 +177,91 @@ window.addEventListener('load',function renderLucideIcons(){
     if(empty)empty.hidden=visible!==0;
   }));
 })();
+
+
+// MUISYLE multi-page experience: lightweight client-side routes with shareable URLs.
+(function initMuisylePages(){
+  const pageMap={
+    home:["home","coming-soon","final-cta"],
+    about:["about","vision","faq"],
+    universe:["gallery"],
+    onchain:["token-ecosystem"],
+    memes:["meme-gallery"],
+    profiles:["community-profiles"],
+    community:["community"]
+  };
+  const labels=[
+    ["home","Home"],["about","About"],["universe","Universe"],
+    ["onchain","On-Chain"],["memes","Meme Gallery"],
+    ["profiles","Profiles"],["community","Community"]
+  ];
+  const nav=document.getElementById("primary-navigation");
+  const menu=document.querySelector(".menu");
+  const main=document.querySelector("main");
+  if(!nav||!main)return;
+  const sections=[...main.children].filter(el=>el.id);
+  const pageUrl=(page)=>"?page="+encodeURIComponent(page);
+  nav.innerHTML=labels.map(([key,label])=>'<a href="'+pageUrl(key)+'" data-page-link="'+key+'">'+label+'</a>').join("")
+    +'<a class="nav-buy" href="'+pageUrl("home")+'#coming-soon">BUY <span>↗</span></a>'
+    +'<a class="nav-cta" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Join on X ↗</a>';
+  const brandLinks=document.querySelectorAll(".site-header .brand,.site-footer .brand");
+  brandLinks.forEach(link=>link.setAttribute("href",pageUrl("home")));
+  function setPage(page,scroll=true){
+    const active=pageMap[page]?page:"home";
+    document.body.dataset.page=active;
+    sections.forEach(section=>{
+      section.classList.toggle("page-hidden",!pageMap[active].includes(section.id));
+    });
+    nav.querySelectorAll("[data-page-link]").forEach(link=>{
+      if(link.dataset.pageLink===active)link.setAttribute("aria-current","page");
+      else link.removeAttribute("aria-current");
+    });
+    const title=labels.find(item=>item[0]===active)?.[1]||"Home";
+    document.title="MUISYLE — "+title+" | Cosmic Universe";
+    if(scroll)window.scrollTo({top:0,behavior:"instant"});
+    if(menu){
+      nav.classList.remove("open");
+      menu.setAttribute("aria-expanded","false");
+      menu.setAttribute("aria-label","Open navigation");
+      const icon=menu.querySelector(".menu-icon");if(icon)icon.textContent="☰";
+      document.body.classList.remove("navigation-open");
+    }
+  }
+  function currentPage(){
+    const params=new URLSearchParams(window.location.search);
+    return params.get("page")||"home";
+  }
+  function navigate(page,hash){
+    const url=pageUrl(page)+(hash||"");
+    history.pushState({page},"",url);
+    setPage(page,!hash);
+    if(hash){const target=document.getElementById(hash.slice(1));if(target)target.scrollIntoView({behavior:"smooth",block:"start"});}
+  }
+  nav.addEventListener("click",event=>{
+    const link=event.target.closest("a[data-page-link],a.nav-buy");
+    if(!link)return;
+    event.preventDefault();
+    const page=link.dataset.pageLink||"home";
+    navigate(page,link.hash);
+  });
+  document.addEventListener("click",event=>{
+    const link=event.target.closest('a[href^="#"]');
+    if(!link||link.closest("#primary-navigation"))return;
+    const targetId=link.getAttribute("href").slice(1);
+    const target=document.getElementById(targetId);
+    if(!target)return;
+    const targetPage=Object.keys(pageMap).find(key=>pageMap[key].includes(targetId));
+    if(targetPage&&targetPage!==document.body.dataset.page){
+      event.preventDefault();navigate(targetPage,"#"+targetId);
+    }
+  });
+  window.addEventListener("popstate",()=>setPage(currentPage()));
+  setPage(currentPage(),false);
+  if(window.location.hash){
+    const target=document.getElementById(window.location.hash.slice(1));
+    if(target&&target.classList.contains("page-hidden")){
+      const targetPage=Object.keys(pageMap).find(key=>pageMap[key].includes(target.id));
+      if(targetPage){history.replaceState({page:targetPage},"","?page="+targetPage+window.location.hash);setPage(targetPage,false);}
+    }
+  }
+})();
