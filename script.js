@@ -61,8 +61,8 @@ document.addEventListener('click',event=>{
 },true);
 
 
-// tsParticles: subtle cosmic stars with gentle movement and connections.
-(async function initCosmicParticles(){
+// tsParticles: initialize after deferred CDN scripts have loaded.
+window.addEventListener('load',async function initCosmicParticles(){
   if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   if(!window.tsParticles||!window.loadSlim)return;
   try{
@@ -70,13 +70,10 @@ document.addEventListener('click',event=>{
     await window.tsParticles.load({
       id:'tsparticles',
       options:{
-        fullScreen:{enable:false},
-        detectRetina:true,
-        fpsLimit:45,
+        fullScreen:{enable:false},detectRetina:true,fpsLimit:45,
         particles:{
           number:{value:42,density:{enable:true,area:1000}},
-          color:{value:['#ffffff','#8defff','#a99bff']},
-          shape:{type:'circle'},
+          color:{value:['#ffffff','#8defff','#a99bff']},shape:{type:'circle'},
           opacity:{value:{min:.16,max:.62},animation:{enable:true,speed:.45,sync:false}},
           size:{value:{min:1,max:2.2}},
           links:{enable:true,distance:135,color:'#8daaff',opacity:.13,width:1},
@@ -87,4 +84,4 @@ document.addEventListener('click',event=>{
       }
     });
   }catch(error){console.warn('Cosmic particles could not be loaded:',error)}
-})();
+});
