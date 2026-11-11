@@ -17,3 +17,45 @@ document.addEventListener('pointerdown',event=>{
   for(let i=0;i<8;i++){const star=document.createElement('i');const angle=(Math.PI*2*i/8)+(Math.random()-.5)*.35;const distance=18+Math.random()*25;star.style.setProperty('--s',(4+Math.random()*6)+'px');star.style.setProperty('--dx',(Math.cos(angle)*distance)+'px');star.style.setProperty('--dy',(Math.sin(angle)*distance)+'px');star.style.background=sparkleColors[i%sparkleColors.length];burst.appendChild(star)}
   document.body.appendChild(burst);window.setTimeout(()=>burst.remove(),800);
 },{passive:true});
+
+
+// MUISYLE Cosmic Click: a short synthesized sound for interactive controls.
+let cosmicAudioContext;
+function playCosmicClick(){
+  try{
+    const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+    if(!AudioContextClass)return;
+    cosmicAudioContext=cosmicAudioContext||new AudioContextClass();
+    if(cosmicAudioContext.state==='suspended')cosmicAudioContext.resume();
+    const ctx=cosmicAudioContext;
+    const now=ctx.currentTime;
+    const master=ctx.createGain();
+    master.gain.setValueAtTime(0.0001,now);
+    master.gain.exponentialRampToValueAtTime(0.075,now+0.012);
+    master.gain.exponentialRampToValueAtTime(0.0001,now+0.16);
+    master.connect(ctx.destination);
+    [[880,1320,'sine',0],[1760,2200,'sine',0.018],[440,660,'triangle',0.012]].forEach(([start,end,type,delay])=>{
+      const osc=ctx.createOscillator();
+      const tone=ctx.createGain();
+      osc.type=type;
+      osc.frequency.setValueAtTime(start,now+delay);
+      osc.frequency.exponentialRampToValueAtTime(end,now+delay+0.09);
+      tone.gain.setValueAtTime(type==='triangle'?0.18:0.32,now+delay);
+      tone.gain.exponentialRampToValueAtTime(0.0001,now+0.14);
+      osc.connect(tone);tone.connect(master);
+      osc.start(now+delay);osc.stop(now+0.17);
+    });
+  }catch(error){/* Audio is optional; never interrupt navigation. */}
+}
+const cosmicControlSelector='a,button,[role="button"],input[type="button"],input[type="submit"],.menu';
+document.addEventListener('pointerdown',event=>{
+  if(event.pointerType==='mouse'&&event.button!==0)return;
+  const control=event.target.closest(cosmicControlSelector);
+  if(control&&!control.matches(':disabled,[aria-disabled="true"]'))playCosmicClick();
+},{capture:true,passive:true});
+// Also support keyboard activation without double-playing pointer clicks.
+document.addEventListener('click',event=>{
+  if(event.detail!==0)return;
+  const control=event.target.closest(cosmicControlSelector);
+  if(control&&!control.matches(':disabled,[aria-disabled="true"]'))playCosmicClick();
+},true);
