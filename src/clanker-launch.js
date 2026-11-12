@@ -18,6 +18,7 @@ if (form) {
   const connectButton = $("cl-connect");
   const resultBox = $("cl-result");
   let connectedAddress = null;
+  let activeProvider = null;
   let busy = false;
   let needsReconciliation = false;
   const setStatus = (message, type = "") => { status.textContent = message; status.dataset.state = type; };
@@ -42,10 +43,13 @@ if (form) {
   const connect = async () => {
     const provider = walletProvider();
     if (!provider) throw new Error("Wallet EVM tidak ditemukan. Buka website melalui browser yang memiliki MetaMask atau wallet EVM.");
-    await switchNetwork(provider);
+    // Request account access first; only then ask the wallet to switch networks.
+    // This avoids prompting a network change before the user has approved the site connection.
     const accounts = await provider.request({ method: "eth_requestAccounts" });
     if (!accounts?.[0]) throw new Error("Tidak ada akun wallet yang dipilih.");
     connectedAddress = getAddress(accounts[0]);
+    await switchNetwork(provider);
+    activeProvider = provider;
     connectButton.textContent = "Connected " + shortAddress(connectedAddress);
     window.lucide?.createIcons?.();
     setStatus("Wallet terhubung: " + shortAddress(connectedAddress) + ". Periksa formulir lalu setujui konfirmasi di wallet.", "success");
@@ -58,7 +62,19 @@ if (form) {
     $("cl-preview-symbol").textContent = symbol ? "$" + symbol : "$TICKER";
     $("cl-preview-description").textContent = $("cl-description").value.trim() || "Your token description will appear here.";
     const image = $("cl-image").value.trim();
-    $("cl-avatar").innerHTML = image && /^https:\/\//i.test(image) ? '<img alt="" src="' + image.replaceAll('"', "&quot;") + '">' : "✦";
+    const avatar = $("cl-avatar");
+    avatar.replaceChildren();
+    let safeImage = "";
+    try { const parsed = new URL(image); if (parsed.protocol === "https:") safeImage = parsed.href; } catch { /* keep fallback */ }
+    if (safeImage) {
+      const img = document.createElement("img");
+      img.alt = "";
+      img.loading = "lazy";
+      img.referrerPolicy = "no-referrer";
+      img.src = safeImage;
+      img.onerror = () => { avatar.textContent = "✦"; };
+      avatar.appendChild(img);
+    } else avatar.textContent = "✦";
   };
   ["cl-name", "cl-symbol", "cl-description", "cl-image"].forEach((id) => $(id).addEventListener("input", syncPreview));
   $("cl-confirm").addEventListener("change", () => { deployButton.disabled = needsReconciliation || !connectedAddress || !$("cl-confirm").checked || busy; });
@@ -112,8 +128,11 @@ if (form) {
       setStatus("Transaksi dikirim. Menunggu konfirmasi jaringan Elysium…", "pending");
       const receipt = await waitForTransaction();
       if (receipt?.error) throw receipt.error;
-      const tokenAddress = receipt?.address || receipt?.tokenAddress;
-      if (!tokenAddress) throw new Error("Transaksi terkonfirmasi, tetapi alamat token tidak ditemukan pada respons SDK. Periksa hash transaksi di explorer.");
+      const rawTokenAddress = receipt?.address || receipt?.tokenAddress;
+      let tokenAddress;
+      try { tokenAddress = getAddress(rawTokenAddress); }
+      catch { throw new Error("Transaksi terkonfirmasi, tetapi alamat token dari SDK tidak valid. Periksa hash transaksi di explorer."); }
+      if (!/^0x[0-9a-fA-F]{64}$/.test(txHash)) throw new Error("SDK mengembalikan hash transaksi yang tidak valid. Periksa transaksi secara manual di explorer.");
       resultBox.hidden = false;
       resultBox.innerHTML = '<span class="kicker">DEPLOYMENT CONFIRMED</span><h2>' + name.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;") + ' ($' + symbol + ')</h2><p>Token berhasil dibuat melalui Clanker v5 di Elysium Mainnet.</p><code>' + tokenAddress + '</code><div class="clanker-result-links"><a class="btn btn-primary" target="_blank" rel="noreferrer" href="https://elyscan.live/token/' + tokenAddress + '">View token <i data-lucide="external-link"></i></a><a class="btn btn-secondary" target="_blank" rel="noreferrer" href="https://elyscan.live/tx/' + txHash + '">View transaction <i data-lucide="arrow-up-right"></i></a></div>';
       window.lucide?.createIcons?.();
@@ -131,14 +150,15 @@ if (form) {
       }
     } finally { busy = false; deployButton.disabled = needsReconciliation || !connectedAddress || !$("cl-confirm").checked; }
   });
-  if (window.ethereum) {
-    window.ethereum.on?.("accountsChanged", (accounts) => {
+  const eventProvider = activeProvider || walletProvider();
+  if (eventProvider) {
+    eventProvider.on?.("accountsChanged", (accounts) => {
       connectedAddress = accounts?.[0] ? getAddress(accounts[0]) : null;
       deployButton.disabled = !connectedAddress || !$("cl-confirm").checked || busy;
       connectButton.textContent = connectedAddress ? "Connected " + shortAddress(connectedAddress) : "Connect wallet";
       setStatus(connectedAddress ? "Akun wallet diperbarui." : "Wallet terputus. Hubungkan kembali untuk melanjutkan.");
     });
-    window.ethereum.on?.("chainChanged", () => {
+    eventProvider.on?.("chainChanged", () => {
       connectedAddress = null; deployButton.disabled = true; connectButton.textContent = "Reconnect wallet";
       setStatus("Jaringan wallet berubah. Hubungkan ulang ke Elysium Mainnet.");
     });
