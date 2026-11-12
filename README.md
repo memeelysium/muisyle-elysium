@@ -65,8 +65,6 @@ The portal includes:
 
 The selected fee applies equally to buys and sells. The burn and creator allocation split applies to the tax remaining after Clanker’s protocol fee, not to the full trade amount. The creator allocation is credited to the selected reward recipient. The portal does not offer buyback configuration. Clanker V5 anti-snipe protection can raise the total fee to as much as 99% during the first 20 seconds after launch before it decreases to the selected tax. Review the final wallet transaction and all settings before signing.
 
-**Launch platform availability:** Clanker V5 is enabled. BANKR and ASCEND LAUNCH are displayed as coming soon and are not active deployment integrations.
-
 ### Important transaction notes
 
 - Wallet connection and transaction signing are user-controlled.
