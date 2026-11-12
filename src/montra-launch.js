@@ -1,6 +1,6 @@
 import {
   createPublicClient, createWalletClient, custom, defineChain, getAddress,
-  stringToHex, zeroAddress, zeroHash, http, parseEventLogs,
+  stringToHex, zeroAddress, zeroHash, http, parseEventLogs, formatUnits,
 } from "viem";
 
 const ELYSIUM_ID = 99901;
@@ -173,9 +173,10 @@ if (form && $("cl-platform")) {
         args: [stringToHex("factory", { size: 32 })],
       });
       if (!montraFactory || montraFactory.toLowerCase() === ZERO) throw new Error("Alamat LaunchFactory tidak ditemukan pada registry MONTRA.");
-      const [count, enabled] = await Promise.all([
+      const [count, enabled, launchFee] = await Promise.all([
         client.readContract({ address: montraFactory, abi: factoryAbi, functionName: "configCount" }),
         client.readContract({ address: montraFactory, abi: factoryAbi, functionName: "launchEnabled" }),
+        client.readContract({ address: montraFactory, abi: factoryAbi, functionName: "launchFee" }),
       ]);
       if (!enabled) throw new Error("MONTRA sedang menonaktifkan peluncuran token.");
       const rows = await Promise.all(Array.from({ length: Number(count) }, (_, id) =>
@@ -198,6 +199,7 @@ if (form && $("cl-platform")) {
       select.value = String(defaultRow.id);
       $("cl-montra-supply").value = String(defaultRow.baseSupply / 10n ** 18n);
       syncMontraPreview();
+      $("cl-montra-launch-fee").textContent = formatUnits(launchFee, 18) + " HYPE";
       setStatus("MONTRA siap. Fee tiers dan biaya launch dibaca langsung dari kontrak Elysium.", "success");
     } catch (error) {
       $("cl-montra-config").replaceChildren(new Option("Fee tier tidak tersedia", ""));
@@ -222,8 +224,11 @@ if (form && $("cl-platform")) {
     const symbol = $("cl-symbol").value.trim().replace(/^\$/, "").toUpperCase();
     const image = $("cl-image").value.trim();
     const description = $("cl-montra-description").value.trim();
-    const website = safeUrl($("cl-montra-website").value.trim(), "Website");
-    const twitter = safeUrl($("cl-montra-x").value.trim(), "X/Twitter");
+    let website = "", twitter = "";
+    try {
+      website = safeUrl($("cl-montra-website").value.trim(), "Website");
+      twitter = safeUrl($("cl-montra-x").value.trim(), "X/Twitter");
+    } catch (error) { setStatus(error.message, "error"); return; }
     const supplyText = $("cl-montra-supply").value.trim();
     const selected = montraRows.find((row) => String(row.id) === $("cl-montra-config").value);
     if (!montraFactory || !selected) { setStatus("Fee tier MONTRA belum siap. Coba pilih platform MONTRA kembali.", "error"); return; }
@@ -275,6 +280,7 @@ if (form && $("cl-platform")) {
       if (!/^(ipfs:\/\/|https:\/\/)/i.test(metadataResult.uri)) throw new Error("MONTRA mengembalikan metadata URI yang tidak valid.");
 
       const launchFee = await publicClient.readContract({ address: montraFactory, abi: factoryAbi, functionName: "launchFee" });
+      $("cl-montra-launch-fee").textContent = formatUnits(launchFee, 18) + " HYPE";
       const launchEnabled = await publicClient.readContract({ address: montraFactory, abi: factoryAbi, functionName: "launchEnabled" });
       if (!launchEnabled) throw new Error("MONTRA menonaktifkan peluncuran sebelum transaksi dikirim.");
       const liveRow = await publicClient.readContract({ address: montraFactory, abi: factoryAbi, functionName: "getConfig", args: [BigInt(selected.id)] });
