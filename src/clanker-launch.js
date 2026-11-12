@@ -15,6 +15,7 @@ const form = $("clanker-form");
 if (form) {
   const status = $("cl-status");
   const deployButton = $("cl-deploy");
+  const connectButton = $("cl-connect");
   const resultBox = $("cl-result");
   let connectedAddress = null;
   let busy = false;
@@ -44,7 +45,7 @@ if (form) {
     const accounts = await provider.request({ method: "eth_requestAccounts" });
     if (!accounts?.[0]) throw new Error("Tidak ada akun wallet yang dipilih.");
     connectedAddress = getAddress(accounts[0]);
-    deployButton.innerHTML = "Deploy with " + shortAddress(connectedAddress) + ' <i data-lucide="rocket"></i>';
+    connectButton.textContent = "Connected " + shortAddress(connectedAddress);
     window.lucide?.createIcons?.();
     setStatus("Wallet terhubung: " + shortAddress(connectedAddress) + ". Periksa formulir lalu setujui konfirmasi di wallet.", "success");
     return { provider, address: connectedAddress };
@@ -59,11 +60,9 @@ if (form) {
     $("cl-avatar").innerHTML = image && /^https:\/\//i.test(image) ? '<img alt="" src="' + image.replaceAll('"', "&quot;") + '">' : "✦";
   };
   ["cl-name", "cl-symbol", "cl-description", "cl-image"].forEach((id) => $(id).addEventListener("input", syncPreview));
-  $("cl-confirm").addEventListener("change", () => { deployButton.disabled = busy; });
-  deployButton.addEventListener("click", async (event) => {
-    if (connectedAddress) return;
-    event.preventDefault();
-    try { await connect(); deployButton.disabled = false; }
+  $("cl-confirm").addEventListener("change", () => { deployButton.disabled = !connectedAddress || !$("cl-confirm").checked || busy; });
+  connectButton.addEventListener("click", async () => {
+    try { await connect(); deployButton.disabled = !$("cl-confirm").checked || busy; }
     catch (error) { setStatus(error?.shortMessage || error?.message || "Wallet connection failed.", "error"); }
   });
   form.addEventListener("submit", async (event) => {
@@ -117,12 +116,12 @@ if (form) {
   if (window.ethereum) {
     window.ethereum.on?.("accountsChanged", (accounts) => {
       connectedAddress = accounts?.[0] ? getAddress(accounts[0]) : null;
-      deployButton.disabled = busy;
-      deployButton.textContent = connectedAddress ? "Wallet: " + shortAddress(connectedAddress) : "Connect wallet to continue";
+      deployButton.disabled = !connectedAddress || !$("cl-confirm").checked || busy;
+      connectButton.textContent = connectedAddress ? "Connected " + shortAddress(connectedAddress) : "Connect wallet";
       setStatus(connectedAddress ? "Akun wallet diperbarui." : "Wallet terputus. Hubungkan kembali untuk melanjutkan.");
     });
     window.ethereum.on?.("chainChanged", () => {
-      connectedAddress = null; deployButton.disabled = true; deployButton.textContent = "Reconnect wallet";
+      connectedAddress = null; deployButton.disabled = true; connectButton.textContent = "Reconnect wallet";
       setStatus("Jaringan wallet berubah. Hubungkan ulang ke Elysium Mainnet.");
     });
   }
