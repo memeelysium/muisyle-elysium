@@ -19,18 +19,19 @@ function AuthPanel() {
   );
 
   const prepareWallet = async () => {
-    if (creationStarted.current || embeddedWallet) return;
+    if (creationStarted.current || embeddedWallet || !authenticated || !walletsReady) return;
     creationStarted.current = true;
     setWalletError("");
     setMessage("Creating your secure embedded wallet…");
     try {
       await createWallet();
-      setMessage("Wallet created. Connecting it to the launch portal…");
+      setMessage("Wallet creation requested. Waiting for the wallet to become available…");
     } catch (error) {
       console.error("MUISYLE embedded wallet creation failed:", error);
       const reason = error?.message || "Unknown wallet creation error.";
       if (/already have an embedded wallet|already exists/i.test(reason)) {
-        setMessage("Wallet found. Refreshing wallet connection…");
+        setWalletError("A wallet may already exist but is not yet visible. Refresh this page and try again.");
+        setMessage("Wallet already exists. Refresh the page to reconnect it.");
       } else {
         creationStarted.current = false;
         setWalletError(reason);
@@ -87,13 +88,14 @@ function AuthPanel() {
   };
 
   const handleExport = async () => {
-    if (!embeddedWallet || busy) return;
+    if (!embeddedWallet?.address || busy) return;
     setBusy(true);
-    setMessage("Follow the Privy security prompt to export your wallet key.");
+    setMessage("Opening Privy's secure wallet export…");
     try {
-      await exportWallet();
-      setMessage("Wallet export flow completed. Keep any exported key private and never share it.");
+      await exportWallet({ address: embeddedWallet.address });
+      setMessage("Privy's wallet export flow was closed. If you completed the security steps, your key has been exported. Keep it private.");
     } catch (error) {
+      console.error("MUISYLE wallet export failed:", error);
       setMessage(error?.message || "Wallet export was cancelled or could not be completed.");
     } finally {
       setBusy(false);
@@ -111,7 +113,7 @@ function AuthPanel() {
   }
 
   const address = embeddedWallet?.address || user?.wallet?.address || "";
-  const walletReady = Boolean(embeddedWallet);
+  const walletReady = Boolean(embeddedWallet?.address);
   return <div className="muisyle-auth-panel">
     <div className="muisyle-auth-copy">
       <strong>Signed in with X</strong>
@@ -119,10 +121,10 @@ function AuthPanel() {
     </div>
     <div className="muisyle-auth-actions">
       {!walletReady && walletError && <button className="muisyle-auth-button" type="button" disabled={!walletsReady} onClick={() => { creationStarted.current = false; prepareWallet(); }}>Retry wallet setup</button>}
-      <button className="muisyle-auth-button" type="button" disabled={!walletReady || busy} onClick={handleExport}>Export wallet</button>
+      <button className="muisyle-auth-button" type="button" disabled={!walletReady || busy} onClick={handleExport}>{busy ? "Opening export…" : "Export wallet"}</button>
       <button className="muisyle-auth-secondary" type="button" onClick={() => logout()}>Sign out</button>
     </div>
-    <p className="muisyle-auth-message" role="status">{message || (walletReady ? "Your embedded EVM wallet is ready. Transactions still require your approval." : walletError || "Preparing your secure embedded wallet…")}</p>
+    <p className="muisyle-auth-message" role="status">{message || (walletReady ? "Your embedded EVM wallet is ready. Export opens Privy's secure key-export flow." : walletError || "Preparing your secure embedded wallet…")}</p>
   </div>;
 }
 
@@ -131,6 +133,9 @@ function App() {
     appId={APP_ID}
     config={{
       loginMethods: ["twitter"],
+      embeddedWallets: {
+        ethereum: { createOnLogin: "all-users" }
+      },
       appearance: {
         theme: "dark",
         accentColor: "#9b7cff",
