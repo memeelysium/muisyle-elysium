@@ -182,7 +182,7 @@ if (form) {
     if (xUrl && !/^https:\/\/(www\.)?(x\.com|twitter\.com)\//i.test(xUrl)) { setStatus("Masukkan URL profil atau akun X/Twitter yang valid.", "error"); return; }
     let rewardRecipient = connectedAddress;
     if (rewardRecipientInput) { try { rewardRecipient = getAddress(rewardRecipientInput); } catch { setStatus("Alamat wallet penerima fee/reward tidak valid. Gunakan alamat EVM 0x yang benar.", "error"); return; } }
-    if (!name || !/^[A-Z0-9]{2,12}$/.test(symbol)) { setStatus("Nama token wajib diisi. Simbol harus 2–12 karakter A–Z atau angka.", "error"); return; }
+    if (!name || name.length > 40 || !/^[A-Z0-9]{2,12}$/.test(symbol)) { setStatus("Nama token wajib diisi (maksimal 40 karakter). Simbol harus 2–12 karakter A–Z atau angka.", "error"); return; }
     if (!$("cl-confirm").checked) return;
     const provider = walletProvider();
     busy = true; deployButton.disabled = true; resultBox.hidden = true;
