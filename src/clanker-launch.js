@@ -1,5 +1,5 @@
 import { Clanker } from "clanker-sdk/v5";
-import { createPublicClient, createWalletClient, custom, defineChain, getAddress, http } from "viem";
+import { createPublicClient, createWalletClient, custom, defineChain, getAddress } from "viem";
 
 const ELYSIUM_ID = 99901;
 const ELYSIUM_RPC = "https://rpc.elysium.kinetiq.xyz";
@@ -87,7 +87,7 @@ if (form) {
       await switchNetwork(provider);
       const account = getAddress((await provider.request({ method: "eth_accounts" }))[0]);
       if (account !== connectedAddress) throw new Error("Akun wallet berubah. Hubungkan ulang wallet sebelum melanjutkan.");
-      const publicClient = createPublicClient({ chain: elysium, transport: http(ELYSIUM_RPC) });
+      const publicClient = createPublicClient({ chain: elysium, transport: custom(provider) });
       const wallet = createWalletClient({ account, chain: elysium, transport: custom(provider) });
       const clanker = new Clanker({ wallet, publicClient });
       setStatus("Memeriksa konfigurasi dan menyiapkan transaksi Clanker v5…");
