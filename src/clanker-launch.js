@@ -19,6 +19,7 @@ if (form) {
   const resultBox = $("cl-result");
   let connectedAddress = null;
   let busy = false;
+  let needsReconciliation = false;
   const setStatus = (message, type = "") => { status.textContent = message; status.dataset.state = type; };
   const shortAddress = (address) => address ? address.slice(0, 6) + "…" + address.slice(-4) : "";
   const walletProvider = () => window.ethereum?.providers?.length
@@ -60,7 +61,7 @@ if (form) {
     $("cl-avatar").innerHTML = image && /^https:\/\//i.test(image) ? '<img alt="" src="' + image.replaceAll('"', "&quot;") + '">' : "✦";
   };
   ["cl-name", "cl-symbol", "cl-description", "cl-image"].forEach((id) => $(id).addEventListener("input", syncPreview));
-  $("cl-confirm").addEventListener("change", () => { deployButton.disabled = !connectedAddress || !$("cl-confirm").checked || busy; });
+  $("cl-confirm").addEventListener("change", () => { deployButton.disabled = needsReconciliation || !connectedAddress || !$("cl-confirm").checked || busy; });
   connectButton.addEventListener("click", async () => {
     try { await connect(); deployButton.disabled = !$("cl-confirm").checked || busy; }
     catch (error) { setStatus(error?.shortMessage || error?.message || "Wallet connection failed.", "error"); }
@@ -82,6 +83,7 @@ if (form) {
     if (!$("cl-confirm").checked) return;
     const provider = walletProvider();
     busy = true; deployButton.disabled = true; resultBox.hidden = true;
+    let submittedTxHash = null;
     try {
       await switchNetwork(provider);
       const account = getAddress((await provider.request({ method: "eth_accounts" }))[0]);
@@ -97,8 +99,16 @@ if (form) {
         context: { interface: "MUISYLE" },
       };
       const { txHash, waitForTransaction, error } = await clanker.deploy(payload);
-      if (error) throw error;
+      if (error) {
+        if (error?.data?.rawName === "SendUncertain") {
+          needsReconciliation = true;
+          setStatus("Pengiriman transaksi belum dapat dipastikan. Periksa transaksi pending di wallet sebelum mencoba deploy lagi.", "pending");
+          return;
+        }
+        throw error;
+      }
       if (!txHash || typeof waitForTransaction !== "function") throw new Error("SDK tidak mengembalikan detail transaksi yang dapat diverifikasi.");
+      submittedTxHash = txHash;
       setStatus("Transaksi dikirim. Menunggu konfirmasi jaringan Elysium…", "pending");
       const receipt = await waitForTransaction();
       if (receipt?.error) throw receipt.error;
@@ -110,8 +120,16 @@ if (form) {
       setStatus("Selesai. Konfirmasi deployment berhasil diterima dari SDK.", "success");
     } catch (error) {
       console.error("Clanker deployment error:", error);
-      setStatus(error?.shortMessage || error?.message || "Deployment gagal. Tidak ada klaim token berhasil dibuat.", "error");
-    } finally { busy = false; deployButton.disabled = !connectedAddress || !$("cl-confirm").checked; }
+      if (submittedTxHash) {
+        needsReconciliation = true;
+        const safeHash = /^0x[0-9a-fA-F]{64}$/.test(submittedTxHash) ? submittedTxHash : "";
+        resultBox.hidden = false;
+        resultBox.innerHTML = '<span class="kicker">TRANSACTION SUBMITTED · CHECK STATUS</span><h2>Verification pending</h2><p>Transaksi sudah dikirim, tetapi SDK belum dapat memverifikasi hasil launch. Jangan kirim transaksi kedua sebelum memeriksa statusnya.</p>' + (safeHash ? '<a class="btn btn-secondary" target="_blank" rel="noreferrer" href="https://elyscan.live/tx/' + safeHash + '">Check transaction on Elyscan</a>' : "");
+        setStatus("Transaksi sudah dikirim tetapi belum terverifikasi. Jangan deploy ulang sebelum memeriksa hash transaksi.", "pending");
+      } else {
+        setStatus(error?.shortMessage || error?.message || "Deployment gagal sebelum transaksi dikirim.", "error");
+      }
+    } finally { busy = false; deployButton.disabled = needsReconciliation || !connectedAddress || !$("cl-confirm").checked; }
   });
   if (window.ethereum) {
     window.ethereum.on?.("accountsChanged", (accounts) => {
