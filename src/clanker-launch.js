@@ -18,34 +18,21 @@ if (form) {
   const resultBox = $("cl-result");
   let connectedAddress = null;
   let busy = false;
-
-  const setStatus = (message, type = "") => {
-    status.textContent = message;
-    status.dataset.state = type;
-  };
+  const setStatus = (message, type = "") => { status.textContent = message; status.dataset.state = type; };
   const shortAddress = (address) => address ? address.slice(0, 6) + "…" + address.slice(-4) : "";
-  const walletProvider = () => {
-    if (window.ethereum?.providers?.length) {
-      return window.ethereum.providers.find((provider) => provider.isMetaMask) || window.ethereum.providers[0];
-    }
-    return window.ethereum;
-  };
+  const walletProvider = () => window.ethereum?.providers?.length
+    ? (window.ethereum.providers.find((provider) => provider.isMetaMask) || window.ethereum.providers[0])
+    : window.ethereum;
   const switchNetwork = async (provider) => {
     const chainId = "0x" + ELYSIUM_ID.toString(16);
-    try {
-      await provider.request({ method: "wallet_switchEthereumChain", params: [{ chainId }] });
-    } catch (error) {
+    try { await provider.request({ method: "wallet_switchEthereumChain", params: [{ chainId }] }); }
+    catch (error) {
       if (error?.code !== 4902) throw error;
-      await provider.request({
-        method: "wallet_addEthereumChain",
-        params: [{
-          chainId,
-          chainName: "Elysium Mainnet",
-          nativeCurrency: { name: "HYPE", symbol: "HYPE", decimals: 18 },
-          rpcUrls: [ELYSIUM_RPC],
-          blockExplorerUrls: ["https://elyscan.live"],
-        }],
-      });
+      await provider.request({ method: "wallet_addEthereumChain", params: [{
+        chainId, chainName: "Elysium Mainnet",
+        nativeCurrency: { name: "HYPE", symbol: "HYPE", decimals: 18 },
+        rpcUrls: [ELYSIUM_RPC], blockExplorerUrls: ["https://elyscan.live"],
+      }] });
     }
     const active = await provider.request({ method: "eth_chainId" });
     if (Number.parseInt(active, 16) !== ELYSIUM_ID) throw new Error("Wallet belum berada di Elysium Mainnet.");
@@ -79,7 +66,6 @@ if (form) {
     try { await connect(); deployButton.disabled = !$("cl-confirm").checked; }
     catch (error) { setStatus(error?.shortMessage || error?.message || "Wallet connection failed.", "error"); }
   });
-
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (busy) return;
@@ -91,19 +77,12 @@ if (form) {
     if (!connectedAddress) {
       try { await connect(); } catch (error) { setStatus(error?.message || "Wallet connection failed.", "error"); return; }
     }
-    if (!/^https:\/\//i.test(image) && !/^ipfs:\/\//i.test(image)) {
-      setStatus("Logo harus berupa URL HTTPS atau URI IPFS yang valid.", "error"); return;
-    }
-    if (xUrl && !/^https:\/\/(www\.)?(x\.com|twitter\.com)\//i.test(xUrl)) {
-      setStatus("Masukkan URL profil atau akun X/Twitter yang valid.", "error"); return;
-    }
-    if (!name || !/^[A-Z0-9]{2,12}$/.test(symbol)) {
-      setStatus("Nama token wajib diisi. Simbol harus 2–12 karakter A–Z atau angka.", "error"); return;
-    }
+    if (!/^https:\/\//i.test(image) && !/^ipfs:\/\//i.test(image)) { setStatus("Logo harus berupa URL HTTPS atau URI IPFS yang valid.", "error"); return; }
+    if (xUrl && !/^https:\/\/(www\.)?(x\.com|twitter\.com)\//i.test(xUrl)) { setStatus("Masukkan URL profil atau akun X/Twitter yang valid.", "error"); return; }
+    if (!name || !/^[A-Z0-9]{2,12}$/.test(symbol)) { setStatus("Nama token wajib diisi. Simbol harus 2–12 karakter A–Z atau angka.", "error"); return; }
     if (!$("cl-confirm").checked) return;
     const provider = walletProvider();
-    busy = true; deployButton.disabled = true;
-    resultBox.hidden = true;
+    busy = true; deployButton.disabled = true; resultBox.hidden = true;
     try {
       await switchNetwork(provider);
       const account = getAddress((await provider.request({ method: "eth_accounts" }))[0]);
@@ -113,19 +92,9 @@ if (form) {
       const clanker = new Clanker({ wallet, publicClient });
       setStatus("Memeriksa konfigurasi dan menyiapkan transaksi Clanker v5…");
       const payload = {
-        chainId: ELYSIUM_ID,
-        name,
-        symbol,
-        image,
-        tokenAdmin: account,
-        metadata: {
-          description,
-          socialMediaUrls: xUrl ? [{ platform: "twitter", url: xUrl }] : [],
-        },
-        context: {
-          interface: "MUISYLE",
-          platform: "https://memeelysium.github.io/",
-        },
+        chainId: ELYSIUM_ID, name, symbol, image, tokenAdmin: account,
+        metadata: { description, socialMediaUrls: xUrl ? [{ platform: "twitter", url: xUrl }] : [] },
+        context: { interface: "MUISYLE", platform: "https://memeelysium.github.io/" },
       };
       const { txHash, waitForTransaction, error } = await clanker.deploy(payload);
       if (error) throw error;
@@ -142,10 +111,7 @@ if (form) {
     } catch (error) {
       console.error("Clanker deployment error:", error);
       setStatus(error?.shortMessage || error?.message || "Deployment gagal. Tidak ada klaim token berhasil dibuat.", "error");
-    } finally {
-      busy = false;
-      deployButton.disabled = !connectedAddress || !$("cl-confirm").checked;
-    }
+    } finally { busy = false; deployButton.disabled = !connectedAddress || !$("cl-confirm").checked; }
   });
   if (window.ethereum) {
     window.ethereum.on?.("accountsChanged", (accounts) => {
@@ -155,9 +121,7 @@ if (form) {
       setStatus(connectedAddress ? "Akun wallet diperbarui." : "Wallet terputus. Hubungkan kembali untuk melanjutkan.");
     });
     window.ethereum.on?.("chainChanged", () => {
-      connectedAddress = null;
-      deployButton.disabled = true;
-      deployButton.textContent = "Reconnect wallet";
+      connectedAddress = null; deployButton.disabled = true; deployButton.textContent = "Reconnect wallet";
       setStatus("Jaringan wallet berubah. Hubungkan ulang ke Elysium Mainnet.");
     });
   }
