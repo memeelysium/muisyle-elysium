@@ -120,6 +120,16 @@ if (form) {
   const feeSelect = $("cl-fee");
   const feePreview = $("cl-preview-fee");
   feeSelect.addEventListener("change", () => { feePreview.textContent = feeSelect.value + "% / " + feeSelect.value + "%"; });
+  const burnSelect = $("cl-burn");
+  const burnPreview = $("cl-preview-burn-share");
+  const creatorSharePreview = $("cl-preview-creator-share");
+  const syncTokenomicsPreview = () => {
+    const burn = Number(burnSelect.value);
+    burnPreview.textContent = burn + "%";
+    creatorSharePreview.textContent = (100 - burn) + "%";
+  };
+  burnSelect.addEventListener("change", syncTokenomicsPreview);
+  syncTokenomicsPreview();
   const logoFile = $("cl-logo-file");
   const uploadStatus = $("cl-upload-status");
   logoFile.addEventListener("change", async () => {
@@ -187,7 +197,7 @@ if (form) {
       setStatus("Memeriksa konfigurasi dan menyiapkan transaksi Clanker v5…");
       const payload = {
         chainId: network.id, name, symbol, image, tokenAdmin: account,
-        buyFee: Number($("cl-fee").value), sellFee: Number($("cl-fee").value), antiSnipeEnabled: true,
+        buyFee: Number($("cl-fee").value), sellFee: Number($("cl-fee").value), burn: Number($("cl-burn").value), antiSnipeEnabled: true,
         rewards: { recipients: [{ recipient: rewardRecipient, admin: account, bps: 10000 }] },
         metadata: { description, socialMediaUrls: [...(xUrl ? [{ platform: "x", url: xUrl }] : []), ...(websiteUrl ? [{ platform: "website", url: websiteUrl }] : [])] },
         context: { interface: "MUISYLE" },
