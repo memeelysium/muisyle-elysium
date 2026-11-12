@@ -93,8 +93,8 @@ if (form) {
       const payload = {
         chainId: ELYSIUM_ID, name, symbol, image, tokenAdmin: account,
         buyFee: 1, sellFee: 1, antiSnipeEnabled: true,
-        metadata: { description, socialMediaUrls: xUrl ? [{ platform: "twitter", url: xUrl }] : [] },
-        context: { interface: "MUISYLE", platform: "https://memeelysium.github.io/" },
+        metadata: { description, socialMediaUrls: xUrl ? [{ platform: "x", url: xUrl }] : [] },
+        context: { interface: "MUISYLE" },
       };
       const { txHash, waitForTransaction, error } = await clanker.deploy(payload);
       if (error) throw error;
