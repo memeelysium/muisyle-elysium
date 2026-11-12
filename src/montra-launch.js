@@ -4,7 +4,7 @@ import {
 } from "viem";
 
 const ELYSIUM_ID = 99901;
-const ELYSIUM_RPC = "https://rpc.elysium.kinetiq.xyz";
+const ELYSIUM_RPC = "https://rpc.montraxyz.com";
 const MONTRA_REGISTRY = "0xF1E2FA75422F889e565F3142bdbf60B28dce2aa7";
 const ZERO = zeroAddress;
 const elysium = defineChain({
