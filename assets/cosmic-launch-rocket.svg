@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="A MUISYLE rocket standing ready on a cosmic launchpad">
+<defs>
+ <linearGradient id="space" x2="0" y2="1"><stop stop-color="#05091c"/><stop offset=".55" stop-color="#11173b"/><stop offset="1" stop-color="#080b1a"/></linearGradient>
+ <radialGradient id="nebula"><stop stop-color="#7047c9" stop-opacity=".7"/><stop offset=".48" stop-color="#3454a8" stop-opacity=".25"/><stop offset="1" stop-color="#10152e" stop-opacity="0"/></radialGradient>
+ <linearGradient id="hull" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f5fbff"/><stop offset=".28" stop-color="#aabbd9"/><stop offset=".55" stop-color="#34466f"/><stop offset=".78" stop-color="#dce8ff"/><stop offset="1" stop-color="#66769b"/></linearGradient>
+ <linearGradient id="glass" x2="1" y2="1"><stop stop-color="#8ef5ff"/><stop offset=".5" stop-color="#5b6dcb"/><stop offset="1" stop-color="#1c2555"/></linearGradient>
+ <linearGradient id="flame" x2="0" y2="1"><stop stop-color="#fff8d8"/><stop offset=".3" stop-color="#72eaff"/><stop offset=".7" stop-color="#a45cff" stop-opacity=".8"/><stop offset="1" stop-color="#7d4aff" stop-opacity="0"/></linearGradient>
+ <linearGradient id="metal" x2="1"><stop stop-color="#202b4b"/><stop offset=".45" stop-color="#7587ad"/><stop offset=".52" stop-color="#293858"/><stop offset="1" stop-color="#111b36"/></linearGradient>
+ <filter id="glow"><feGaussianBlur stdDeviation="16"/></filter>
+ <filter id="soft"><feGaussianBlur stdDeviation="5"/></filter>
+ <pattern id="stars" width="173" height="137" patternUnits="userSpaceOnUse"><circle cx="12" cy="18" r="1.4" fill="#fff"/><circle cx="75" cy="55" r=".9" fill="#a8e9ff"/><circle cx="141" cy="21" r="1.2" fill="#d6c8ff"/><circle cx="112" cy="112" r=".8" fill="#fff"/><circle cx="35" cy="102" r="1" fill="#8edfff"/></pattern>
+</defs>
+<rect width="1600" height="900" fill="url(#space)"/>
+<rect width="1600" height="900" fill="url(#stars)" opacity=".9"/>
+<ellipse cx="600" cy="260" rx="700" ry="380" fill="url(#nebula)"/>
+<ellipse cx="1190" cy="260" rx="490" ry="280" fill="url(#nebula)" opacity=".65"/>
+<path d="M0 330 Q350 90 710 230 T1600 150" fill="none" stroke="#6e6be5" stroke-opacity=".16" stroke-width="48" filter="url(#glow)"/>
+<path d="M0 355 Q350 115 710 255 T1600 175" fill="none" stroke="#93dfff" stroke-opacity=".25" stroke-width="2"/>
+<circle cx="1250" cy="185" r="126" fill="#4d5e9d" opacity=".16"/><circle cx="1250" cy="185" r="112" fill="none" stroke="#a8d7ff" stroke-opacity=".35"/>
+<path d="M1145 160 Q1250 120 1354 173 M1160 212 Q1250 247 1340 200" fill="none" stroke="#9ccaff" stroke-opacity=".17" stroke-width="8"/>
+<circle cx="190" cy="180" r="55" fill="#6d78aa" opacity=".38"/><circle cx="175" cy="162" r="18" fill="#aebce0" opacity=".14"/>
+<!-- launch gantries -->
+<g stroke="#647da8" stroke-width="10" fill="none" opacity=".85">
+ <path d="M215 170V760 M215 220H375 M215 330H375 M215 440H375 M215 550H375 M215 660H375"/>
+ <path d="M690 145V760 M690 220H570 M690 330H570 M690 440H570 M690 550H570 M690 660H570"/>
+ <path d="M185 180H240 M670 150H710 M180 760H735"/>
+</g>
+<g stroke="#9adfff" stroke-opacity=".55" stroke-width="3" fill="none"><path d="M215 180L375 330 215 440 375 550 215 660 375 760"/><path d="M690 145L570 280 690 440 570 580 690 760"/></g>
+<g fill="#8beaff"><circle cx="215" cy="330" r="6"/><circle cx="215" cy="550" r="6"/><circle cx="690" cy="330" r="6"/><circle cx="690" cy="550" r="6"/></g>
+<!-- rocket exhaust glow -->
+<ellipse cx="455" cy="760" rx="170" ry="95" fill="#6f59ff" opacity=".45" filter="url(#glow)"/>
+<path d="M397 585 Q455 880 513 585Z" fill="url(#flame)" opacity=".95" filter="url(#soft)"/>
+<path d="M430 570 Q455 815 480 570Z" fill="#e9fcff" opacity=".9" filter="url(#soft)"/>
+<!-- rocket body -->
+<path d="M455 82 C385 172 370 295 378 520 L405 612 Q455 652 505 612 L532 520 C540 295 525 172 455 82Z" fill="url(#hull)" stroke="#e5f3ff" stroke-width="5"/>
+<path d="M455 82 C420 130 406 178 402 232 L508 232 C504 178 490 130 455 82Z" fill="#e7f2ff"/>
+<path d="M455 96 C435 136 425 171 421 205 L489 205 C485 171 475 136 455 96Z" fill="url(#glass)" stroke="#a5f5ff" stroke-width="3"/>
+<path d="M382 390 Q455 420 528 390 M380 478 Q455 508 530 478" fill="none" stroke="#1e2b50" stroke-width="9" opacity=".65"/>
+<path d="M400 540 L345 628 L405 610 M510 540 L565 628 L505 610" fill="url(#metal)" stroke="#93a8d0" stroke-width="4"/>
+<path d="M422 612 L410 670 L455 650 L500 670 L488 612" fill="#253353" stroke="#9bb4dc" stroke-width="4"/>
+<path d="M455 260 L455 570" stroke="#effaff" stroke-opacity=".45" stroke-width="3"/>
+<path d="M430 285 L480 285" stroke="#a7efff" stroke-width="4"/>
+<!-- emblem -->
+<circle cx="455" cy="335" r="33" fill="#101a3b" stroke="#9beeff" stroke-width="3"/>
+<path d="M455 309L464 335 455 361 446 335Z M429 335L455 326 481 335 455 344Z" fill="#a4f6ff"/>
+<circle cx="455" cy="335" r="6" fill="#fff"/>
+<!-- landing deck -->
+<path d="M0 765 Q420 725 820 770 T1600 750V900H0Z" fill="#0a1127"/>
+<path d="M0 790 Q420 750 820 795 T1600 775" fill="none" stroke="#6e91c8" stroke-width="5" opacity=".55"/>
+<path d="M0 842H1600 M0 875H1600" stroke="#3d5482" stroke-width="3" opacity=".55"/>
+<path d="M90 805H330 M590 805H840 M1020 805H1280 M1370 805H1530" stroke="#8befff" stroke-width="5" opacity=".75"/>
+<path d="M0 765L110 720H300 M1600 750L1490 705H1320" fill="none" stroke="#7a8eb9" stroke-width="8"/>
+<g fill="#b9f7ff"><circle cx="120" cy="805" r="5"/><circle cx="310" cy="805" r="5"/><circle cx="840" cy="805" r="5"/><circle cx="1270" cy="805" r="5"/><circle cx="1480" cy="805" r="5"/></g>
+<path d="M455 660V880" stroke="#d4faff" stroke-opacity=".22" stroke-width="2" stroke-dasharray="10 16"/>
+<path d="M350 875L455 790L560 875" fill="none" stroke="#8e9fd2" stroke-opacity=".45" stroke-width="3"/>
+</svg>
