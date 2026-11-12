@@ -188,7 +188,8 @@ window.addEventListener('load',function renderLucideIcons(){
     onchain:["token-ecosystem"],
     memes:["meme-gallery"],
     profiles:["community-profiles"],
-    community:["community"],\n    launch:["launch-portal"]
+    community:["community"],
+    launch:["launch-portal"]
   };
   const labels=[
     ["home","Home"],["about","About"],["universe","Universe"],
