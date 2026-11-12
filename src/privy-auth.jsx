@@ -1,9 +1,27 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { defineChain } from "viem";
+import { base } from "viem/chains";
 import { PrivyProvider, usePrivy, useWallets, useCreateWallet } from "@privy-io/react-auth";
 import "./privy-auth.css";
 
 const APP_ID = "cmwdxfcfn00h10gjsjgb6kv01";
+
+const elysium = defineChain({
+  id: 99901,
+  name: "Elysium Mainnet",
+  nativeCurrency: { name: "HYPE", symbol: "HYPE", decimals: 18 },
+  rpcUrls: { default: { http: ["https://rpc.elysium.kinetiq.xyz"] } },
+  blockExplorers: { default: { name: "Elyscan", url: "https://elyscan.live" } },
+});
+
+const robinhood = defineChain({
+  id: 4663,
+  name: "Robinhood Chain",
+  nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
+  rpcUrls: { default: { http: ["https://rpc.mainnet.chain.robinhood.com"] } },
+  blockExplorers: { default: { name: "Robinhood Blockscout", url: "https://robinhoodchain.blockscout.com" } },
+});
 
 function AuthPanel() {
   const { ready, authenticated, user, login, logout, exportWallet } = usePrivy();
@@ -147,6 +165,8 @@ function App() {
     appId={APP_ID}
     config={{
       loginMethods: ["twitter"],
+      supportedChains: [elysium, base, robinhood],
+      defaultChain: elysium,
       embeddedWallets: {
         ethereum: { createOnLogin: "all-users" }
       },
