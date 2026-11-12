@@ -1,6 +1,7 @@
 import { Clanker } from "clanker-sdk/v5";
 import { createPublicClient, createWalletClient, custom, defineChain, getAddress } from "viem";
 import { base } from "viem/chains";
+import { LAUNCH_HISTORY_ENDPOINT } from "./launch-history-config.js";
 
 const ELYSIUM_ID = 99901;
 const ELYSIUM_RPC = "https://rpc.elysium.kinetiq.xyz";
@@ -221,11 +222,36 @@ if (form) {
       try { tokenAddress = getAddress(rawTokenAddress); }
       catch { throw new Error("Transaksi terkonfirmasi, tetapi alamat token dari SDK tidak valid. Periksa hash transaksi di explorer."); }
       if (!/^0x[0-9a-fA-F]{64}$/.test(txHash)) throw new Error("SDK mengembalikan hash transaksi yang tidak valid. Periksa transaksi secara manual di explorer.");
+      let historySaved = false;
+      let historyMessage = "Launch History belum dikonfigurasi; token tetap berhasil diluncurkan.";
+      if (LAUNCH_HISTORY_ENDPOINT) {
+        try {
+          const historyResponse = await fetch(LAUNCH_HISTORY_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify({
+              chainId: network.id, network: network.chain.name, explorer: network.explorer,
+              txHash, tokenAddress, deployer: account, name, symbol, image, description, websiteUrl, xUrl,
+            }),
+          });
+          const historyData = await historyResponse.json();
+          if (!historyResponse.ok || !historyData?.ok) throw new Error(historyData?.error || "History service rejected this launch.");
+          historySaved = true;
+          historyMessage = "Token juga tercatat di MUISYLE Launch History publik.";
+        } catch (historyError) {
+          console.warn("Launch History sync failed:", historyError);
+          historyMessage = "Token berhasil diluncurkan, tetapi pencatatan Launch History gagal. Hash transaksi tetap dapat diverifikasi di explorer.";
+        }
+      }
       resultBox.hidden = false;
       const safeName = name.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
       resultBox.innerHTML = '<span class="kicker">DEPLOYMENT CONFIRMED</span><h2>' + safeName + ' ($' + symbol + ')</h2><p>Token berhasil dibuat melalui Clanker v5 di ' + network.chain.name + '.</p><code>' + tokenAddress + '</code><div class="clanker-result-links"><a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="' + network.explorer + '/token/' + tokenAddress + '">View token <i data-lucide="external-link"></i></a><a class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="' + network.explorer + '/tx/' + txHash + '">View transaction <i data-lucide="arrow-up-right"></i></a></div>';
+      const historyNote = document.createElement("p");
+      historyNote.className = "history-sync-note";
+      historyNote.textContent = historyMessage;
+      resultBox.appendChild(historyNote);
       window.lucide?.createIcons?.();
-      setStatus("Selesai. Konfirmasi deployment berhasil diterima dari SDK.", "success");
+      setStatus(historySaved ? "Selesai. Launch terkonfirmasi dan tercatat di MUISYLE Launch History." : "Launch terkonfirmasi. " + historyMessage, "success");
     } catch (error) {
       console.error("Clanker deployment error:", error);
       if (submittedTxHash) {
