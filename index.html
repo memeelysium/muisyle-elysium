@@ -18,6 +18,7 @@
 <script type="module" src="./script.js"></script>
 <script>window.MUISYLE_LOGO_UPLOAD_ENDPOINT = "https://muisyle-logo-upload.pemujarahasiailahi.workers.dev/upload";</script>
 <script type="module" src="./src/clanker-launch.js"></script>
+<script type="module" src="./src/launch-history.js"></script>
 </head>
 <body>
 <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div><div class="starfield"></div>
@@ -25,7 +26,7 @@
   <a class="brand" href="?page=home" aria-label="MUISYLE home"><img src="assets/muisyle-profile.jpg" alt=""><span>MUISYLE</span><small>ELYSIUM UNIVERSE</small></a>
   <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><i data-lucide="menu"></i></button>
   <nav class="main-nav" aria-label="Main navigation">
-    <a data-page="home" href="?page=home">Overview</a><a data-page="tokens" href="?page=tokens">Token orbit</a><a data-page="launch" href="?page=launch">Launch portal</a><a data-page="claim-fee" href="?page=claim-fee">Claim Fee</a><a data-page="missions" href="?page=missions">Missions</a><a data-page="gallery" href="?page=gallery">Meme lab</a><a data-page="community" href="?page=community">Community</a>
+    <a data-page="home" href="?page=home">Overview</a><a data-page="tokens" href="?page=tokens">Token orbit</a><a data-page="launch-history" href="?page=launch-history">Launch history</a><a data-page="launch" href="?page=launch">Launch portal</a><a data-page="claim-fee" href="?page=claim-fee">Claim Fee</a><a data-page="missions" href="?page=missions">Missions</a><a data-page="gallery" href="?page=gallery">Meme lab</a><a data-page="community" href="?page=community">Community</a>
   </nav>
   <a class="nav-cta" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Join on X <i data-lucide="arrow-up-right"></i></a>
 </header>
@@ -67,6 +68,14 @@
     <article class="token-card"><div class="token-symbol symbol-pink">e/</div><div class="token-info"><span class="token-tag">ECOSYSTEM CULTURE</span><h3>Elysium Pepe Acceleration</h3><b>ep/acc</b></div><a href="https://elyscan.live/token/0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0" target="_blank" rel="noreferrer" aria-label="View ep/acc contract"><i data-lucide="arrow-up-right"></i></a><code>0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0</code></article>
   </div>
   <div class="notice"><i data-lucide="shield-check"></i><p><b>Verify before you interact.</b> Token listings can change. Confirm the chain, contract address and project details on the official explorer.</p></div>
+</section>
+
+<section class="page" data-view="launch-history">
+  <div class="page-heading"><span class="kicker">ON-CHAIN ARCHIVE · PUBLIC</span><h1>LAUNCH<br><em>HISTORY.</em></h1><p>Every MUISYLE portal launch recorded after Clanker V5 confirms it on-chain. Open token contracts and verified transactions directly in the network explorer.</p></div>
+  <div class="history-toolbar"><div><span class="kicker">COMMUNITY DEPLOYMENTS</span><h2>Tokens launched through MUISYLE</h2></div><button class="btn btn-secondary" id="history-refresh" type="button"><i data-lucide="refresh-cw"></i> Refresh</button></div>
+  <p id="history-status" class="history-status" role="status" aria-live="polite">Loading verified launches…</p>
+  <div id="launch-history-list" class="launch-history-list" aria-live="polite"></div>
+  <p class="history-disclaimer">Only Clanker V5 transactions verified by the MUISYLE history service are listed. Listings are informational and are not endorsements.</p>
 </section>
 
 <section class="page" data-view="launch">
@@ -119,5 +128,5 @@
 </section>
 </main>
 <footer class="footer"><a class="brand" href="?page=home"><img src="assets/muisyle-profile.jpg" alt=""><span>MUISYLE</span></a><p>MORE THAN A MEME. A WHOLE NEW UNIVERSE.</p><div class="footer-links"><a href="https://x.com/memeelysium" target="_blank" rel="noreferrer">X / Twitter</a><a href="https://github.com/memeelysium" target="_blank" rel="noreferrer">GitHub</a><a href="https://elyscan.live/" target="_blank" rel="noreferrer">Elyscan</a></div><small>© <span id="year"></span> MUISYLE COMMUNITY. BUILT WITH CURIOSITY.</small></footer>
-<div class="mobile-dock" aria-label="Quick navigation"><a href="?page=home" data-page="home"><i data-lucide="home"></i><span>Home</span></a><a href="?page=tokens" data-page="tokens"><i data-lucide="orbit"></i><span>Tokens</span></a><a href="?page=launch" data-page="launch"><i data-lucide="rocket"></i><span>Launch</span></a><a href="?page=claim-fee" data-page="claim-fee"><i data-lucide="coins"></i><span>Claim</span></a><a href="?page=missions" data-page="missions"><i data-lucide="trophy"></i><span>Missions</span></a><a href="?page=community" data-page="community"><i data-lucide="users"></i><span>Community</span></a></div>
+<div class="mobile-dock" aria-label="Quick navigation"><a href="?page=home" data-page="home"><i data-lucide="home"></i><span>Home</span></a><a href="?page=tokens" data-page="tokens"><i data-lucide="orbit"></i><span>Tokens</span></a><a href="?page=launch-history" data-page="launch-history"><i data-lucide="history"></i><span>History</span></a><a href="?page=launch" data-page="launch"><i data-lucide="rocket"></i><span>Launch</span></a><a href="?page=claim-fee" data-page="claim-fee"><i data-lucide="coins"></i><span>Claim</span></a><a href="?page=missions" data-page="missions"><i data-lucide="trophy"></i><span>Missions</span></a><a href="?page=community" data-page="community"><i data-lucide="users"></i><span>Community</span></a></div>
 </body></html>
