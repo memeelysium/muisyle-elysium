@@ -1,12 +1,12 @@
 (()=>{
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const nav=$('.main-nav'),toggle=$('.menu-toggle');
-const valid=['home','tokens','launch','missions','gallery','community'];
+const valid=['home','tokens','launch','claim-fee','missions','gallery','community'];
 function show(page,update=true){
  const active=valid.includes(page)?page:'home';
  $$('[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===active));
  $$('[data-page]').forEach(el=>{if(el.dataset.page===active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});
- document.title='MUISYLE — '+({home:'Elysium Ecosystem',tokens:'Token Orbit',launch:'Launch Portal',missions:'Cosmic Missions',gallery:'Meme Lab',community:'Community'}[active]);
+ document.title='MUISYLE — '+({home:'Elysium Ecosystem',tokens:'Token Orbit',launch:'Launch Portal','claim-fee':'Claim Fee',missions:'Cosmic Missions',gallery:'Meme Lab',community:'Community'}[active]);
  if(update)history.pushState({page:active},'', '?page='+active);
  if(nav)nav.classList.remove('open');
  if(toggle)toggle.setAttribute('aria-expanded','false');
@@ -36,6 +36,9 @@ let previous=-1;
 const output=$('#meme-prompt'),feedback=$('#prompt-feedback');
 $('#generate-prompt')?.addEventListener('click',()=>{let next;do{next=Math.floor(Math.random()*prompts.length)}while(next===previous&&prompts.length>1);previous=next;if(output)output.textContent=prompts[next];if(feedback)feedback.textContent='A fresh idea just entered your orbit.'});
 $('#copy-prompt')?.addEventListener('click',async()=>{if(!output)return;try{await navigator.clipboard.writeText(output.textContent);if(feedback)feedback.textContent='Caption copied. Go make something cosmic!'}catch{if(feedback)feedback.textContent='Copy is unavailable in this browser. Select the caption to copy it.'}});
+
+const claimAddress=$('#claim-token-address'),claimButton=$('#claim-fee-open'),claimStatus=$('#claim-fee-status');
+claimButton?.addEventListener('click',()=>{const address=claimAddress?.value.trim()||'';if(!/^0x[0-9a-fA-F]{40}$/.test(address)){if(claimStatus)claimStatus.textContent='Masukkan alamat kontrak token EVM yang valid (0x diikuti 40 karakter heksadesimal).';return;}const url='https://www.clanker.world/clanker/'+address+'/admin';window.open(url,'_blank','noopener,noreferrer');if(claimStatus)claimStatus.textContent='Halaman Admin Clanker dibuka. Periksa saldo reward dan detail transaksi di sana.';});
 $('#year').textContent=new Date().getFullYear();
 show(pageFromUrl(),false);
 window.addEventListener('load',()=>{if(window.lucide?.createIcons)window.lucide.createIcons({attrs:{'stroke-width':1.8}})});
