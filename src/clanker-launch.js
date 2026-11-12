@@ -161,6 +161,7 @@ if (form) {
     const image = $("cl-image").value.trim();
     const description = $("cl-description").value.trim();
     const xUrl = $("cl-x").value.trim();
+    const websiteUrl = $("cl-website").value.trim();
     if (!connectedAddress) {
       try { await connect(); } catch (error) { setStatus(error?.message || "Wallet connection failed.", "error"); return; }
     }
@@ -183,7 +184,7 @@ if (form) {
       const payload = {
         chainId: network.id, name, symbol, image, tokenAdmin: account,
         buyFee: Number($("cl-fee").value), sellFee: Number($("cl-fee").value), antiSnipeEnabled: true,
-        metadata: { description, socialMediaUrls: xUrl ? [{ platform: "x", url: xUrl }] : [] },
+        metadata: { description, socialMediaUrls: [...(xUrl ? [{ platform: "x", url: xUrl }] : []), ...(websiteUrl ? [{ platform: "website", url: websiteUrl }] : [])] },
         context: { interface: "MUISYLE" },
       };
       const { txHash, waitForTransaction, error } = await clanker.deploy(payload);
