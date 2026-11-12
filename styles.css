@@ -64,7 +64,7 @@
 .claim-fee-panel input{width:100%;padding:14px;border:1px solid #a5b5d355;border-radius:11px;background:#080f20;color:#f5f7ff;font:12px var(--body);outline:none}
 .claim-fee-panel input:focus{border-color:#83e9efaa;box-shadow:0 0 0 3px #83e9ef12}.claim-fee-help{font-size:10px;line-height:1.7;color:var(--muted)}
 .claim-fee-panel>.btn{width:100%;margin-top:15px;border:0;cursor:pointer}.claim-fee-panel .clanker-note{margin-top:20px}
-@media(max-width:760px){.claim-fee-panel{padding:20px}.mobile-dock{grid-template-columns:repeat(6,1fr)}.mobile-dock a{font-size:7px}}
+@media(max-width:760px){.claim-fee-panel{padding:20px}.mobile-dock{grid-template-columns:repeat(7,1fr)}.mobile-dock a{font-size:7px}}
 
 
 /* Compact, elegant launch portal */
