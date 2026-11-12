@@ -15,7 +15,7 @@ function AuthPanel() {
   const creationStarted = useRef(false);
 
   const embeddedWallet = wallets.find(
-    (wallet) => wallet.walletClientType === "privy" && wallet.chainType === "ethereum"
+    (wallet) => wallet.walletClientType === "privy"
   );
 
   const prepareWallet = async () => {
@@ -92,7 +92,7 @@ function AuthPanel() {
     setBusy(true);
     setMessage("Opening Privy's secure wallet export…");
     try {
-      await exportWallet({ address: embeddedWallet.address });
+      await exportWallet();
       setMessage("Privy's wallet export flow was closed. If you completed the security steps, your key has been exported. Keep it private.");
     } catch (error) {
       console.error("MUISYLE wallet export failed:", error);
