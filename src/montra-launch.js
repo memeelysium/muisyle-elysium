@@ -1,10 +1,15 @@
 import {
   createPublicClient, createWalletClient, custom, defineChain, getAddress,
-  stringToHex, zeroAddress, zeroHash, http, parseEventLogs, formatUnits,
+  stringToHex, zeroAddress, zeroHash, http, fallback, parseEventLogs, formatUnits,
 } from "viem";
 
 const ELYSIUM_ID = 99901;
 const ELYSIUM_RPC = "https://rpc.montraxyz.com";
+const ELYSIUM_READ_RPC = "https://rpc.elysium.kinetiq.xyz";
+const readTransport = fallback([
+  http(ELYSIUM_READ_RPC, { timeout: 12_000, retryCount: 1 }),
+  http(ELYSIUM_RPC, { timeout: 12_000, retryCount: 1 }),
+], { retryCount: 1 });
 const MONTRA_REGISTRY = "0xF1E2FA75422F889e565F3142bdbf60B28dce2aa7";
 const ZERO = zeroAddress;
 const elysium = defineChain({
@@ -168,7 +173,7 @@ if (form && $("cl-platform")) {
     loadingRows = true;
     $("cl-montra-retry").disabled = true;
     $("cl-montra-config").replaceChildren(new Option("Menghubungkan ke kontrak MONTRA…", ""));
-    const client = createPublicClient({ chain: elysium, transport: http(ELYSIUM_RPC) });
+    const client = createPublicClient({ chain: elysium, transport: readTransport });
     try {
       const registry = MONTRA_REGISTRY;
       montraFactory = await client.readContract({
@@ -268,7 +273,7 @@ if (form && $("cl-platform")) {
       if (!accounts?.[0]) throw new Error("Tidak ada akun wallet yang dipilih.");
       const account = getAddress(accounts[0]);
       await switchToElysium(provider);
-      const publicClient = createPublicClient({ chain: elysium, transport: http(ELYSIUM_RPC) });
+      const publicClient = createPublicClient({ chain: elysium, transport: readTransport });
       const wallet = createWalletClient({ account, chain: elysium, transport: custom(provider) });
 
       setStatus("Mengunggah metadata token ke layanan MONTRA…", "pending");
