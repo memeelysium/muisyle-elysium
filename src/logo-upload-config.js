@@ -1,3 +1,3 @@
-// After deploying the logo-upload Worker, paste its public URL here.
-// Example: https://muisyle-logo-upload.<account-subdomain>.workers.dev/upload
-window.MUISYLE_LOGO_UPLOAD_ENDPOINT = "";
+// MUISYLE logo upload endpoint — deployed Cloudflare Worker.
+// The Pinata JWT remains stored only as a Cloudflare Worker secret.
+window.MUISYLE_LOGO_UPLOAD_ENDPOINT = "https://muisyle-logo-upload.pemujarahasiailahi.workers.dev/upload";
