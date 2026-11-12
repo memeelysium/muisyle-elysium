@@ -39,9 +39,9 @@ if (form) {
   let needsReconciliation = false;
   const setStatus = (message, type = "") => { status.textContent = message; status.dataset.state = type; };
   const shortAddress = (address) => address ? address.slice(0, 6) + "…" + address.slice(-4) : "";
-  const walletProvider = () => window.ethereum?.providers?.length
-    ? (window.ethereum.providers.find((provider) => provider.isMetaMask) || window.ethereum.providers[0])
-    : window.ethereum;
+  const walletProvider = () => (window.ethereum || window.MUISYLE_PRIVY_PROVIDER)?.providers?.length
+    ? ((window.ethereum || window.MUISYLE_PRIVY_PROVIDER).providers.find((provider) => provider.isMetaMask) || (window.ethereum || window.MUISYLE_PRIVY_PROVIDER).providers[0])
+    : (window.ethereum || window.MUISYLE_PRIVY_PROVIDER);
   const selectedNetwork = () => NETWORKS[$("cl-network").value] || NETWORKS.elysium;
   const syncNetworkUI = () => {
     const network = selectedNetwork();
