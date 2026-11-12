@@ -1,0 +1,16 @@
+{
+  "name": "muisyle-elysium",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "clanker-sdk": "^5.0.0",
+    "viem": "^2.49.3"
+  },
+  "devDependencies": {
+    "vite": "^7.0.0"
+  }
+}
