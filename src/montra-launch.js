@@ -7,7 +7,7 @@ const ELYSIUM_ID = 99901;
 const ELYSIUM_RPC = "https://rpc.montraxyz.com";
 const ELYSIUM_READ_RPCS = [
   "https://triport.io/public/elysium",
-  "https://rpc.montraxyz.xyz",
+  "https://rpc.elysium.kinetiq.xyz",
   "https://rpc.montraxyz.com",
 ];
 const readTransport = fallback(
