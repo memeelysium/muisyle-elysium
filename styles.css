@@ -475,3 +475,48 @@ body:before{background-image:url("assets/cosmic-nebula.svg"),radial-gradient(ell
 .token-ecosystem-section{background-image:linear-gradient(180deg,#080d1ee8,#0b1024f0),url("assets/cosmic-orbit.svg");background-size:cover,cover;background-position:center;background-repeat:no-repeat}
 @media(max-width:760px){.hero-visual.cosmic-hero-art{height:350px;min-height:330px;transform:none;margin:0;background-size:contain}.cosmic-art-caption{top:5%;left:5%;right:5%;font-size:7px;letter-spacing:1.1px}.cosmic-art-orbit{width:80%}.cosmic-art-orbit.orbit-b{width:90%}}
 @media(prefers-reduced-motion:reduce){.hero-visual.cosmic-hero-art{animation:none}}
+
+
+/* Seamless cosmic atmosphere: transparent artwork, no rectangular image panels */
+body:before{
+  background-color:#070916;
+  background-image:
+    radial-gradient(ellipse at 18% 12%,#3949a744 0%,transparent 38%),
+    radial-gradient(ellipse at 82% 34%,#087d9140 0%,transparent 36%),
+    radial-gradient(ellipse at 48% 82%,#58338b35 0%,transparent 42%),
+    url("assets/cosmic-nebula.svg"),
+    linear-gradient(180deg,#070916 0%,#0a1024 52%,#070916 100%);
+  background-size:auto,auto,auto,100% auto,auto;
+  background-position:center,center,center,center 8%,center;
+  background-repeat:no-repeat;
+}
+.hero-visual.cosmic-hero-art{
+  background:radial-gradient(ellipse at 50% 48%,#5263c522 0%,transparent 65%),url("assets/cosmic-hero.svg") center/contain no-repeat;
+  border:0;box-shadow:none;border-radius:0;
+}
+.home-hub-section,.vision-section,.universe-section,.token-ecosystem-section{
+  background-color:transparent;
+  background-image:none;
+  position:relative;
+  isolation:isolate;
+}
+.home-hub-section:before,.vision-section:before,.universe-section:before,.token-ecosystem-section:before{
+  content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;
+  background-image:
+    radial-gradient(ellipse at 78% 28%,#5864c42b 0%,transparent 48%),
+    radial-gradient(ellipse at 18% 72%,#258c9b20 0%,transparent 42%),
+    url("assets/cosmic-galaxy.svg");
+  background-size:auto,auto,min(100%,1200px) auto;
+  background-position:center,center,center 30%;
+  background-repeat:no-repeat;
+  opacity:.62;
+}
+.home-hub-section:before{background-image:radial-gradient(ellipse at 75% 25%,#5969d83a 0%,transparent 48%),url("assets/cosmic-orbit.svg");background-size:auto,min(100%,1050px) auto;background-position:center,right 12%}
+.universe-section:before{background-image:radial-gradient(ellipse at 50% 50%,#4b3d9b25 0%,transparent 65%),url("assets/cosmic-nebula.svg");background-size:auto,cover;background-position:center}
+.token-ecosystem-section:before{background-image:radial-gradient(ellipse at 50% 50%,#254c9b2b 0%,transparent 65%),url("assets/cosmic-orbit.svg");background-size:auto,min(100%,1150px) auto;background-position:center,center}
+.vision-section:before{background-image:radial-gradient(ellipse at 50% 50%,#5644a52b 0%,transparent 65%),url("assets/cosmic-galaxy.svg");background-size:auto,cover}
+@media(max-width:760px){
+ body:before{background-size:auto,auto,auto,160% auto,auto;background-position:center,center,center,center 6%,center}
+ .hero-visual.cosmic-hero-art{background-size:radial-gradient(ellipse at 50% 48%,#5263c522 0%,transparent 65%),contain}
+ .home-hub-section:before,.vision-section:before,.universe-section:before,.token-ecosystem-section:before{opacity:.38;background-size:auto,auto}
+}
