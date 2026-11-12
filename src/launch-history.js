@@ -46,9 +46,9 @@ async function loadHistory() {
         ? '<div class="history-avatar"><img loading="lazy" src="' + escapeHtml(image) + '" alt=""></div>'
         : '<div class="history-avatar">' + escapeHtml((item.symbol || "✦").slice(0, 2)) + "</div>";
       const basedBotLink = Number(item.chainId) === 8453
-        ? '<a href="https://trade.basedbot.app" target="_blank" rel="noopener noreferrer" aria-label="Open BasedBot terminal to trade ' + escapeHtml(item.name) + '">TRADE WITH BASEDBOT ↗</a>'
+        ? '<a href="https://trade.basedbot.app" target="_blank" rel="noopener noreferrer" aria-label="Open BasedBot terminal">TRADE WITH BASEDBOT ↗</a>'
         : "";
-      return '<article class="history-card">' + avatar + '<div class="history-main"><h3>' + escapeHtml(item.name) + '</h3><span class="history-symbol">
+      return '<article class="history-card">' + avatar + '<div class="history-main"><h3>' + escapeHtml(item.name) + '</h3><span class="history-symbol">$' + escapeHtml(item.symbol) + '</span><div class="history-meta"><span>' + escapeHtml(item.network) + '</span><span>VERIFIED ON-CHAIN</span></div><small>' + escapeHtml(dateLabel(item.createdAt)) + '</small><code class="history-address">' + escapeHtml(item.tokenAddress) + '</code><div class="history-links"><a href="' + tokenUrl + '" target="_blank" rel="noopener noreferrer">TOKEN EXPLORER ↗</a><a href="' + txUrl + '" target="_blank" rel="noopener noreferrer">TRANSACTION ↗</a>' + basedBotLink + '</div></div></article>';
     }).join("");
   } catch (error) {
     status.dataset.state = "error";
