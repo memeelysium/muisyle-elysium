@@ -17,7 +17,7 @@ export default {
   if(origin!==allowed)return json({error:'Origin not allowed'},{status:403});
   if(request.method==='OPTIONS')return new Response(null,{status:204,headers:cors});
   if(request.method!=='POST')return json({error:'Method not allowed'},{status:405});
-  if(!/^application\\/json(?:\\s*;|$)/i.test(request.headers.get('Content-Type')||''))return json({error:'Content-Type must be application/json.'},{status:415});
+  if(!/^application\/json(?:\s*;|$)/i.test(request.headers.get('Content-Type')||''))return json({error:'Content-Type must be application/json.'},{status:415});
   const declaredLength=Number(request.headers.get('Content-Length')||0);
   if(declaredLength>24000)return json({error:'Request body too large.'},{status:413});
   if(!env.OPENAI_API_KEY)return json({error:'AI service is not configured.'},{status:503});
