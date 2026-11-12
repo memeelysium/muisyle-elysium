@@ -10,3 +10,7 @@
 .muisyle-auth-secondary{background:transparent;border-color:rgba(255,255,255,.22);color:#eee}
 .muisyle-auth-message{flex-basis:100%;margin:0;color:#aaa5bd;font-size:11px;line-height:1.5}
 @media(max-width:600px){.muisyle-auth-mount{width:calc(100% - 28px);margin:18px auto}.muisyle-auth-panel{align-items:flex-start;padding:15px}.muisyle-auth-actions{width:100%}.muisyle-auth-actions button{flex:1}}
+
+.muisyle-auth-identity{display:flex;align-items:center;gap:13px;min-width:0}
+.muisyle-x-avatar,.muisyle-x-avatar-fallback{width:48px;height:48px;flex:0 0 48px;border-radius:50%;object-fit:cover;border:1px solid rgba(190,170,255,.55);background:#211a3b}
+.muisyle-x-avatar-fallback{display:grid;place-items:center;color:#fff;font:700 20px "Space Grotesk",sans-serif}
