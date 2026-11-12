@@ -577,3 +577,9 @@ body[data-page="launch"] main{min-height:100svh}
 @media(max-width:600px){.launch-portal{padding:85px 16px 65px;background-position:35% center}.launch-content{width:min(100%,560px);margin:auto;padding:24px 18px;border-radius:20px;background:linear-gradient(145deg,rgba(5,10,28,.82),rgba(9,12,32,.76))}.launch-content h2{letter-spacing:-1.8px}.launch-status{letter-spacing:4px}.launch-note{font-size:11px}.launch-coordinate{font-size:7px;letter-spacing:1.3px}}
 @media(orientation:landscape) and (max-height:560px){.launch-portal{min-height:100svh;padding:45px 24px}.launch-overline{margin-top:15px}.launch-divider{margin:14px auto 10px}.launch-note{margin:10px auto 14px}.launch-planet{width:min(50vw,380px)}.launch-back{top:16px}.launch-coordinate{bottom:10px}}
 @media(prefers-reduced-motion:reduce){.launch-follow{transition:none}}
+
+
+/* Cosmic Identity local profile controls */
+.profile-clear-button{align-self:center;margin-top:4px;padding:9px 14px;border:1px solid #ff9bac55;border-radius:999px;background:#ff789b0c;color:#ffafbf;font:600 9px var(--display);letter-spacing:1px;cursor:pointer}
+.profile-clear-button:hover{background:#ff789b18;border-color:#ff9bac99}
+.profile-clear-button[hidden]{display:none}
