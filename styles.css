@@ -444,3 +444,13 @@ main{min-height:calc(100vh - 170px)}
 .cosmic-reset:hover{border-color:#b6a4ff;color:#fff}
 .cosmic-reset:focus-visible{outline:2px solid #8de8ef;outline-offset:3px}
 @media(max-width:760px){.cosmic-drag-controls{bottom:0;gap:6px}.drag-hint,.cosmic-reset{font-size:7px;padding:8px 9px}.hero-visual{touch-action:pan-y}}
+
+
+/* Standalone touch-first planet rotation */
+.hero-visual{touch-action:none;cursor:grab}
+.hero-visual.is-dragging{cursor:grabbing}
+.hero-visual .planet-core{transform-style:preserve-3d;will-change:transform;animation-play-state:paused;transition:none}
+.hero-visual .orbit{will-change:transform}
+.hero-visual .cosmic-drag-controls{touch-action:pan-y}
+.hero-visual .cosmic-reset{touch-action:manipulation}
+@media(max-width:760px){.hero-visual{min-height:360px;touch-action:none}.hero-visual .planet-core{width:220px;height:220px}.hero-visual .planet-mark{font-size:94px}}
