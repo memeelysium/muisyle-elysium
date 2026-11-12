@@ -11,12 +11,6 @@ const CHAINS = {
     factory: "0xca111dcdd2ce924c3378d6514fdcbc46217bca16",
     explorer: "https://robinhoodchain.blockscout.com",
   },
-  99901: {
-    name: "Elysium",
-    rpc: "https://rpc.elysium.kinetiq.xyz",
-    factory: "0xca111dcdd2ce924c3378d6514fdcbc46217bca16",
-    explorer: "https://elyscan.live",
-  },
 };
 const ALLOWED_ORIGIN = "https://memeelysium.github.io";
 const json = (data, status = 200, origin = ALLOWED_ORIGIN) => new Response(JSON.stringify(data), {
