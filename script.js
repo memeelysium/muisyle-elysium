@@ -4,9 +4,29 @@ const nav=$('.main-nav'),toggle=$('.menu-toggle');
 const valid=['home','tokens','launch-history','launch','claim-fee','missions','gallery','community'];
 function show(page,update=true){
  const active=valid.includes(page)?page:'home';
- $$('[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===active));
- $$('[data-page]').forEach(el=>{if(el.dataset.page===active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});
+ $('[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===active));
+ $('[data-page]').forEach(el=>{if(el.dataset.page===active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});
  document.title='MUISYLE — '+({home:'Elysium Ecosystem',tokens:'Token Orbit','launch-history':'Launch History',launch:'Launch Portal','claim-fee':'Claim Fee',missions:'Cosmic Missions',gallery:'Meme Lab',community:'Community'}[active]);
+ const mascot=document.querySelector('#mascot-companion');
+ const mascotImage=document.querySelector('#mascot-image');
+ const mascotMessage=document.querySelector('#mascot-message');
+ const mascotPages={
+  home:{image:'assets/memes/muisyle-to-the-moon.svg',alt:'MUISYLE mascot celebrating in orbit',message:'Welcome aboard. Your next orbit starts here.'},
+  tokens:{image:'assets/memes/muisyle-hodl-strong.svg',alt:'MUISYLE mascot watching the token orbit',message:'Explore the tokens. Always verify before you interact.'},
+  'launch-history':{image:'assets/memes/muisyle-community.svg',alt:'MUISYLE mascot with the community',message:'Every launch has a story. Browse the archive.'},
+  launch:{image:'assets/memes/muisyle-gm.svg',alt:'MUISYLE mascot ready at the launch portal',message:'Build carefully. Review every detail before launch.'},
+  'claim-fee':{image:'assets/memes/muisyle-buy-the-dip.svg',alt:'MUISYLE mascot holding a glowing token',message:'Your creator rewards are worth checking.'},
+  missions:{image:'assets/memes/muisyle-to-the-moon.svg',alt:'MUISYLE mascot reaching for the stars',message:'Mission accepted. Make something cosmic.'},
+  gallery:{image:'assets/memes/muisyle-gm.svg',alt:'MUISYLE mascot bringing creative energy',message:'Create, remix and share your next meme.'},
+  community:{image:'assets/memes/muisyle-community.svg',alt:'MUISYLE mascot welcoming the community',message:'One signal. Many worlds. Find your people.'}
+ };
+ const mascotConfig=mascotPages[active];
+ if(mascot&&mascotImage&&mascotMessage&&mascotConfig){
+  mascot.dataset.style=active==='launch-history'?'history':active;
+  mascotImage.src=mascotConfig.image;
+  mascotImage.alt=mascotConfig.alt;
+  mascotMessage.textContent=mascotConfig.message;
+ }
  if(update)history.pushState({page:active},'', '?page='+active);
  if(nav)nav.classList.remove('open');
  if(toggle)toggle.setAttribute('aria-expanded','false');
