@@ -207,7 +207,8 @@ if (form) {
       if (!/^0x[0-9a-fA-F]{64}$/.test(txHash)) throw new Error("SDK mengembalikan hash transaksi yang tidak valid. Periksa transaksi secara manual di explorer.");
       resultBox.hidden = false;
       const safeName = name.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
-      resultBox.innerHTML = '<span class="kicker">DEPLOYMENT CONFIRMED</span><h2>' + safeName + ' (?.createIcons?.();
+      resultBox.innerHTML = '<span class="kicker">DEPLOYMENT CONFIRMED</span><h2>' + safeName + ' ($' + symbol + ')</h2><p>Token berhasil dibuat melalui Clanker v5 di ' + network.chain.name + '.</p><code>' + tokenAddress + '</code><div class="clanker-result-links"><a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="' + network.explorer + '/token/' + tokenAddress + '">View token <i data-lucide="external-link"></i></a><a class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="' + network.explorer + '/tx/' + txHash + '">View transaction <i data-lucide="arrow-up-right"></i></a></div>';
+      window.lucide?.createIcons?.();
       setStatus("Selesai. Konfirmasi deployment berhasil diterima dari SDK.", "success");
     } catch (error) {
       console.error("Clanker deployment error:", error);
