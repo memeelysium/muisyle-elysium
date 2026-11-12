@@ -449,7 +449,7 @@ main{min-height:calc(100vh - 170px)}
 /* Standalone touch-first planet rotation */
 .hero-visual{touch-action:none;cursor:grab}
 .hero-visual.is-dragging{cursor:grabbing}
-.hero-visual .planet-core{transform-style:preserve-3d;will-change:transform;animation-play-state:paused;transition:none}
+.hero-visual .planet-core{transform-style:preserve-3d;will-change:transform;animation:none;transition:none}
 .hero-visual .orbit{will-change:transform}
 .hero-visual .cosmic-drag-controls{touch-action:pan-y}
 .hero-visual .cosmic-reset{touch-action:manipulation}
