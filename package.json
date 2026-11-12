@@ -13,7 +13,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "@solana-program/system": "^0.8.0",
-    "@solana-program/token": "^0.8.0"
+    "@solana-program/token": "0.6.0"
   },
   "devDependencies": {
     "vite": "^7.0.0"
