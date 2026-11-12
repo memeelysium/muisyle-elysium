@@ -7,37 +7,6 @@ function show(page,update=true){
  $$('[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===active));
  $$('[data-page]').forEach(el=>{if(el.dataset.page===active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});
  document.title='MUISYLE — '+({home:'Elysium Ecosystem',tokens:'Token Orbit','launch-history':'Launch History',launch:'Launch Portal','claim-fee':'Claim Fee',missions:'Cosmic Missions',gallery:'Meme Lab',community:'Community'}[active]);
- const mascot=document.querySelector('#mascot-companion');
- const mascotImage=document.querySelector('#mascot-image');
- const mascotMessage=document.querySelector('#mascot-message');
- const mascotPages={
-  home:{image:'assets/memes/muisyle-2026-11-12-01.svg',alt:'MUISYLE mascot welcoming visitors to the cosmic universe',message:'Welcome aboard. Your next orbit starts here.'},
-  tokens:{image:'assets/memes/muisyle-2026-11-12-02.svg',alt:'MUISYLE mascot exploring the token universe',message:'Explore the tokens. Always verify before you interact.'},
-  'launch-history':{image:'assets/memes/muisyle-2026-11-12-03.svg',alt:'MUISYLE mascot reviewing launch history',message:'Every launch has a story. Browse the archive.'},
-  launch:{image:'assets/memes/muisyle-2026-11-12-04.svg',alt:'MUISYLE mascot preparing a token launch',message:'Build carefully. Review every detail before launch.'},
-  'claim-fee':{image:'assets/memes/muisyle-2026-11-12-05.svg',alt:'MUISYLE mascot celebrating creator rewards',message:'Your creator rewards are worth checking.'},
-  missions:{image:'assets/memes/muisyle-2026-11-12-06.svg',alt:'MUISYLE mascot setting off on a cosmic mission',message:'Mission accepted. Make something cosmic.'},
-  gallery:{image:'assets/memes/muisyle-2026-11-12-13.svg',alt:'MUISYLE mascot creating original meme art',message:'Create, remix and share your next meme.'},
-  community:{image:'assets/memes/muisyle-2026-11-12-14.svg',alt:'MUISYLE mascot greeting the MUISYLE community',message:'One signal. Many worlds. Find your people.'}
- };
- const mascotConfig=mascotPages[active];
- if(mascot&&mascotImage&&mascotMessage&&mascotConfig){
-  mascot.dataset.style=active==='launch-history'?'history':active;
-  mascotImage.onerror=()=>{
-   if(!mascotImage.dataset.fallback){
-    mascotImage.dataset.fallback='true';
-    mascotImage.src='assets/memes/muisyle-to-the-moon.svg';
-    mascotImage.alt='MUISYLE mascot in the cosmic universe';
-   }else{
-    mascot.hidden=true;
-   }
-  };
-  mascotImage.dataset.fallback='';
-  mascot.hidden=false;
-  mascotImage.src=mascotConfig.image;
-  mascotImage.alt=mascotConfig.alt;
-  mascotMessage.textContent=mascotConfig.message;
- }
  if(update)history.pushState({page:active},'', '?page='+active);
  if(nav)nav.classList.remove('open');
  if(toggle)toggle.setAttribute('aria-expanded','false');
