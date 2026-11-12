@@ -163,8 +163,11 @@ if (form && $("cl-platform")) {
   };
 
   async function loadMontraRows() {
-    if (loadingRows || montraRows.length) return;
+    if (loadingRows) return;
+    if (montraRows.length) return;
     loadingRows = true;
+    $("cl-montra-retry").disabled = true;
+    $("cl-montra-config").replaceChildren(new Option("Menghubungkan ke kontrak MONTRA…", ""));
     const client = createPublicClient({ chain: elysium, transport: http(ELYSIUM_RPC) });
     try {
       const registry = MONTRA_REGISTRY;
@@ -202,12 +205,20 @@ if (form && $("cl-platform")) {
       $("cl-montra-launch-fee").textContent = formatUnits(launchFee, 18) + " HYPE";
       setStatus("MONTRA siap. Fee tiers dan biaya launch dibaca langsung dari kontrak Elysium.", "success");
     } catch (error) {
-      $("cl-montra-config").replaceChildren(new Option("Fee tier tidak tersedia", ""));
-      setStatus(error?.shortMessage || error?.message || "Gagal membaca konfigurasi MONTRA.", "error");
-    } finally { loadingRows = false; }
+      montraRows = [];
+      montraFactory = null;
+      const reason = error?.shortMessage || error?.details || error?.message || "Kesalahan RPC tidak diketahui.";
+      $("cl-montra-config").replaceChildren(new Option("Fee tier gagal dimuat — tekan Muat ulang", ""));
+      setStatus("Gagal membaca fee tier MONTRA: " + reason + " Pastikan koneksi internet aktif; coba muat ulang.", "error");
+      console.error("MONTRA fee tier loading error:", error);
+    } finally {
+      loadingRows = false;
+      $("cl-montra-retry").disabled = false;
+    }
   }
 
   platform.addEventListener("change", setPlatform);
+  $("cl-montra-retry").addEventListener("click", () => { montraRows = []; montraFactory = null; loadMontraRows(); });
   $("cl-montra-config").addEventListener("change", () => {
     const row = montraRows.find((item) => String(item.id) === $("cl-montra-config").value);
     if (row) $("cl-montra-supply").value = String(row.baseSupply / 10n ** 18n);
