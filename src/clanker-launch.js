@@ -231,8 +231,16 @@ if (form) {
       connectButton.textContent = connectedAddress ? "Connected " + shortAddress(connectedAddress) : "Connect wallet";
       setStatus(connectedAddress ? "Akun wallet diperbarui." : "Wallet terputus. Hubungkan kembali untuk melanjutkan.");
     });
-    eventProvider.on?.("chainChanged", () => {
-      connectedAddress = null; deployButton.disabled = true; connectButton.textContent = "Reconnect wallet";
+    eventProvider.on?.("chainChanged", (chainId) => {
+      const activeChainId = Number.parseInt(chainId, 16);
+      if (activeChainId === selectedNetwork().id) {
+        deployButton.disabled = needsReconciliation || !connectedAddress || !$("cl-confirm").checked || busy;
+        setStatus("Wallet terhubung ke " + selectedNetwork().chain.name + ".", "success");
+        return;
+      }
+      connectedAddress = null;
+      deployButton.disabled = true;
+      connectButton.textContent = "Reconnect wallet";
       setStatus("Jaringan wallet berubah. Hubungkan ulang ke " + selectedNetwork().chain.name + ".");
     });
   }
