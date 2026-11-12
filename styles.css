@@ -517,6 +517,6 @@ body:before{
 .vision-section:before{background-image:radial-gradient(ellipse at 50% 50%,#5644a52b 0%,transparent 65%),url("assets/cosmic-galaxy.svg");background-size:auto,cover}
 @media(max-width:760px){
  body:before{background-size:auto,auto,auto,160% auto,auto;background-position:center,center,center,center 6%,center}
- .hero-visual.cosmic-hero-art{background-size:radial-gradient(ellipse at 50% 48%,#5263c522 0%,transparent 65%),contain}
+ .hero-visual.cosmic-hero-art{background-size:auto,contain}
  .home-hub-section:before,.vision-section:before,.universe-section:before,.token-ecosystem-section:before{opacity:.38;background-size:auto,auto}
 }
