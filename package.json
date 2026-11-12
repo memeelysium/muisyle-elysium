@@ -8,7 +8,10 @@
   },
   "dependencies": {
     "clanker-sdk": "5.1.0",
-    "viem": "^2.49.3"
+    "viem": "^2.49.3",
+    "@privy-io/react-auth": "latest",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "vite": "^7.0.0"
