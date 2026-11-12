@@ -432,3 +432,15 @@ main{min-height:calc(100vh - 170px)}
 .home-mission-strip a{margin-left:auto;color:#9df1ef;font:700 9px var(--display);letter-spacing:1.2px;text-decoration:none;white-space:nowrap}
 @media(max-width:700px){.home-hub-section{padding:62px 17px 70px}.home-hub-heading{align-items:flex-start;flex-direction:column;gap:13px}.home-hub-heading>p{max-width:420px}.home-portal-grid{grid-template-columns:1fr;gap:10px}.home-portal-card{min-height:185px;padding:18px}.portal-icon{margin:15px 0 10px}.home-prompt-panel{grid-template-columns:1fr;gap:18px;padding:19px}.prompt-orbit-art{width:105px;height:105px;margin:0 auto}.prompt-orbit-art:before,.prompt-orbit-art:after{width:135px;height:42px}.prompt-orbit-art b{font-size:42px}.home-mission-strip{align-items:flex-start}.home-mission-strip a{align-self:center}}
 @media(prefers-reduced-motion:reduce){.home-portal-card{transition:none}}
+
+
+/* Interactive 360-degree planet controls */
+.three-cosmic-canvas{cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.three-cosmic-canvas:active{cursor:grabbing}
+.cosmic-drag-controls{position:absolute;z-index:4;left:50%;bottom:3px;transform:translateX(-50%);display:flex;align-items:center;gap:9px;white-space:nowrap}
+.drag-hint{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid #8de8ef55;border-radius:30px;background:#0b1429dd;color:#a9eff0;font:700 8px var(--display);letter-spacing:1.3px;box-shadow:0 5px 20px #02061166;pointer-events:none}
+.drag-hint i{font-size:14px;font-style:normal}
+.cosmic-reset{padding:9px 11px;border:1px solid #b6a4ff55;border-radius:30px;background:#17152ddd;color:#d8d3ff;font:700 8px var(--display);letter-spacing:1px;cursor:pointer}
+.cosmic-reset:hover{border-color:#b6a4ff;color:#fff}
+.cosmic-reset:focus-visible{outline:2px solid #8de8ef;outline-offset:3px}
+@media(max-width:760px){.cosmic-drag-controls{bottom:0;gap:6px}.drag-hint,.cosmic-reset{font-size:7px;padding:8px 9px}.hero-visual{touch-action:pan-y}}
