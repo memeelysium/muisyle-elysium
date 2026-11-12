@@ -7,7 +7,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "clanker-sdk": "^5.0.0",
+    "clanker-sdk": "4.2.19",
     "viem": "^2.49.3"
   },
   "devDependencies": {
