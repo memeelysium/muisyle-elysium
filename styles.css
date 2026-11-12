@@ -137,3 +137,7 @@
 .montra-launch-cost { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:12px 0; padding:12px 14px; border:1px solid rgba(143,125,255,.22); border-radius:10px; background:rgba(255,255,255,.035); }
 .montra-launch-cost span { color:var(--muted); font-size:.82rem; }
 .montra-launch-cost b { font-size:.9rem; }
+
+.montra-rpc-note { margin:10px 0 14px; padding:10px 12px; border-left:2px solid rgba(143,125,255,.65); border-radius:0 8px 8px 0; background:rgba(143,125,255,.07); color:var(--muted); font-size:.8rem; line-height:1.55; overflow-wrap:anywhere; }
+.montra-rpc-note b { color:var(--text); }
+.montra-rpc-note a { color:var(--accent); text-decoration:underline; }
