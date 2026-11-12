@@ -153,7 +153,7 @@ if (form) {
       const result = await response.json();
       if (!response.ok || !/^ipfs:\/\/[A-Za-z0-9]+$/.test(result.uri || "")) throw new Error(result.error || "Upload failed.");
       $("cl-image").value = result.uri; syncPreview();
-      uploadStatus.textContent = "Logo tersimpan di IPFS: " + result.uri; uploadStatus.dataset.state = "success";
+      uploadStatus.textContent = "Logo saved to IPFS: " + result.uri; uploadStatus.dataset.state = "success";
     } catch (error) {
       uploadStatus.textContent = error.message || "Logo upload failed. Please try again."; uploadStatus.dataset.state = "error";
     }
@@ -205,9 +205,9 @@ if (form) {
       };
       const { txHash, waitForTransaction, error } = await clanker.deploy(payload);
       if (error) {
-        if (error?.data?.rawName === "SendUncertain") {
+        if (String(error?.data?.rawName || "").toUpperCase() === "SEND_UNCERTAIN") {
           needsReconciliation = true;
-          setStatus("Transaction submission could not be confirmed. Check pending transactions in your wallet before trying to deploy again.", "pending");
+          setStatus("The wallet or network could not confirm whether the transaction was sent. Do not retry yet. Check your wallet activity and the block explorer first; reconnect only after confirming no launch is pending.", "pending");
           return;
         }
         throw error;
