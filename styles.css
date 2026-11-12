@@ -55,3 +55,13 @@
 .clanker-fee-row select{width:100%;border:1px solid #a5b5d333;border-radius:11px;background:#080f20;color:#f5f7ff;padding:13px 14px;font:12px var(--body)}
 .clanker-fee-row p{font-size:9px;line-height:1.6;color:#8291ad;margin:0 0 10px}
 @media(max-width:760px){.clanker-fee-row{grid-template-columns:1fr}}
+
+/* Claim Fee page and website metadata field */
+.clanker-form select{width:100%;border:1px solid #a5b5d333;border-radius:11px;background:#080f20;color:#f5f7ff;padding:13px 14px;font:12px var(--body)}
+.claim-fee-panel{max-width:680px;margin:0 auto;padding:28px;border:1px solid #83e9ef44;border-radius:20px;background:linear-gradient(145deg,#151e38e8,#0e1428ed)}
+.claim-fee-icon{width:54px;height:54px;display:grid;place-items:center;margin-bottom:18px;border-radius:16px;background:#83e9ef16;color:var(--cyan)}
+.claim-fee-icon svg{width:27px;height:27px}.claim-fee-panel label{display:block;margin:20px 0 8px;font:600 11px var(--display);color:#dce4fa}
+.claim-fee-panel input{width:100%;padding:14px;border:1px solid #a5b5d355;border-radius:11px;background:#080f20;color:#f5f7ff;font:12px var(--body);outline:none}
+.claim-fee-panel input:focus{border-color:#83e9efaa;box-shadow:0 0 0 3px #83e9ef12}.claim-fee-help{font-size:10px;line-height:1.7;color:var(--muted)}
+.claim-fee-panel>.btn{width:100%;margin-top:15px;border:0;cursor:pointer}.claim-fee-panel .clanker-note{margin-top:20px}
+@media(max-width:760px){.claim-fee-panel{padding:20px}.mobile-dock{grid-template-columns:repeat(6,1fr)}.mobile-dock a{font-size:7px}}
