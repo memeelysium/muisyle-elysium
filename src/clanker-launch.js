@@ -207,46 +207,7 @@ if (form) {
       if (!/^0x[0-9a-fA-F]{64}$/.test(txHash)) throw new Error("SDK mengembalikan hash transaksi yang tidak valid. Periksa transaksi secara manual di explorer.");
       resultBox.hidden = false;
       const safeName = name.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
-      resultBox.innerHTML = '<span class="kicker">DEPLOYMENT CONFIRMED</span><h2>' + safeName + ' (
-      window.lucide?.createIcons?.();
-      setStatus("Selesai. Konfirmasi deployment berhasil diterima dari SDK.", "success");
-    } catch (error) {
-      console.error("Clanker deployment error:", error);
-      if (submittedTxHash) {
-        needsReconciliation = true;
-        const safeHash = /^0x[0-9a-fA-F]{64}$/.test(submittedTxHash) ? submittedTxHash : "";
-        resultBox.hidden = false;
-        resultBox.innerHTML = '<span class="kicker">TRANSACTION SUBMITTED · CHECK STATUS</span><h2>Verification pending</h2><p>Transaksi sudah dikirim, tetapi SDK belum dapat memverifikasi hasil launch. Jangan kirim transaksi kedua sebelum memeriksa statusnya.</p>' + (safeHash ? '<a class="btn btn-secondary" target="_blank" rel="noreferrer" href="' + selectedNetwork().explorer + '/tx/' + safeHash + '">Check transaction on explorer</a>' : "");
-        setStatus("Transaksi sudah dikirim tetapi belum terverifikasi. Jangan deploy ulang sebelum memeriksa hash transaksi.", "pending");
-      } else {
-        setStatus(error?.shortMessage || error?.message || "Deployment gagal sebelum transaksi dikirim.", "error");
-      }
-    } finally { busy = false; deployButton.disabled = needsReconciliation || !connectedAddress || !$("cl-confirm").checked; }
-  });
-  const eventProvider = activeProvider || walletProvider();
-  if (eventProvider) {
-    eventProvider.on?.("accountsChanged", (accounts) => {
-      connectedAddress = accounts?.[0] ? getAddress(accounts[0]) : null;
-      deployButton.disabled = !connectedAddress || !$("cl-confirm").checked || busy;
-      connectButton.textContent = connectedAddress ? "Connected " + shortAddress(connectedAddress) : "Connect wallet";
-      setStatus(connectedAddress ? "Akun wallet diperbarui." : "Wallet terputus. Hubungkan kembali untuk melanjutkan.");
-    });
-    eventProvider.on?.("chainChanged", (chainId) => {
-      const activeChainId = Number.parseInt(chainId, 16);
-      if (activeChainId === selectedNetwork().id) {
-        deployButton.disabled = needsReconciliation || !connectedAddress || !$("cl-confirm").checked || busy;
-        setStatus("Wallet terhubung ke " + selectedNetwork().chain.name + ".", "success");
-        return;
-      }
-      connectedAddress = null;
-      deployButton.disabled = true;
-      connectButton.textContent = "Reconnect wallet";
-      setStatus("Jaringan wallet berubah. Hubungkan ulang ke " + selectedNetwork().chain.name + ".");
-    });
-  }
-}
- + symbol + ')</h2><p>Token berhasil dibuat melalui Clanker v5 di ' + network.chain.name + '.</p><code>' + tokenAddress + '</code><div class="clanker-result-links"><a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="' + network.explorer + '/token/' + tokenAddress + '">View token <i data-lucide="external-link"></i></a><a class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="' + network.explorer + '/tx/' + txHash + '">View transaction <i data-lucide="arrow-up-right"></i></a></div>';
-      window.lucide?.createIcons?.();
+      resultBox.innerHTML = '<span class="kicker">DEPLOYMENT CONFIRMED</span><h2>' + safeName + ' (?.createIcons?.();
       setStatus("Selesai. Konfirmasi deployment berhasil diterima dari SDK.", "success");
     } catch (error) {
       console.error("Clanker deployment error:", error);
