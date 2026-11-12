@@ -135,3 +135,48 @@
 .history-disclaimer{font-size:9px;line-height:1.7;color:#7885a2;margin-top:20px}
 .history-sync-note{margin-top:12px;color:#b5d8d1;font-size:10px;line-height:1.6}
 @media(max-width:760px){.history-toolbar{align-items:flex-start;flex-direction:column}.history-toolbar .btn{width:100%}.launch-history-list{grid-template-columns:1fr}.history-card{padding:14px}.mobile-dock{grid-template-columns:repeat(6,1fr)}}
+
+
+/* MUISYLE UX refinement — clearer hierarchy, touch targets and responsive navigation */
+:root{--surface-glass:rgba(17,25,47,.82);--focus-ring:0 0 0 3px rgba(131,233,239,.22)}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.topbar{position:sticky;top:0;background:rgba(8,11,24,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom-color:#ffffff20}
+.main-nav a{font-weight:600;padding:9px 0;white-space:nowrap}
+.main-nav a[aria-current=page]{color:var(--cyan);position:relative}
+.main-nav a[aria-current=page]:after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:2px;border-radius:2px;background:var(--cyan);box-shadow:0 0 12px #83e9ef88}
+.page{scroll-margin-top:90px}
+.page-heading{margin-bottom:34px}
+.page-heading>p,.hero-lead{max-width:610px}
+.btn,.nav-cta,.menu-toggle,.token-card>a,.history-links a,.text-link{min-height:42px}
+.btn:focus-visible,.nav-cta:focus-visible,.menu-toggle:focus-visible{outline-offset:4px;box-shadow:var(--focus-ring)}
+.portal-card,.token-card,.community-card,.resource-card,.history-card,.clanker-form,.clanker-preview,.clanker-facts,.claim-fee-panel{box-shadow:0 12px 36px rgba(0,0,0,.12)}
+.portal-card p,.resource-card p,.community-card p{line-height:1.8}
+.token-card code,.history-address{user-select:all}
+.history-card{transition:transform .2s,border-color .2s}
+.history-card:hover{transform:translateY(-2px);border-color:#83e9ef55}
+.clanker-form input:not([type=checkbox]),.clanker-form textarea,.clanker-form select,.claim-fee-panel input{min-height:46px}
+.clanker-form label{line-height:1.5}
+.clanker-advanced>summary{min-height:54px}
+.clanker-connect,.clanker-submit,.claim-fee-panel>.btn{min-height:48px}
+.clanker-result-links .btn{min-height:44px}
+.notice,.clanker-note,.community-note{line-height:1.75}
+.footer{gap:20px}
+.mobile-dock{grid-template-columns:repeat(5,minmax(0,1fr));padding:10px 8px calc(10px + env(safe-area-inset-bottom))}
+.mobile-dock a{min-height:42px;justify-content:center;font-weight:600;letter-spacing:.1px}
+.mobile-dock a svg{width:19px;height:19px}
+@media(min-width:761px) and (max-width:1120px){.topbar{padding-inline:20px}.main-nav{gap:12px}.main-nav a{font-size:9px}.nav-cta{padding:10px 12px;font-size:9px}.brand{font-size:16px}}
+@media(max-width:760px){
+ .topbar{position:sticky;top:0;background:rgba(8,11,24,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+ .main-nav{max-height:calc(100dvh - 100px);overflow:auto;grid-template-columns:repeat(2,minmax(0,1fr));padding:10px}
+ .main-nav a{min-height:44px;display:flex;align-items:center;padding:12px;font-size:11px}
+ .main-nav a[aria-current=page]:after{display:none}
+ .page{scroll-margin-top:76px;padding-bottom:112px}
+ .hero-actions .btn{min-height:48px}
+ .portal-card{min-height:205px}
+ .chain-banner{border-radius:15px}
+ .history-card{grid-template-columns:50px minmax(0,1fr)}
+ .history-avatar{width:50px;height:50px}
+ .mobile-dock{left:9px;right:9px;bottom:8px;border-radius:16px}
+ .footer{padding-bottom:110px}
+}
+@media(max-width:360px){.mobile-dock a{font-size:7px}.mobile-dock a svg{width:17px;height:17px}.brand{letter-spacing:1px}}
