@@ -14,7 +14,8 @@
 <link rel="icon" href="assets/muisyle-profile.jpg">
 <link rel="stylesheet" href="styles.css">
 <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-<script src="script.js" defer></script>
+<script type="module" src="./script.js"></script>
+<script type="module" src="./src/clanker-launch.js"></script>
 </head>
 <body>
 <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div><div class="starfield"></div>
@@ -54,7 +55,7 @@
 
 <section class="page" data-view="tokens">
   <div class="page-heading"><span class="kicker">01 / ELYSIUM MAINNET</span><h1>THE TOKEN<br><em>ORBIT.</em></h1><p>A curated directory of ecosystem assets surfaced by the MUISYLE community. Use the explorer to inspect contracts, holders and transactions. Listings are informational, not endorsements.</p></div>
-  <div class="chain-banner"><div class="chain-icon"><i data-lucide="layers"></i></div><div><span class="kicker">NETWORK</span><h3>ELYSIUM MAINNET</h3><p>EVM-compatible network · Chain ID 1339</p></div><a href="https://elyscan.live/tokens" target="_blank" rel="noreferrer" class="btn btn-secondary">Explorer token list <i data-lucide="external-link"></i></a></div>
+  <div class="chain-banner"><div class="chain-icon"><i data-lucide="layers"></i></div><div><span class="kicker">NETWORK</span><h3>ELYSIUM MAINNET</h3><p>EVM-compatible network · Chain ID 99901</p></div><a href="https://elyscan.live/tokens" target="_blank" rel="noreferrer" class="btn btn-secondary">Explorer token list <i data-lucide="external-link"></i></a></div>
   <div class="token-toolbar"><div><span class="kicker">CURATED DIRECTORY</span><h2>Projects in orbit</h2></div><span class="directory-count">05 LISTINGS</span></div>
   <div class="token-grid">
     <article class="token-card"><div class="token-symbol symbol-purple">M</div><div class="token-info"><span class="token-tag">COMMUNITY PROJECT</span><h3>Montra</h3><b>$MONTRA</b></div><a href="https://elyscan.live/token/0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327" target="_blank" rel="noreferrer" aria-label="View Montra contract"><i data-lucide="arrow-up-right"></i></a><code>0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327</code></article>
@@ -67,9 +68,24 @@
 </section>
 
 <section class="page" data-view="launch">
-  <div class="page-heading"><span class="kicker">02 / CREATE SOMETHING NEW</span><h1>THE LAUNCH<br><em>PORTAL.</em></h1><p>A dedicated space for builders and curious explorers. Discover launch resources and prepare your next idea for the Elysium ecosystem.</p></div>
-  <div class="launch-hero"><div class="launch-planet"><div class="launch-ring"></div><div class="launch-core">✦</div></div><div class="launch-copy"><span class="kicker">YOUR IDEA. YOUR ORBIT.</span><h2>Every great universe<br>starts with a <em>launch.</em></h2><p>Explore the Elysium network and its ecosystem before choosing a launch platform. MUISYLE does not process token launches or connect wallets at this stage.</p><a class="btn btn-primary" href="https://elyscan.live/" target="_blank" rel="noreferrer">Explore Elysium explorer <i data-lucide="arrow-up-right"></i></a></div></div>
-  <div class="resource-grid"><a class="resource-card" href="https://elyscan.live/" target="_blank" rel="noreferrer"><i data-lucide="scan-search"></i><h3>Block Explorer</h3><p>Inspect network activity and on-chain contracts.</p><b>OPEN EXPLORER ↗</b></a><a class="resource-card" href="https://x.com/memeelysium" target="_blank" rel="noreferrer"><i data-lucide="radio"></i><h3>Launch Updates</h3><p>Follow MUISYLE for community announcements and updates.</p><b>FOLLOW ON X ↗</b></a><a class="resource-card" href="https://github.com/memeelysium" target="_blank" rel="noreferrer"><i data-lucide="github"></i><h3>Build in Public</h3><p>Explore the community's open-source work.</p><b>VIEW GITHUB ↗</b></a></div>
+  <div class="page-heading"><span class="kicker">02 / CLANKER V5 · ELYSIUM</span><h1>THE LAUNCH<br><em>PORTAL.</em></h1><p>Create a token on Elysium Mainnet through Clanker v5. Connect your own wallet, review every detail and approve the deployment yourself.</p></div>
+  <div class="chain-banner"><div class="chain-icon"><i data-lucide="network"></i></div><div><span class="kicker">DEPLOYMENT NETWORK</span><h3>ELYSIUM MAINNET</h3><p>Chain ID 99901 · Gas token HYPE · Clanker v5</p></div><a href="https://elyscan.live/" target="_blank" rel="noreferrer" class="btn btn-secondary">Explorer <i data-lucide="external-link"></i></a></div>
+  <div class="clanker-layout">
+    <form id="clanker-form" class="clanker-form">
+      <div class="clanker-form-head"><span class="kicker">TOKEN CONFIGURATION</span><span class="clanker-version">POWERED BY CLANKER V5</span></div>
+      <label for="cl-name">Token name</label><input id="cl-name" name="name" maxlength="40" placeholder="e.g. Cosmic MUISYLE" required>
+      <div class="clanker-two"><div><label for="cl-symbol">Ticker / symbol</label><input id="cl-symbol" name="symbol" maxlength="12" placeholder="e.g. COSMIC" required></div><div><label for="cl-image">Logo image URL</label><input id="cl-image" name="image" type="url" placeholder="https://… or IPFS gateway" required></div></div>
+      <label for="cl-description">Description</label><textarea id="cl-description" name="description" rows="3" maxlength="500" placeholder="What is this token about?"></textarea>
+      <label for="cl-x">X / Twitter URL <span class="optional">OPTIONAL</span></label><input id="cl-x" name="x" type="url" placeholder="https://x.com/…">
+      <div class="clanker-note"><i data-lucide="shield-check"></i><p>Your wallet is the deployer and receives creator rights/rewards. MUISYLE never receives or stores your private key. A deployment is an on-chain action and cannot be casually reversed.</p></div>
+      <label class="clanker-check"><input id="cl-confirm" type="checkbox" required><span>I have checked the token details and understand that I must approve the transaction in my wallet.</span></label>
+      <button class="btn btn-secondary clanker-connect" type="button" id="cl-connect"><i data-lucide="wallet"></i> Connect wallet</button><button class="btn btn-primary clanker-submit" type="submit" id="cl-deploy" disabled>Deploy token <i data-lucide="rocket"></i></button>
+      <p id="cl-status" class="clanker-status" role="status" aria-live="polite">Connect a compatible EVM wallet to begin.</p>
+    </form>
+    <aside class="clanker-side"><div class="clanker-preview"><span class="kicker">LIVE PREVIEW</span><div class="clanker-avatar" id="cl-avatar">✦</div><h2 id="cl-preview-name">Your token name</h2><b id="cl-preview-symbol">$TICKER</b><p id="cl-preview-description">Your token description will appear here.</p><span class="preview-network">ELYSIUM MAINNET · CLANKER V5</span></div><div class="clanker-facts"><div><span>Protocol</span><b>Clanker v5</b></div><div><span>Network</span><b>Elysium · 99901</b></div><div><span>Native launch fee</span><b>Read from factory</b></div><div><span>Buy / sell tax</span><b>1% / 1%</b></div><div><span>Anti-snipe protection</span><b>Enabled · 20s</b></div><div><span>Transaction gas</span><b>Paid in HYPE</b></div><small>The SDK reads the current native launch fee directly from the Elysium factory and includes it in the transaction. Network gas is separate. Anti-snipe protection starts with a temporary higher fee (up to 99%) that decays to the normal tax over 20 seconds.</small></div></aside>
+  </div>
+  <div id="cl-result" class="clanker-result" hidden></div>
+  <p class="clanker-disclaimer">MUISYLE is an independent community interface, not Clanker or Elysium. Review the Clanker launch policy, token tax settings and wallet transaction details before signing. Token creation involves risk.</p>
 </section>
 
 <section class="page" data-view="missions">

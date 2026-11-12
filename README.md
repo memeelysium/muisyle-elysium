@@ -66,7 +66,7 @@ MUISYLE is built as a lightweight web experience using browser-native technologi
 - Supabase-powered community functionality
 - GitHub Pages for website hosting
 
-The project is designed to run as a static website; no local build step is required for the basic experience.
+The site is built with Vite for GitHub Pages. Clanker v5 and viem are bundled for the browser-based launch interface.
 
 ## Elysium on-chain structure
 
@@ -94,12 +94,12 @@ MUISYLE is designed around the wider Elysium ecosystem. The following overview s
 
 ### Network reference
 
-The Elysium Foundation's developer documentation identifies the following network configuration:
+The MUISYLE launch integration targets Kinetiq Elysium. The network configuration used by the site is:
 
 | Network | Chain ID | RPC endpoint | Explorer |
 | --- | ---: | --- | --- |
-| Elysium Mainnet | `1339` | [rpc.elysiumchain.tech](https://rpc.elysiumchain.tech) | [explorer.elysiumchain.tech](https://explorer.elysiumchain.tech) |
-| Atlantis Testnet | `1338` | [rpc.atlantischain.network](https://rpc.atlantischain.network) | [explorer.atlantischain.network](https://explorer.atlantischain.network) |
+| Elysium Mainnet | `99901` | [rpc.elysium.kinetiq.xyz](https://rpc.elysium.kinetiq.xyz) | [Elyscan](https://elyscan.live/) |
+| Elysium Testnet | `99801` | [testnet-rpc.elysium.kinetiq.xyz](https://testnet-rpc.elysium.kinetiq.xyz) | [Elyscan](https://elyscan.live/) |
 
 Useful ecosystem resources: [Elysium developer documentation](https://github.com/elysium-foundation/elysium-docs) · [Elysium Foundation](https://github.com/elysium-foundation/elysium).
 
@@ -126,7 +126,7 @@ The following is a **curated sample** of tokens currently surfaced by the tracke
 
 ```text
                  ELYSIUM MAINNET
-                  Chain ID: 1339
+                  Chain ID: 99901
                          │
                   EVM / ERC-20
                          │
@@ -147,6 +147,12 @@ The following is a **curated sample** of tokens currently surfaced by the tracke
 ```
 
 **Important:** token names and symbols are not unique. Some assets may have multiple contracts or similarly named copies on the same network. Always verify the full contract address, network, liquidity, and contract details in the explorer before interacting. Inclusion here is informational only and is not an endorsement or investment recommendation. These are ecosystem assets, not MUISYLE-issued tokens.
+
+### Clanker v5 launch integration
+
+The Launch Portal integrates the official Clanker v5 SDK for Elysium. Users connect their own EVM wallet, provide token metadata, review the details and sign the deployment transaction themselves. The site does not collect or store wallet private keys. Gas is paid by the connected wallet in HYPE. Token deployment is an irreversible on-chain action; verify all settings before signing.
+
+The integration uses Clanker SDK v5 with a user-controlled wallet client and the Elysium RPC configured in the browser. See the [official Clanker SDK](https://github.com/clanker-devco/clanker-sdk) and [Clanker v5 contract reference](https://github.com/clanker-devco/DOCS/blob/main/references/core-contracts/v5.md).
 
 ### What this means for MUISYLE
 
