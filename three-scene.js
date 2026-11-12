@@ -90,14 +90,62 @@ if (host && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     host.classList.add('has-three');
 
     let frame = 0;
-    let pointerX = 0;
-    let pointerY = 0;
-    host.addEventListener('pointermove', event => {
-      const rect = host.getBoundingClientRect();
-      pointerX = ((event.clientX - rect.left) / rect.width - 0.5) * 0.18;
-      pointerY = ((event.clientY - rect.top) / rect.height - 0.5) * 0.12;
-    }, { passive: true });
-    host.addEventListener('pointerleave', () => { pointerX = 0; pointerY = 0; }, { passive: true });
+    let dragging = false;
+    let pointerId = null;
+    let lastX = 0;
+    let lastY = 0;
+    let velocityX = 0;
+    let velocityY = 0;
+    let lastInteraction = 0;
+
+    const resetButton = document.getElementById('cosmic-reset');
+    const onPointerDown = event => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      dragging = true;
+      pointerId = event.pointerId;
+      lastX = event.clientX;
+      lastY = event.clientY;
+      velocityX = 0;
+      velocityY = 0;
+      lastInteraction = performance.now();
+      host.classList.add('is-dragging');
+      try { renderer.domElement.setPointerCapture(pointerId); } catch (_) {}
+    };
+    const onPointerMove = event => {
+      if (!dragging || event.pointerId !== pointerId) return;
+      const dx = event.clientX - lastX;
+      const dy = event.clientY - lastY;
+      lastX = event.clientX;
+      lastY = event.clientY;
+      velocityX = dx * 0.008;
+      velocityY = dy * 0.006;
+      planetGroup.rotation.y += velocityX;
+      planetGroup.rotation.x = THREE.MathUtils.clamp(
+        planetGroup.rotation.x + velocityY, -0.85, 0.85
+      );
+      lastInteraction = performance.now();
+    };
+    const onPointerUp = event => {
+      if (!dragging || event.pointerId !== pointerId) return;
+      dragging = false;
+      pointerId = null;
+      host.classList.remove('is-dragging');
+      lastInteraction = performance.now();
+    };
+    renderer.domElement.addEventListener('pointerdown', onPointerDown);
+    renderer.domElement.addEventListener('pointermove', onPointerMove);
+    renderer.domElement.addEventListener('pointerup', onPointerUp);
+    renderer.domElement.addEventListener('pointercancel', onPointerUp);
+    renderer.domElement.addEventListener('lostpointercapture', onPointerUp);
+
+    if (resetButton) {
+      resetButton.addEventListener('click', () => {
+        planetGroup.rotation.set(0, 0, 0);
+        velocityX = 0;
+        velocityY = 0;
+        lastInteraction = performance.now();
+      });
+    }
 
     let visible = true;
     const visibilityObserver = new IntersectionObserver(entries => {
@@ -108,9 +156,19 @@ if (host && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const animate = () => {
       frame = requestAnimationFrame(animate);
       if (!visible) return;
-      planet.rotation.y += 0.0018;
-      planetGroup.rotation.y += (pointerX - planetGroup.rotation.y) * 0.018;
-      planetGroup.rotation.x += (pointerY - planetGroup.rotation.x) * 0.018;
+      if (!dragging) {
+        planet.rotation.y += 0.0018;
+        if (Math.abs(velocityX) > 0.0002 || Math.abs(velocityY) > 0.0002) {
+          planetGroup.rotation.y += velocityX;
+          planetGroup.rotation.x = THREE.MathUtils.clamp(
+            planetGroup.rotation.x + velocityY, -0.85, 0.85
+          );
+          velocityX *= 0.94;
+          velocityY *= 0.94;
+        } else if (performance.now() - lastInteraction > 1800) {
+          planetGroup.rotation.y += 0.0012;
+        }
+      }
       stars.rotation.y -= 0.00012;
       renderer.render(scene, camera);
     };
@@ -120,6 +178,11 @@ if (host && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       cancelAnimationFrame(frame);
       resizeObserver.disconnect();
       visibilityObserver.disconnect();
+      renderer.domElement.removeEventListener('pointerdown', onPointerDown);
+      renderer.domElement.removeEventListener('pointermove', onPointerMove);
+      renderer.domElement.removeEventListener('pointerup', onPointerUp);
+      renderer.domElement.removeEventListener('pointercancel', onPointerUp);
+      renderer.domElement.removeEventListener('lostpointercapture', onPointerUp);
       renderer.dispose();
       planetGeometry.dispose();
       planetMaterial.dispose();
