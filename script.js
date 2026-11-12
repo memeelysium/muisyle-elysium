@@ -182,7 +182,7 @@ window.addEventListener('load',function renderLucideIcons(){
 // MUISYLE multi-page experience: lightweight client-side routes with shareable URLs.
 (function initMuisylePages(){
   const pageMap={
-    home:["home","ticker","coming-soon","final-cta"],
+    home:["home","ticker","home-hub","coming-soon","final-cta"],
     about:["about","vision","faq"],
     universe:["gallery"],
     onchain:["token-ecosystem"],
@@ -265,4 +265,37 @@ window.addEventListener('load',function renderLucideIcons(){
       if(targetPage){history.replaceState({page:targetPage},"","?page="+targetPage+window.location.hash);setPage(targetPage,false);}
     }
   }
+})();
+
+
+// Home page: lightweight cosmic meme prompt generator.
+(function initHomeMemeLab(){
+  const output=document.getElementById("home-meme-prompt");
+  const generate=document.getElementById("generate-meme-prompt");
+  const copy=document.getElementById("copy-meme-prompt");
+  const feedback=document.getElementById("prompt-feedback");
+  if(!output||!generate)return;
+  const prompts=[
+    "POV: You came to Elysium for one transaction and found an entire universe.",
+    "That moment when the community says GM and your timeline becomes a nebula.",
+    "Me checking the explorer for the 17th time like something changed in 30 seconds.",
+    "When your meme gets more attention than your carefully written thread.",
+    "Expectation: one quick scroll. Reality: lost in the MUISYLE universe.",
+    "POV: Your portfolio is quiet but your meme folder is building an empire.",
+    "When someone asks what you do here and the answer is: vibes, memes, and on-chain curiosity."
+  ];
+  let last=-1;
+  generate.addEventListener("click",()=>{
+    let next;
+    do{next=Math.floor(Math.random()*prompts.length)}while(next===last&&prompts.length>1);
+    last=next;output.textContent=prompts[next];
+    if(feedback)feedback.textContent="A fresh idea just entered your orbit.";
+  });
+  if(copy)copy.addEventListener("click",async()=>{
+    const value=output.textContent||"";
+    try{
+      if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(value);if(feedback)feedback.textContent="Prompt copied. Go make something cosmic!";}
+      else{if(feedback)feedback.textContent="Select and copy the prompt above to use it.";}
+    }catch(error){if(feedback)feedback.textContent="Copy unavailable here — select the prompt above instead.";}
+  });
 })();
