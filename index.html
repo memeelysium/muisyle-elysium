@@ -3,323 +3,91 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#070916">
-<meta name="description" content="MUISYLE — more than a meme. A whole new vibe. Explore the creative universe of the Elysium community.">
-<meta property="og:title" content="MUISYLE — Enter the Cosmic Universe">
-<meta property="og:description" content="Memes. Culture. Community. Onchain. Stay curious.">
-<title>MUISYLE — Premium Cosmic Edition</title>
+<meta name="theme-color" content="#080b18">
+<meta name="description" content="MUISYLE — explore the Elysium ecosystem, discover tokens, join missions and build with the community.">
+<meta property="og:title" content="MUISYLE — Elysium Ecosystem Platform">
+<meta property="og:description" content="Discover. Explore. Launch. Build.">
+<title>MUISYLE — Elysium Ecosystem</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/muisyle-profile.jpg">
 <link rel="stylesheet" href="styles.css">
-<script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@4/tsparticles.engine.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@4/tsparticles.slim.bundle.min.js" defer></script>
-<script type="module" src="motion-effects.js"></script>
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+<script src="script.js" defer></script>
 </head>
 <body>
-
-<div class="loading-screen" id="loading-screen" aria-hidden="true">
-  <div class="loader-stars" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span><span>·</span><span>✧</span></div>
-  <div class="loader-content">
-    <div class="loader-logo-wrap"><img src="assets/muisyle-profile.jpg" alt="" class="loader-logo"><span class="loader-orbit"></span></div>
-    <p class="loader-overline">WELCOME TO THE UNIVERSE</p>
-    <div class="loader-wordmark">MUISYLE<span>.</span></div>
-    <p class="loader-caption">PREPARING YOUR COSMIC EXPERIENCE</p>
-    <div class="loader-progress" role="progressbar" aria-label="Loading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="loader-progress-fill" style="width:0%;animation:none;transform:none"></span></div>
-    <div id="loader-progress-label" style="width:100%;display:flex;justify-content:flex-end;margin-top:9px;color:#9deaf0;font:600 10px var(--display);letter-spacing:1.5px"><span id="loader-percent">0%</span></div>
-    <button class="loader-skip" id="loader-skip" type="button">SKIP INTRO <span>↗</span></button>
-  </div>
-  <div class="loader-version">PREMIUM COSMIC EDITION <span>✦</span></div>
-</div>
-<div class="space-noise" aria-hidden="true"></div>
-<div id="tsparticles" aria-hidden="true"></div>
-<header class="site-header">
-<a class="brand" href="#home" aria-label="Muisyle home"><img src="assets/muisyle-profile.jpg" alt=""> <span>MUISYLE</span></a>
-<button class="menu" type="button" aria-label="Open navigation" aria-controls="primary-navigation" aria-expanded="false"><span class="menu-icon" aria-hidden="true">☰</span></button>
-<nav class="bubble-nav" id="primary-navigation" aria-label="Main navigation">
-<a href="#about">About</a><a href="#vision">Our vision</a><a href="#gallery">Universe</a><a href="#meme-gallery">Meme Gallery</a><a href="#token-ecosystem">Token Ecosystem</a><a href="#community-profiles">Profiles</a><a href="#community">Community</a><a href="https://github.com/memeelysium" target="_blank" rel="noreferrer">GitHub <i data-lucide="github" class="inline-icon" aria-hidden="true"></i></a>
-<a class="nav-buy" href="#coming-soon">BUY <span>↗</span></a><a class="nav-cta" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Join the movement <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a>
-</nav>
+<div class="ambient ambient-one"></div><div class="ambient ambient-two"></div><div class="starfield"></div>
+<header class="topbar">
+  <a class="brand" href="?page=home" aria-label="MUISYLE home"><img src="assets/muisyle-profile.jpg" alt=""><span>MUISYLE</span><small>ELYSIUM UNIVERSE</small></a>
+  <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><i data-lucide="menu"></i></button>
+  <nav class="main-nav" aria-label="Main navigation">
+    <a data-page="home" href="?page=home">Overview</a><a data-page="tokens" href="?page=tokens">Token orbit</a><a data-page="launch" href="?page=launch">Launch portal</a><a data-page="missions" href="?page=missions">Missions</a><a data-page="gallery" href="?page=gallery">Meme lab</a><a data-page="community" href="?page=community">Community</a>
+  </nav>
+  <a class="nav-cta" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Join on X <i data-lucide="arrow-up-right"></i></a>
 </header>
 <main>
-<section class="hero" id="home">
-<div class="hero-copy">
-<div class="eyebrow"><span class="eyebrow-dot"></span> AN INDEPENDENT ELYSIUM COMMUNITY</div>
-<h1>MORE THAN<br>A MEME.<br><span> A WHOLE NEW<br> UNIVERSE.</span></h1>
-<p class="hero-lead">A little chaos. A lot of imagination. One creative corner of the internet built around memes, culture, and community.</p>
-<div class="hero-actions"><a class="button button-primary" href="#about">Explore MUISYLE <i data-lucide="arrow-down-right" class="inline-icon" aria-hidden="true"></i></a><a class="button button-ghost" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Follow on X <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></div>
-<div class="hero-meta"><span>MEMES</span><i>✦</i><span>CULTURE</span><i>✦</i><span>COMMUNITY</span><i>✦</i><span>ONCHAIN</span></div>
-</div>
-<div class="hero-visual cosmic-hero-art" role="img" aria-label="Static cosmic illustration with a glowing planet, nebula clouds, stars and the MUISYLE mark">
-<div class="cosmic-art-caption"><span>THE MUISYLE UNIVERSE</span><b>EST. IN CURIOSITY ✳</b></div>
-<div class="cosmic-art-orbit orbit-a"></div><div class="cosmic-art-orbit orbit-b"></div>
-<div class="cosmic-art-spark spark-a">✦</div><div class="cosmic-art-spark spark-b">✧</div>
-</div>
-<div class="scroll-cue"><span></span> SCROLL TO EXPLORE</div>
-</section>
-<div class="ticker" aria-label="Muisyle culture ticker"><div class="ticker-track"><span>WELCOME TO MUISYLE ✦ EXPLORE THE ELYSIUM UNIVERSE ✦ MEMES · CULTURE · COMMUNITY · ONCHAIN ✦ STAY CURIOUS ✦</span><span aria-hidden="true">WELCOME TO MUISYLE ✦ EXPLORE THE ELYSIUM UNIVERSE ✦ MEMES · CULTURE · COMMUNITY · ONCHAIN ✦ STAY CURIOUS ✦</span></div></div>
-
-<section class="home-hub-section reveal" id="home-hub">
-<div class="home-hub-wrap">
-  <div class="home-hub-heading"><div><span class="home-hub-kicker">YOUR COSMIC STARTER PACK</span><h2>DON’T JUST SCROLL.<br><em>GET IN THE ORBIT.</em></h2></div><p>Pick a portal, explore something new, and leave your mark on the MUISYLE universe.</p></div>
-  <div class="home-portal-grid">
-    <a class="home-portal-card portal-memes" href="?page=memes"><span class="portal-number">01 / CREATE & LAUGH</span><span class="portal-icon">✦</span><h3>Meme Gallery</h3><p>Find a favorite, vote for a drop, and discover the community’s cosmic humor.</p><span class="portal-link">EXPLORE MEMES ↗</span></a>
-    <a class="home-portal-card portal-chain" href="?page=onchain"><span class="portal-number">02 / EXPLORE THE NETWORK</span><span class="portal-icon">⌘</span><h3>On-Chain Orbit</h3><p>Browse the Elysium token ecosystem and verify projects on the explorer.</p><span class="portal-link">VIEW ECOSYSTEM ↗</span></a>
-    <a class="home-portal-card portal-profile" href="?page=profiles"><span class="portal-number">03 / FIND YOUR PEOPLE</span><span class="portal-icon">◎</span><h3>Community Profiles</h3><p>Create your own corner in the universe and meet other members.</p><span class="portal-link">JOIN THE COMMUNITY ↗</span></a>
-  </div>
-  <div class="home-prompt-panel">
-    <div class="prompt-orbit-art" aria-hidden="true"><span>✧</span><b>✦</b><i>✧</i></div>
-    <div class="prompt-copy"><span class="home-hub-kicker">THE COSMIC MEME LAB / 001</span><h3>Need an idea for your next meme?</h3><p id="home-meme-prompt" aria-live="polite">POV: You came to Elysium for one transaction and found an entire universe.</p><div class="prompt-actions"><button class="button button-primary" id="generate-meme-prompt" type="button">Generate an idea <span aria-hidden="true">✦</span></button><button class="prompt-copy-button" id="copy-meme-prompt" type="button">Copy prompt ↗</button></div><span class="prompt-feedback" id="prompt-feedback" aria-live="polite"></span></div>
-  </div>
-  <section class="daily-mission-card" id="daily-cosmic-mission" aria-labelledby="daily-mission-title">
-  <div class="daily-mission-top"><span class="daily-mission-kicker"><i>✦</i> DAILY COSMIC MISSION</span><span class="daily-mission-date">12 NOV 2026 <b>·</b> MISSION 001</span></div>
-  <div class="daily-mission-content">
-    <div class="daily-mission-emblem" aria-hidden="true"><span class="mission-orbit-ring"></span><span class="mission-astronaut">✧</span><b>✦</b></div>
-    <div class="daily-mission-copy">
-      <span class="daily-mission-label">TODAY’S COMMUNITY CHALLENGE</span>
-      <h3 id="daily-mission-title">GIVE YOUR ASTRONAUT A STORY.</h3>
-      <p class="daily-mission-description">Create an original meme featuring the MUISYLE astronaut mascot in a moment from your day in the Elysium universe. Make it funny, unexpected, or wonderfully weird.</p>
-      <ol class="daily-mission-steps"><li>Choose a cosmic situation: GM, market mood, late-night building, or exploring Elysium.</li><li>Create your own meme artwork or caption. Keep it friendly and original.</li><li>Share it on X with <b>#MUISYLEMEME</b> and tag <b>@memeelysium</b>.</li></ol>
-      <div class="daily-mission-actions"><a class="button button-primary" href="https://x.com/intent/tweet?text=My%20Daily%20Cosmic%20Mission%20entry%20for%20MUISYLE!%20%23MUISYLEMEME%20%40memeelysium" target="_blank" rel="noreferrer">Share your mission <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a><span class="daily-mission-note">No wallet or purchase required. Just creativity.</span></div>
+<section class="page active" data-view="home">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="live-dot"></span> AN INDEPENDENT ELYSIUM COMMUNITY</div>
+      <h1>THE NEXT<br>ORBIT STARTS<br><em>WITH YOU.</em></h1>
+      <p class="hero-lead">A community-powered gateway to the Elysium ecosystem. Discover projects, explore on-chain activity, create culture and find your place in the universe.</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="?page=tokens">Explore the ecosystem <i data-lucide="arrow-up-right"></i></a><a class="btn btn-secondary" href="?page=launch">Enter launch portal <i data-lucide="rocket"></i></a></div>
+      <div class="hero-tags"><span>DISCOVER</span><b>✦</b><span>CREATE</span><b>✦</b><span>BUILD</span><b>✦</b><span>ONCHAIN</span></div>
+    </div>
+    <div class="hero-art" aria-label="Cosmic planet and spacecraft illustration">
+      <div class="art-label">MUISYLE / ELYSIUM MAINNET</div><div class="planet-glow"></div><div class="planet"></div><div class="planet-ring ring-one"></div><div class="planet-ring ring-two"></div><div class="orbit-dot"></div><div class="art-star star-a">✦</div><div class="art-star star-b">✧</div><div class="art-star star-c">✦</div><div class="art-bottom"><span>EXPLORE BEYOND THE EXPECTED</span><b>001 — INFINITE POSSIBILITY</b></div>
     </div>
   </div>
-  <div class="daily-mission-footer"><span>✦ ONE COMMUNITY. INFINITE STORIES.</span><span>SHOW US WHAT YOU CREATE.</span></div>
-</section>
-</div>
-</section>
-
-<section class="section about-section reveal" id="about">
-<div class="section-kicker">01 <span>/</span> THE STORY</div>
-<div class="about-grid"><div><h2>A UNIVERSE<br>OF OUR <em>OWN.</em></h2><div class="about-orbit">✳ <span>BUILT FOR THE CULTURE</span></div></div>
-<div class="about-copy"><p class="lead">Muisyle is a community-first creative identity inspired by internet culture and the possibilities of the Elysium ecosystem.</p><p>We believe the best communities are built through shared ideas, good energy, and the freedom to create. A place for curiosity, expression, and having fun along the way.</p><div class="independent-note"><span>✦</span><p>An independent community project. Not affiliated with or officially endorsed by Elysium.</p></div></div></div>
-</section>
-
-<section class="section vision-section reveal" id="vision">
-<div class="section-kicker">02 <span>/</span> THE NORTH STAR</div>
-<div class="section-intro"><h2>BUILT ON IDEAS.<br><em>DRIVEN BY COMMUNITY.</em></h2><p>Our vision is a living universe shaped by the people who show up, create, and bring good energy.</p></div>
-<div class="vision-grid">
-<article class="vision-card"><span class="card-index">01 / CULTURE</span><div class="vision-icon"><i data-lucide="sparkles" aria-hidden="true"></i></div><h3>Make culture</h3><p>Celebrate the humor, creativity, and internet moments that bring people together.</p></article>
-<article class="vision-card"><span class="card-index">02 / CREATIVITY</span><div class="vision-icon"><i data-lucide="palette" aria-hidden="true"></i></div><h3>Keep creating</h3><p>Give ideas room to grow through original visuals, memes, and community expression.</p></article>
-<article class="vision-card"><span class="card-index">03 / EXPLORATION</span><div class="vision-icon"><i data-lucide="compass" aria-hidden="true"></i></div><h3>Explore together</h3><p>Stay curious about the evolving Elysium ecosystem and the wider onchain world.</p></article>
-</div>
-<p class="vision-footnote">A community vision, not a promise of financial returns or a dated delivery schedule.</p>
+  <div class="ticker"><div>ELYSIUM ECOSYSTEM <b>✦</b> COMMUNITY FIRST <b>✦</b> ONCHAIN DISCOVERY <b>✦</b> MEMES & CULTURE <b>✦</b> BUILD THE ORBIT <b>✦</b> ELYSIUM ECOSYSTEM <b>✦</b></div></div>
+  <div class="section-head"><div><span class="kicker">YOUR COSMIC DASHBOARD</span><h2>Choose your <em>portal.</em></h2></div><p>Everything has its own orbit. Jump straight into what interests you.</p></div>
+  <div class="portal-grid">
+    <a class="portal-card portal-token" href="?page=tokens"><span class="portal-index">01 / DISCOVER</span><i data-lucide="orbit"></i><h3>Token Orbit</h3><p>Explore projects and verified contract links across Elysium Mainnet.</p><b>EXPLORE TOKENS ↗</b></a>
+    <a class="portal-card portal-launch" href="?page=launch"><span class="portal-index">02 / CREATE</span><i data-lucide="rocket"></i><h3>Launch Portal</h3><p>Your starting point for exploring token creation and launch resources.</p><b>ENTER PORTAL ↗</b></a>
+    <a class="portal-card portal-mission" href="?page=missions"><span class="portal-index">03 / PARTICIPATE</span><i data-lucide="trophy"></i><h3>Cosmic Missions</h3><p>Take part in community challenges and share what you create.</p><b>VIEW MISSIONS ↗</b></a>
+    <a class="portal-card portal-meme" href="?page=gallery"><span class="portal-index">04 / CREATE CULTURE</span><i data-lucide="image"></i><h3>Meme Lab</h3><p>Find inspiration, generate a prompt and make your next community drop.</p><b>OPEN MEME LAB ↗</b></a>
+  </div>
+  <div class="network-strip"><div class="network-mark"><i data-lucide="network"></i></div><div><span class="kicker">CONNECTED UNIVERSE</span><h3>Elysium Mainnet</h3><p>Explore the network directly through its block explorer. Always verify contract details before interacting.</p></div><a class="text-link" href="https://elyscan.live/" target="_blank" rel="noreferrer">Open Elyscan <i data-lucide="arrow-up-right"></i></a></div>
+  <p class="disclaimer">MUISYLE is an independent community project and is not affiliated with or officially endorsed by Elysium. Nothing on this website is financial advice.</p>
 </section>
 
-<section class="universe-section reveal" id="gallery">
-<div class="section section-inner">
-<div class="section-kicker">03 <span>/</span> THE VISUAL UNIVERSE</div>
-<div class="section-intro universe-intro"><h2>SMALL MEMES.<br><em>INFINITE WORLDS.</em></h2><p>Step inside the visual language of MUISYLE — a cosmic playground shaped by imagination, culture, and the people behind it.</p></div>
-<div class="universe-showcase">
-<article class="universe-feature">
-<div class="universe-feature-art">
-<span class="universe-art-label">MUISYLE / ORIGIN 001</span>
-<div class="feature-star feature-star-one">✦</div><div class="feature-star feature-star-two">✧</div>
-<div class="feature-planet"><span>✧</span></div><div class="feature-orbit feature-orbit-a"></div><div class="feature-orbit feature-orbit-b"></div>
-<div class="feature-coordinate">0° 00' / INFINITE POSSIBILITY</div>
-</div>
-<div class="universe-feature-copy"><div><span class="universe-overline">01 — THE ORIGIN</span><h3>Every universe<br>starts with <em>an idea.</em></h3></div><p>A small spark can become something bigger. Find your orbit and make it your own.</p></div>
-</article>
-<div class="universe-side">
-<article class="universe-art-card nebula-card"><div class="universe-art-visual"><span class="universe-art-label">02 / IMAGINATION</span><div class="nebula-cloud nebula-cloud-a"></div><div class="nebula-cloud nebula-cloud-b"></div><div class="nebula-star">✧</div><span class="art-visual-word">DREAM<br>BEYOND.</span></div><div class="universe-art-caption"><span>IMAGINATION</span><b>Think beyond the ordinary.</b></div></article>
-<article class="universe-art-card signal-card"><div class="universe-art-visual"><span class="universe-art-label">03 / COMMUNITY</span><div class="signal-core">✳</div><div class="signal-wave signal-wave-a"></div><div class="signal-wave signal-wave-b"></div><div class="signal-wave signal-wave-c"></div></div><div class="universe-art-caption"><span>COMMUNITY</span><b>One signal. Many voices.</b></div></article>
-</div>
-</div>
-<div class="universe-community-strip"><div class="universe-community-mark">✦</div><div><span class="universe-overline">THE UNIVERSE IS YOURS TO SHAPE</span><h3>Have something cosmic to share?</h3><p>Turn your imagination into the next community favorite.</p></div><a class="button button-ghost" href="#meme-gallery">Explore community drops <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></div>
-<p class="gallery-note">Original CSS artwork created for the MUISYLE visual identity.</p>
-</div>
+<section class="page" data-view="tokens">
+  <div class="page-heading"><span class="kicker">01 / ELYSIUM MAINNET</span><h1>THE TOKEN<br><em>ORBIT.</em></h1><p>A curated directory of ecosystem assets surfaced by the MUISYLE community. Use the explorer to inspect contracts, holders and transactions. Listings are informational, not endorsements.</p></div>
+  <div class="chain-banner"><div class="chain-icon"><i data-lucide="layers"></i></div><div><span class="kicker">NETWORK</span><h3>ELYSIUM MAINNET</h3><p>EVM-compatible network · Chain ID 1339</p></div><a href="https://elyscan.live/tokens" target="_blank" rel="noreferrer" class="btn btn-secondary">Explorer token list <i data-lucide="external-link"></i></a></div>
+  <div class="token-toolbar"><div><span class="kicker">CURATED DIRECTORY</span><h2>Projects in orbit</h2></div><span class="directory-count">05 LISTINGS</span></div>
+  <div class="token-grid">
+    <article class="token-card"><div class="token-symbol symbol-purple">M</div><div class="token-info"><span class="token-tag">COMMUNITY PROJECT</span><h3>Montra</h3><b>$MONTRA</b></div><a href="https://elyscan.live/token/0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327" target="_blank" rel="noreferrer" aria-label="View Montra contract"><i data-lucide="arrow-up-right"></i></a><code>0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327</code></article>
+    <article class="token-card"><div class="token-symbol symbol-blue">W</div><div class="token-info"><span class="token-tag">WRAPPED ASSET</span><h3>Wrapped HYPE</h3><b>WHYPE</b></div><a href="https://elyscan.live/token/0xbA876237B0F021A6c6D852d6c26E107997cC5E81" target="_blank" rel="noreferrer" aria-label="View WHYPE contract"><i data-lucide="arrow-up-right"></i></a><code>0xbA876237B0F021A6c6D852d6c26E107997cC5E81</code></article>
+    <article class="token-card"><div class="token-symbol symbol-green">$</div><div class="token-info"><span class="token-tag">STABLE ASSET</span><h3>USD Coin</h3><b>USDC</b></div><a href="https://elyscan.live/token/0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65" target="_blank" rel="noreferrer" aria-label="View USDC contract"><i data-lucide="arrow-up-right"></i></a><code>0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65</code></article>
+    <article class="token-card"><div class="token-symbol symbol-orange">K</div><div class="token-info"><span class="token-tag">GOVERNANCE</span><h3>Kinetiq Governance Token</h3><b>KNTQ</b></div><a href="https://elyscan.live/token/0xe45a355d9e9cAd2aD85F2d03E3eE3102A036acF0" target="_blank" rel="noreferrer" aria-label="View KNTQ contract"><i data-lucide="arrow-up-right"></i></a><code>0xe45a355d9e9cAd2aD85F2d03E3eE3102A036acF0</code></article>
+    <article class="token-card"><div class="token-symbol symbol-pink">e/</div><div class="token-info"><span class="token-tag">ECOSYSTEM CULTURE</span><h3>Elysium Pepe Acceleration</h3><b>ep/acc</b></div><a href="https://elyscan.live/token/0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0" target="_blank" rel="noreferrer" aria-label="View ep/acc contract"><i data-lucide="arrow-up-right"></i></a><code>0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0</code></article>
+  </div>
+  <div class="notice"><i data-lucide="shield-check"></i><p><b>Verify before you interact.</b> Token listings can change. Confirm the chain, contract address and project details on the official explorer.</p></div>
 </section>
 
-
-
-
-
-<section class="token-ecosystem-section reveal" id="token-ecosystem">
-<div class="section section-inner">
-<div class="section-kicker">04 <span>/</span> ELYSIUM MAINNET TOKEN ECOSYSTEM</div>
-<div class="section-intro token-intro"><h2>ONE NETWORK.<br><em>MANY ORBITS.</em></h2><p>Explore a curated snapshot of tokens surfaced on Elysium Mainnet. Check every contract on the explorer before interacting.</p></div>
-<div class="token-network-panel">
-<div class="token-network-heading"><span class="token-live-dot"></span><span>ELYSIUM MAINNET</span><b>CHAIN ID 1339</b></div>
-<div class="token-flow">
-<div class="token-flow-node token-flow-main"><i data-lucide="network" aria-hidden="true"></i><span>EVM NETWORK</span><small>ERC-20 TOKEN LAYER</small></div>
-<div class="token-flow-connector" aria-hidden="true"></div>
-<div class="token-flow-branches">
-<div class="token-flow-node"><i data-lucide="coins" aria-hidden="true"></i><span>ECOSYSTEM TOKENS</span></div>
-<div class="token-flow-node"><i data-lucide="users" aria-hidden="true"></i><span>COMMUNITY TOKENS</span></div>
-<div class="token-flow-node"><i data-lucide="layers" aria-hidden="true"></i><span>STABLE & WRAPPED ASSETS</span></div>
-</div>
-<div class="token-flow-connector" aria-hidden="true"></div>
-<a class="token-explorer-node" href="https://elyscan.live/tokens" target="_blank" rel="noreferrer"><i data-lucide="scan-search" aria-hidden="true"></i><span>ELYSCAN TOKEN TRACKER</span><small>CONTRACTS · HOLDERS · TRANSFERS ↗</small></a>
-</div>
-</div>
-<div class="token-list-heading"><div><span class="token-overline">CURATED EXPLORER SNAPSHOT</span><h3>Tokens in the ecosystem</h3></div><a href="https://elyscan.live/tokens" target="_blank" rel="noreferrer">View all on Elyscan <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></div>
-<div class="token-card-grid">
-<article class="token-card"><span class="token-card-index">01</span><div class="token-card-symbol">M</div><div class="token-card-name"><h4>Montra</h4><span>MONTRA</span></div><code>0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327</code><a href="https://elyscan.live/token/0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327" target="_blank" rel="noreferrer">View contract <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></article>
-<article class="token-card"><span class="token-card-index">02</span><div class="token-card-symbol">W</div><div class="token-card-name"><h4>Wrapped HYPE</h4><span>WHYPE</span></div><code>0xbA876237B0F021A6c6D852d6c26E107997cC5E81</code><a href="https://elyscan.live/token/0xbA876237B0F021A6c6D852d6c26E107997cC5E81" target="_blank" rel="noreferrer">View contract <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></article>
-<article class="token-card"><span class="token-card-index">03</span><div class="token-card-symbol">$</div><div class="token-card-name"><h4>USDC</h4><span>USDC</span></div><code>0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65</code><a href="https://elyscan.live/token/0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65" target="_blank" rel="noreferrer">View contract <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></article>
-<article class="token-card"><span class="token-card-index">04</span><div class="token-card-symbol">K</div><div class="token-card-name"><h4>Kinetiq Governance Token</h4><span>KNTQ</span></div><code>0xe45a355d9e9cAd2aD85F2d03E3eE3102A036acF0</code><a href="https://elyscan.live/token/0xe45a355d9e9cAd2aD85F2d03E3eE3102A036acF0" target="_blank" rel="noreferrer">View contract <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></article>
-<article class="token-card"><span class="token-card-index">05</span><div class="token-card-symbol">e/</div><div class="token-card-name"><h4>Elysium Pepe Acceleration</h4><span>ep/acc</span></div><code>0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0</code><a href="https://elyscan.live/token/0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0" target="_blank" rel="noreferrer">View contract <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></article>
-<article class="token-card"><span class="token-card-index">06</span><div class="token-card-symbol">C</div><div class="token-card-name"><h4>MAXIMUS CAT</h4><span>MAXIMUS</span></div><code>0x979e08A83900336b1BCCb0818E55c7748aB438BE</code><a href="https://elyscan.live/token/0x979e08A83900336b1BCCb0818E55c7748aB438BE" target="_blank" rel="noreferrer">View contract <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></article>
-<article class="token-card"><span class="token-card-index">07</span><div class="token-card-symbol">B</div><div class="token-card-name"><h4>BoxaV2</h4><span>$BOXA</span></div><code>0xb6825cC93Cc20CC37270C056969136dc439bDFC6</code><a href="https://elyscan.live/token/0xb6825cC93Cc20CC37270C056969136dc439bDFC6" target="_blank" rel="noreferrer">View contract <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></article>
-<article class="token-card"><span class="token-card-index">08</span><div class="token-card-symbol">V</div><div class="token-card-name"><h4>Volta</h4><span>VOLTA</span></div><code>0x6721083BB7E56A8b5398f32a02D0AB55C87B63C8</code><a href="https://elyscan.live/token/0x6721083BB7E56A8b5398f32a02D0AB55C87B63C8" target="_blank" rel="noreferrer">View contract <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></article>
-<article class="token-card"><span class="token-card-index">09</span><div class="token-card-symbol">G</div><div class="token-card-name"><h4>GOTEM</h4><span>GOTEM</span></div><code>0xA4d91152e453eAc3D6148bc25909b214D6225560</code><a href="https://elyscan.live/token/0xA4d91152e453eAc3D6148bc25909b214D6225560" target="_blank" rel="noreferrer">View contract <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></article>
-<article class="token-card"><span class="token-card-index">10</span><div class="token-card-symbol">e</div><div class="token-card-name"><h4>e/acc</h4><span>e/acc</span></div><code>0x62dC5b1DE5e1D3894639aEdC2ddd23d404BbfB70</code><a href="https://elyscan.live/token/0x62dC5b1DE5e1D3894639aEdC2ddd23d404BbfB70" target="_blank" rel="noreferrer">View contract <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></article>
-</div>
-<div class="token-safety-note"><i data-lucide="shield-check" aria-hidden="true"></i><p><b>Explore carefully.</b> This is an informational sample, not a complete list, ranking, or endorsement. Token names and symbols are not unique. Always verify the network and full contract address, plus liquidity and contract details, on Elyscan before interacting. These are ecosystem assets, not MUISYLE-issued tokens.</p></div>
-</div>
+<section class="page" data-view="launch">
+  <div class="page-heading"><span class="kicker">02 / CREATE SOMETHING NEW</span><h1>THE LAUNCH<br><em>PORTAL.</em></h1><p>A dedicated space for builders and curious explorers. Discover launch resources and prepare your next idea for the Elysium ecosystem.</p></div>
+  <div class="launch-hero"><div class="launch-planet"><div class="launch-ring"></div><div class="launch-core">✦</div></div><div class="launch-copy"><span class="kicker">YOUR IDEA. YOUR ORBIT.</span><h2>Every great universe<br>starts with a <em>launch.</em></h2><p>Explore the Elysium network and its ecosystem before choosing a launch platform. MUISYLE does not process token launches or connect wallets at this stage.</p><a class="btn btn-primary" href="https://elyscan.live/" target="_blank" rel="noreferrer">Explore Elysium explorer <i data-lucide="arrow-up-right"></i></a></div></div>
+  <div class="resource-grid"><a class="resource-card" href="https://elyscan.live/" target="_blank" rel="noreferrer"><i data-lucide="scan-search"></i><h3>Block Explorer</h3><p>Inspect network activity and on-chain contracts.</p><b>OPEN EXPLORER ↗</b></a><a class="resource-card" href="https://x.com/memeelysium" target="_blank" rel="noreferrer"><i data-lucide="radio"></i><h3>Launch Updates</h3><p>Follow MUISYLE for community announcements and updates.</p><b>FOLLOW ON X ↗</b></a><a class="resource-card" href="https://github.com/memeelysium" target="_blank" rel="noreferrer"><i data-lucide="github"></i><h3>Build in Public</h3><p>Explore the community's open-source work.</p><b>VIEW GITHUB ↗</b></a></div>
 </section>
 
-<section class="meme-gallery-section reveal" id="meme-gallery">
-<div class="section section-inner">
-<div class="section-kicker">04 <span>/</span> COMMUNITY MEME GALLERY</div>
-<div class="section-intro"><h2>THE MEMES<br><em>LIVE HERE.</em></h2><p>A playful collection from across the MUISYLE universe. Explore the drops, find your favorite, and bring your own meme into orbit.</p></div>
-<div class="meme-gallery-toolbar" role="group" aria-label="Filter memes by category">
-<button class="meme-filter active" type="button" data-filter="all" aria-pressed="true">All Drops</button>
-<button class="meme-filter" type="button" data-filter="cosmic" aria-pressed="false">Cosmic</button>
-<button class="meme-filter" type="button" data-filter="relatable" aria-pressed="false">Relatable</button>
-<button class="meme-filter" type="button" data-filter="community" aria-pressed="false">Community</button>
-</div>
-<div class="community-meme-grid" id="community-meme-grid">
-<article class="community-meme-card mascot-meme-card" data-category="cosmic"><div class="mascot-meme-art"><img src="assets/memes/muisyle-to-the-moon.svg" alt="MUISYLE mascot meme: TO THE MOON" loading="lazy"></div><div class="community-meme-meta"><span>01 / MUISYLE MASCOT</span><b>TO THE MOON</b><p>A little astronaut energy, a lot of Elysium ambition.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="community"><div class="mascot-meme-art"><img src="assets/memes/muisyle-hodl-strong.svg" alt="MUISYLE mascot meme: HODL STRONG" loading="lazy"></div><div class="community-meme-meta"><span>02 / MUISYLE MASCOT</span><b>HODL STRONG</b><p>Holding the line while the universe keeps moving.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="community"><div class="mascot-meme-art"><img src="assets/memes/muisyle-gm.svg" alt="MUISYLE mascot meme: GM, ELYSIUM" loading="lazy"></div><div class="community-meme-meta"><span>03 / MUISYLE MASCOT</span><b>GM, ELYSIUM</b><p>Every orbit starts with a good morning.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="relatable"><div class="mascot-meme-art"><img src="assets/memes/muisyle-buy-the-dip.svg" alt="MUISYLE mascot meme: BUY THE DIP" loading="lazy"></div><div class="community-meme-meta"><span>04 / MUISYLE MASCOT</span><b>BUY THE DIP</b><p>Calm mind. Cosmic conviction. Same mascot.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="relatable"><div class="mascot-meme-art"><img src="assets/memes/muisyle-nap.svg" alt="MUISYLE mascot meme: COSMIC NAP" loading="lazy"></div><div class="community-meme-meta"><span>05 / MUISYLE MASCOT</span><b>COSMIC NAP</b><p>Even astronauts need to recharge between missions.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="community"><div class="mascot-meme-art"><img src="assets/memes/muisyle-community.svg" alt="MUISYLE mascot meme: ONE CREW. ONE ORBIT." loading="lazy"></div><div class="community-meme-meta"><span>06 / MUISYLE MASCOT</span><b>ONE CREW. ONE ORBIT.</b><p>Build, grow, and create together across Elysium.</p></div></article>
-<article class="community-meme-card" data-category="cosmic">
-<div class="community-meme-art meme-art-orbit"><span class="meme-art-tag">COSMIC DROP 001</span><div class="meme-art-planet">✦</div><span class="meme-art-copy">POV: YOU FOUND<br>YOUR ORBIT.</span><span class="meme-art-spark">✦</span></div>
-<div class="community-meme-meta"><span>01 / COSMIC</span><b>Found my orbit.</b><p>Somewhere between the stars and the timeline.</p></div>
-</article>
-<article class="community-meme-card" data-category="relatable">
-<div class="community-meme-art meme-art-relatable"><span class="meme-art-tag">RELATABLE DROP 002</span><div class="meme-big-type">ONE MORE<br><em>MEME.</em></div><div class="meme-mini-orbit">↗</div><span class="meme-art-bottom">ME AT 3:00 AM</span></div>
-<div class="community-meme-meta"><span>02 / RELATABLE</span><b>Just one more scroll.</b><p>We all know how that story ends.</p></div>
-</article>
-<article class="community-meme-card" data-category="cosmic">
-<div class="community-meme-art meme-art-energy"><span class="meme-art-tag">COSMIC DROP 003</span><div class="energy-rings"></div><div class="energy-symbol">✳</div><span class="energy-caption">COSMIC<br>MODE: ON</span></div>
-<div class="community-meme-meta"><span>03 / COSMIC</span><b>Cosmic mode activated.</b><p>Different frequency. Same good energy.</p></div>
-</article>
-<article class="community-meme-card" data-category="community">
-<div class="community-meme-art meme-art-community"><span class="meme-art-tag">COMMUNITY DROP 004</span><div class="community-hearts">✦　✧　✦</div><div class="community-number">100<span>%</span></div><span class="community-word">COMMUNITY<br>ENERGY</span><span class="community-orbit-line"></span></div>
-<div class="community-meme-meta"><span>04 / COMMUNITY</span><b>Powered by the people.</b><p>One universe. A million ways to create.</p></div>
-</article>
-
-<article class="community-meme-card" data-category="relatable">
-<div class="community-meme-art meme-art-relatable" style="background:radial-gradient(ellipse at 75% 22%,#2d9a9b88,transparent 48%),linear-gradient(145deg,#172c48,#101328)"><span class="meme-art-tag">RELATABLE DROP 005</span><div class="meme-big-type">JUST ONE<br><em>TRANSACTION.</em></div><div class="meme-mini-orbit">↻</div><span class="meme-art-bottom">ALSO ME: REFRESHING THE EXPLORER</span></div>
-<div class="community-meme-meta"><span>05 / RELATABLE</span><b>Just one transaction.</b><p>Somehow the explorer is now my favorite social feed.</p></div>
-</article>
-<article class="community-meme-card" data-category="community">
-<div class="community-meme-art meme-art-community" style="background:radial-gradient(ellipse at 50% 35%,#3b8a9c,#17204b 58%,#090f21)"><span class="meme-art-tag">COMMUNITY DROP 006</span><div class="community-hearts">✦　✧　✦</div><div class="community-number" style="font-size:55px">WE<span>!</span></div><span class="community-word">GET THE<br>REFERENCE.</span><span class="community-orbit-line"></span></div>
-<div class="community-meme-meta"><span>06 / COMMUNITY</span><b>When the community gets it.</b><p>No explanation needed. Just immaculate timeline energy.</p></div>
-</article>
-<article class="community-meme-card" data-category="cosmic">
-<div class="community-meme-art meme-art-orbit" style="background:radial-gradient(ellipse at 50% 50%,#6544a7aa,transparent 58%),linear-gradient(145deg,#101b3d,#080d1c)"><span class="meme-art-tag">COSMIC DROP 007</span><div class="meme-art-planet" style="background:radial-gradient(circle at 30% 25%,#fff,#9debf0 22%,#4760a7 65%,#17204c)">E</div><span class="meme-art-copy">LOST IN SPACE.<br>FOUND ON ELYSIUM.</span><span class="meme-art-spark">✧</span></div>
-<div class="community-meme-meta"><span>07 / COSMIC</span><b>Found my way back.</b><p>Every good story needs a little orbit correction.</p></div>
-</article>
-<article class="community-meme-card" data-category="relatable">
-<div class="community-meme-art meme-art-energy" style="background:radial-gradient(circle at 50% 45%,#6c3f91,#1c1b42 55%,#090e20)"><span class="meme-art-tag">RELATABLE DROP 008</span><div class="energy-rings" style="border-color:#d2a8ff99"></div><div class="energy-symbol">∞</div><span class="energy-caption">ONE MEME<br>37 OPEN TABS</span></div>
-<div class="community-meme-meta"><span>08 / RELATABLE</span><b>I came for one meme.</b><p>Left with 37 tabs and a new favorite community.</p></div>
-</article>
-<article class="community-meme-card" data-category="community">
-<div class="community-meme-art meme-art-community" style="background:radial-gradient(ellipse at 50% 50%,#255c78,#131b3e 62%,#090f21)"><span class="meme-art-tag">COMMUNITY DROP 009</span><div class="community-hearts">✦　BUILD　✦</div><div class="community-number" style="font-size:49px">IRL<span>↗</span></div><span class="community-word">BUILD IN PUBLIC.<br>VIBE IN ORBIT.</span><span class="community-orbit-line"></span></div>
-<div class="community-meme-meta"><span>09 / COMMUNITY</span><b>Build in public. Vibe in orbit.</b><p>Small steps, shared ideas, and a whole lot of good energy.</p></div>
-</article>
-<article class="community-meme-card" data-category="cosmic">
-<div class="community-meme-art meme-art-orbit" style="background:radial-gradient(ellipse at 50% 78%,#9a5a9c77,transparent 55%),linear-gradient(145deg,#2b2049,#080d1c)"><span class="meme-art-tag">COSMIC DROP 010</span><div class="meme-art-planet" style="background:radial-gradient(circle at 30% 25%,#fff,#e4a8ed 22%,#7650a9 65%,#29204e)">GM</div><span class="meme-art-copy">THE TIMELINE SAID GM.<br>THE NEBULA SAID LFG.</span><span class="meme-art-spark">✦</span></div>
-<div class="community-meme-meta"><span>10 / COSMIC</span><b>Good morning, galaxy.</b><p>Starting the day at a different frequency.</p></div>
-</article>
-<article class="community-meme-card" data-category="relatable">
-<div class="community-meme-art meme-art-relatable" style="background:radial-gradient(ellipse at 20% 20%,#236b78aa,transparent 48%),linear-gradient(145deg,#14253d,#101328)"><span class="meme-art-tag">RELATABLE DROP 011</span><div class="meme-big-type">CHECKING<br>THE CHAIN<br><em>AGAIN.</em></div><div class="meme-mini-orbit">⌁</div><span class="meme-art-bottom">JUST TO BE SURE.</span></div>
-<div class="community-meme-meta"><span>11 / RELATABLE</span><b>One more explorer check.</b><p>Because apparently once was not enough.</p></div>
-</article>
-<article class="community-meme-card" data-category="community">
-<div class="community-meme-art meme-art-energy" style="background:radial-gradient(circle at 50% 45%,#6650a4,#1b2048 56%,#090e20)"><span class="meme-art-tag">COMMUNITY DROP 012</span><div class="energy-rings"></div><div class="energy-symbol">✦</div><span class="energy-caption">GOOD MEMES.<br>GREAT PEOPLE.</span></div>
-<div class="community-meme-meta"><span>12 / COMMUNITY</span><b>The real alpha is community.</b><p>Here for the laughs, the creativity, and the people.</p></div>
-</article>
-<article class="community-meme-card mascot-meme-card" data-category="community"><div class="mascot-meme-art"><img src="assets/memes/muisyle-2026-11-12-01.svg" alt="MUISYLE mascot in a white astronaut hoodie celebrating a confirmed Elysium block in a glowing cosmic control room." width="1200" height="900" loading="lazy" decoding="async"></div><div class="community-meme-meta"><span>07 / MUISYLE MASCOT · 12 NOV 2026</span><b>Block party. Verified.</b><p>A fresh block lands and the mascot calls for a tiny victory lap.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="relatable"><div class="mascot-meme-art"><img src="assets/memes/muisyle-2026-11-12-02.svg" alt="MUISYLE mascot holding a coffee cup beside a pending block status and a coffee-powered rocket fuel station." width="1200" height="900" loading="lazy" decoding="async"></div><div class="community-meme-meta"><span>08 / MUISYLE MASCOT · 12 NOV 2026</span><b>Coffee is my gas fee.</b><p>Pending blocks are easier to watch with a fresh cosmic espresso.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="cosmic"><div class="mascot-meme-art"><img src="assets/memes/muisyle-2026-11-12-03.svg" alt="MUISYLE mascot examining an Elysium smart contract with a magnifying glass before deployment." width="1200" height="900" loading="lazy" decoding="async"></div><div class="community-meme-meta"><span>09 / MUISYLE MASCOT · 12 NOV 2026</span><b>Trust, but verify.</b><p>A quick contract inspection before this astronaut commits to orbit.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="cosmic"><div class="mascot-meme-art"><img src="assets/memes/muisyle-2026-11-12-04.svg" alt="MUISYLE mascot connecting two floating cosmic islands with a glowing on-chain bridge." width="1200" height="900" loading="lazy" decoding="async"></div><div class="community-meme-meta"><span>10 / MUISYLE MASCOT · 12 NOV 2026</span><b>Bridge the gap.</b><p>Linking two cosmic worlds with one bright on-chain connection.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="community"><div class="mascot-meme-art"><img src="assets/memes/muisyle-2026-11-12-05.svg" alt="MUISYLE mascot celebrating a passed testnet checklist beside a mainnet launch rocket." width="1200" height="900" loading="lazy" decoding="async"></div><div class="community-meme-meta"><span>11 / MUISYLE MASCOT · 12 NOV 2026</span><b>Testnet passed. Mainnet time.</b><p>The checklist is green; the next mission is ready for mainnet.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="relatable"><div class="mascot-meme-art"><img src="assets/memes/muisyle-2026-11-12-06.svg" alt="MUISYLE mascot riding a neon blockchain roller coaster through planets and stars." width="1200" height="900" loading="lazy" decoding="async"></div><div class="community-meme-meta"><span>12 / MUISYLE MASCOT · 12 NOV 2026</span><b>On-chain is a ride.</b><p>Every block brings another twist on the Elysium roller coaster.</p></div></article>
-
-
-<article class="community-meme-card mascot-meme-card" data-category="relatable"><div class="mascot-meme-art"><img src="assets/memes/muisyle-2026-11-12-13.svg" alt="MUISYLE astronaut in a white hooded suit and blue visor surrounded by floating Elysium explorer tabs and transaction panels." width="1200" height="900" loading="lazy" decoding="async"></div><div class="community-meme-meta"><span>13 / MUISYLE MASCOT · 12 NOV 2026</span><b>Explorer tab tornado.</b><p>One quick Elysium check somehow turned into 47 open windows.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="cosmic"><div class="mascot-meme-art"><img src="assets/memes/muisyle-2026-11-12-14.svg" alt="MUISYLE astronaut floating in a glowing on-chain liquidity pool beside two Elysium coin floaties." width="1200" height="900" loading="lazy" decoding="async"></div><div class="community-meme-meta"><span>14 / MUISYLE MASCOT · 12 NOV 2026</span><b>Liquidity pool party.</b><p>Came for one swap; stayed for the zero-gravity splash.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="community"><div class="mascot-meme-art"><img src="assets/memes/muisyle-2026-11-12-15.svg" alt="MUISYLE astronaut leading a zero-gravity DAO meeting around a glowing round table with two crew members." width="1200" height="900" loading="lazy" decoding="async"></div><div class="community-meme-meta"><span>15 / MUISYLE MASCOT · 12 NOV 2026</span><b>DAO meeting in zero-G.</b><p>The agenda had twelve items and absolutely no gravity.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="relatable"><div class="mascot-meme-art"><img src="assets/memes/muisyle-2026-11-12-16.svg" alt="MUISYLE astronaut racing across glowing blockchain cubes beside a giant cosmic block clock." width="1200" height="900" loading="lazy" decoding="async"></div><div class="community-meme-meta"><span>16 / MUISYLE MASCOT · 12 NOV 2026</span><b>Block time is relative.</b><p>Waiting for the next block like it controls the whole universe.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="relatable"><div class="mascot-meme-art"><img src="assets/memes/muisyle-2026-11-12-17.svg" alt="MUISYLE astronaut on a cosmic therapy couch beside a holographic market chart shaped like a heartbeat." width="1200" height="900" loading="lazy" decoding="async"></div><div class="community-meme-meta"><span>17 / MUISYLE MASCOT · 12 NOV 2026</span><b>Chart therapy.</b><p>It's not volatility. It's cardio for the visor.</p></div></article>
-<article class="community-meme-card mascot-meme-card" data-category="cosmic"><div class="mascot-meme-art"><img src="assets/memes/muisyle-2026-11-12-18.svg" alt="MUISYLE astronaut reaching toward a friendly glowing wallet portal in a first-contact scene." width="1200" height="900" loading="lazy" decoding="async"></div><div class="community-meme-meta"><span>18 / MUISYLE MASCOT · 12 NOV 2026</span><b>Wallet connect: first contact.</b><p>One small click, one giant leap into the Elysium orbit.</p></div></article>
-</div>
-<div class="meme-gallery-empty" id="meme-gallery-empty" hidden>No memes in this category yet. Be the first to start the next drop.</div>
-<div class="meme-gallery-submit"><div><span class="submit-kicker">YOUR TURN, CREATOR</span><h3>MAKE THE NEXT<br><em>ICONIC DROP.</em></h3><p>Share your original meme on X and tag the MUISYLE community.</p></div><a class="button button-primary" href="https://x.com/intent/tweet?text=My%20MUISYLE%20community%20meme%20%23MUISYLEMEME%20%40memeelysium" target="_blank" rel="noreferrer">Submit on X <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></div>
-<p class="gallery-note">Featured cards are original concept examples. Community submissions are shared on X and may be manually curated for this gallery.</p>
-</div>
+<section class="page" data-view="missions">
+  <div class="page-heading"><span class="kicker">03 / COMMUNITY PARTICIPATION</span><h1>DAILY COSMIC<br><em>MISSIONS.</em></h1><p>Small creative challenges. Infinite ways to contribute. No wallet or purchase required.</p></div>
+  <article class="mission-feature"><div class="mission-art"><div class="mission-orbit"></div><div class="mission-astronaut">✧</div><span>MISSION / 001</span></div><div class="mission-content"><span class="kicker">COMMUNITY CHALLENGE</span><h2>GIVE YOUR<br>ASTRONAUT A STORY.</h2><p>Create an original meme featuring the MUISYLE astronaut mascot in a moment from your day in the Elysium universe. Make it funny, unexpected, or wonderfully weird.</p><ol><li>Choose a cosmic situation: GM, market mood, late-night building, or exploring Elysium.</li><li>Create your own meme artwork or caption. Keep it friendly and original.</li><li>Share it on X with <b>#MUISYLEMEME</b> and tag <b>@memeelysium</b>.</li></ol><a class="btn btn-primary" href="https://x.com/intent/tweet?text=My%20Daily%20Cosmic%20Mission%20entry%20for%20MUISYLE!%20%23MUISYLEMEME%20%40memeelysium" target="_blank" rel="noreferrer">Share your mission <i data-lucide="arrow-up-right"></i></a></div></article>
 </section>
 
-<section class="section profile-section reveal" id="community-profiles">
-<div class="section-kicker">04 <span>/</span> COMMUNITY PROFILES</div>
-<div class="section-intro"><h2>FIND YOUR<br><em>PLACE IN ORBIT.</em></h2><p>Create a personal MUISYLE identity in seconds. No account, wallet, SQL setup, or external login required.</p></div>
-<div class="profile-layout">
-<div class="profile-panel">
-<div class="profile-panel-heading"><span class="profile-panel-kicker">YOUR COSMIC IDENTITY</span><span class="profile-status"><i></i> DEVICE PROFILE</span></div>
-<form id="community-profile-form">
-<label for="profile-display-name">DISPLAY NAME</label>
-<input id="profile-display-name" name="display_name" maxlength="24" required placeholder="Your name in the universe">
-<label for="profile-x-username">X USERNAME <span class="profile-optional">OPTIONAL</span></label>
-<div class="profile-input-prefix"><span>@</span><input id="profile-x-username" name="x_username" maxlength="15" placeholder="yourusername" autocomplete="off"></div>
-<p class="profile-field-note">X usernames are self-reported and are not verified.</p>
-<label for="profile-bio">SHORT BIO</label>
-<textarea id="profile-bio" name="bio" maxlength="160" rows="3" placeholder="A little about you..."></textarea>
-<label for="profile-avatar">AVATAR IMAGE URL <span class="profile-optional">OPTIONAL</span></label>
-<input id="profile-avatar" name="avatar_url" type="url" maxlength="500" placeholder="https://...">
-<p class="profile-field-note">Use a public image URL. Leave blank for your generated cosmic avatar.</p>
-<button class="button button-primary profile-save" type="submit" id="profile-save">Create my profile <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></button>
-<button class="profile-clear-button" type="button" id="profile-clear" hidden>Remove my profile</button>
-<p class="profile-message" id="profile-message" role="status" aria-live="polite">Your profile is saved privately in this browser.</p>
-</form>
-</div>
-<div class="profile-directory">
-<div class="profile-directory-heading"><div><span class="profile-panel-kicker">YOUR LOCAL DIRECTORY</span><h3>Members in orbit</h3></div><span class="profile-count" id="profile-count">0 MEMBERS</span></div>
-<div class="profile-grid" id="community-profile-grid"><div class="profile-loading">Create your identity to see it here.</div></div>
-</div>
-</div>
-<p class="profile-disclaimer">This lightweight version stores your profile only in this browser on this device. It is not uploaded or shared with other visitors, and clearing browser data may remove it. Do not enter private information.</p>
+<section class="page" data-view="gallery">
+  <div class="page-heading"><span class="kicker">04 / CREATE CULTURE</span><h1>THE MEME<br><em>LAB.</em></h1><p>Every community has its language. Find a spark, remix an idea and share your own corner of the MUISYLE universe.</p></div>
+  <div class="meme-lab"><div class="meme-preview"><span class="kicker">YOUR NEXT COSMIC CAPTION</span><div class="prompt-orbit">✦</div><p id="meme-prompt" aria-live="polite">POV: You came to Elysium for one transaction and found an entire universe.</p><span class="prompt-index">MUISYLE MEME GENERATOR / 001</span></div><div class="meme-controls"><span class="kicker">CREATIVE TOOLKIT</span><h2>Catch a new idea.</h2><p>Generate a caption prompt, then turn it into your own original meme.</p><button class="btn btn-primary" id="generate-prompt" type="button">Generate another idea <i data-lucide="sparkles"></i></button><button class="btn btn-secondary" id="copy-prompt" type="button">Copy caption <i data-lucide="copy"></i></button><span id="prompt-feedback" aria-live="polite"></span><a class="text-link" href="https://x.com/intent/tweet?text=Made%20something%20for%20the%20MUISYLE%20Meme%20Lab%20%23MUISYLEMEME" target="_blank" rel="noreferrer">Share on X <i data-lucide="arrow-up-right"></i></a></div></div>
 </section>
 
-
-<section class="community-section reveal" id="community">
-<div class="community-glow"></div><div class="section-kicker">04 <span>/</span> FIND YOUR PEOPLE</div>
-<div class="community-content"><div><h2>THE UNIVERSE<br>IS BETTER <em>TOGETHER.</em></h2><p>Bring your ideas. Bring your humor. Bring your own kind of energy. Follow the journey and join the conversation.</p><div class="hero-actions"><a class="button button-primary" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Join MUISYLE on X <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a><a class="button button-ghost" href="https://github.com/memeelysium" target="_blank" rel="noreferrer">Explore on GitHub <i data-lucide="github" class="inline-icon" aria-hidden="true"></i></a></div></div><div class="community-stamp"><span>✳</span><b>STAY<br>CURIOUS</b><small>YOU BELONG<br>IN THE ORBIT</small></div></div>
+<section class="page" data-view="community">
+  <div class="page-heading"><span class="kicker">05 / FIND YOUR PEOPLE</span><h1>ONE SIGNAL.<br><em>MANY WORLDS.</em></h1><p>MUISYLE is shaped by the people who create, explore and share. Find the community and take part in the conversation.</p></div>
+  <div class="community-grid"><a class="community-card" href="https://x.com/memeelysium" target="_blank" rel="noreferrer"><i data-lucide="message-circle"></i><span class="kicker">THE CONVERSATION</span><h2>Follow MUISYLE</h2><p>Community updates, creative drops and ecosystem conversations.</p><b>OPEN X / TWITTER ↗</b></a><a class="community-card" href="https://github.com/memeelysium" target="_blank" rel="noreferrer"><i data-lucide="github"></i><span class="kicker">OPEN BUILDING</span><h2>Build with us</h2><p>Explore the code and follow the ongoing development of MUISYLE.</p><b>VISIT GITHUB ↗</b></a></div>
+  <div class="community-note"><i data-lucide="heart-handshake"></i><div><h3>Independent by nature. Community by design.</h3><p>MUISYLE is an independent community initiative. It is not an official Elysium product, service or endorsement.</p></div></div>
 </section>
-
-<section class="section faq-section reveal" id="faq">
-<div class="section-kicker">05 <span>/</span> GOOD TO KNOW</div><div class="faq-layout"><h2>CURIOUS?<br><em>START HERE.</em></h2><div class="faq-list">
-<details><summary>What is MUISYLE?<span>+</span></summary><p>MUISYLE is an independent, community-first creative identity inspired by internet culture and the Elysium ecosystem.</p></details>
-<details><summary>Is MUISYLE an official Elysium project?<span>+</span></summary><p>No. MUISYLE is an independent community project and is not affiliated with or officially endorsed by Elysium.</p></details>
-<details><summary>How can I get involved?<span>+</span></summary><p>Follow <a href="https://x.com/memeelysium" target="_blank" rel="noreferrer">@memeelysium on X</a> to follow updates and join the conversation.</p></details>
-<details><summary>Is this a financial or investment project?<span>+</span></summary><p>This website presents community culture and creative content. It does not offer investment advice or promise financial returns.</p></details>
-</div></div>
-</section>
-
-<section class="coming-soon-section reveal" id="coming-soon"><div class="coming-soon-orbit" aria-hidden="true"><span>✦</span></div><div class="section-kicker">06 <span>/</span> COMING SOON</div><p class="coming-soon-label">THE NEXT CHAPTER IS LOADING</p><h2>READY FOR<br><em>THE TAKEOFF?</em></h2><p class="coming-soon-copy">The MUISYLE buy experience is not available yet. Stay tuned and follow our official channel for launch announcements.</p><span class="coming-soon-status"><i></i> COMING SOON</span><a class="button button-ghost" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Follow updates on X <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></section>
-
-<section class="launch-portal" id="launch-portal" aria-labelledby="launch-title">
-  <div class="launch-nebula launch-nebula-a" aria-hidden="true"></div><div class="launch-nebula launch-nebula-b" aria-hidden="true"></div>
-  <div class="launch-starfield" aria-hidden="true"></div><div class="launch-planet" aria-hidden="true"><span></span></div>
-  <a class="launch-back" href="?page=home" aria-label="Return to MUISYLE home">← <span>BACK TO MUISYLE</span></a>
-  <div class="launch-content"><span class="launch-kicker"><i></i> A NEW ORBIT IS FORMING</span>
-    <p class="launch-overline">THE NEXT CHAPTER</p><h2 id="launch-title">SOMETHING<br><em> COSMIC IS COMING.</em></h2>
-    <div class="launch-divider"><span></span> ✦ <span></span></div>
-    <p class="launch-token-name">MUISYLE TOKEN</p><p class="launch-status">COMING SOON</p>
-    <p class="launch-note">The signal is getting closer. Follow our official channel for verified launch announcements.</p>
-    <a class="launch-follow" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">FOLLOW THE SIGNAL <span>↗</span></a>
-    <p class="launch-disclaimer">No launch date or token details have been announced.</p>
-  </div><div class="launch-coordinate">MUISYLE / DEEP SPACE <span>✦</span> 001</div>
-</section>
-<section class="final-cta reveal"><div class="final-stars">✦　　✧　　　　✦　　　✧</div><p>YOUR NEXT CHAPTER STARTS HERE</p><h2>STAY CURIOUS.<br><em>STAY COSMIC.</em></h2><a class="button button-primary" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">Follow the journey <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></a></section>
 </main>
-<footer class="site-footer"><a class="brand" href="#home"><img src="assets/muisyle-profile.jpg" alt=""> <span>MUISYLE</span></a><p>Made for the culture. Powered by community.</p><div class="footer-links"><a class="footer-social" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">@memeelysium on X ↗</a><a class="footer-social" href="https://github.com/memeelysium" target="_blank" rel="noreferrer">GitHub ↗</a></div><small>© <span id="year"></span> MUISYLE. Independent community project.</small></footer>
-<script src="script.js"></script>
-<script src="community-profile.js" defer></script>
+<footer class="footer"><a class="brand" href="?page=home"><img src="assets/muisyle-profile.jpg" alt=""><span>MUISYLE</span></a><p>MORE THAN A MEME. A WHOLE NEW UNIVERSE.</p><div class="footer-links"><a href="https://x.com/memeelysium" target="_blank" rel="noreferrer">X / Twitter</a><a href="https://github.com/memeelysium" target="_blank" rel="noreferrer">GitHub</a><a href="https://elyscan.live/" target="_blank" rel="noreferrer">Elyscan</a></div><small>© <span id="year"></span> MUISYLE COMMUNITY. BUILT WITH CURIOSITY.</small></footer>
+<div class="mobile-dock" aria-label="Quick navigation"><a href="?page=home" data-page="home"><i data-lucide="home"></i><span>Home</span></a><a href="?page=tokens" data-page="tokens"><i data-lucide="orbit"></i><span>Tokens</span></a><a href="?page=launch" data-page="launch"><i data-lucide="rocket"></i><span>Launch</span></a><a href="?page=missions" data-page="missions"><i data-lucide="trophy"></i><span>Missions</span></a><a href="?page=community" data-page="community"><i data-lucide="users"></i><span>Community</span></a></div>
 </body></html>
