@@ -59,11 +59,11 @@ if (form) {
     $("cl-avatar").innerHTML = image && /^https:\/\//i.test(image) ? '<img alt="" src="' + image.replaceAll('"', "&quot;") + '">' : "✦";
   };
   ["cl-name", "cl-symbol", "cl-description", "cl-image"].forEach((id) => $(id).addEventListener("input", syncPreview));
-  $("cl-confirm").addEventListener("change", () => { deployButton.disabled = !connectedAddress || !$("cl-confirm").checked || busy; });
+  $("cl-confirm").addEventListener("change", () => { deployButton.disabled = busy; });
   deployButton.addEventListener("click", async (event) => {
     if (connectedAddress) return;
     event.preventDefault();
-    try { await connect(); deployButton.disabled = !$("cl-confirm").checked; }
+    try { await connect(); deployButton.disabled = false; }
     catch (error) { setStatus(error?.shortMessage || error?.message || "Wallet connection failed.", "error"); }
   });
   form.addEventListener("submit", async (event) => {
@@ -116,7 +116,7 @@ if (form) {
   if (window.ethereum) {
     window.ethereum.on?.("accountsChanged", (accounts) => {
       connectedAddress = accounts?.[0] ? getAddress(accounts[0]) : null;
-      deployButton.disabled = !connectedAddress || !$("cl-confirm").checked || busy;
+      deployButton.disabled = busy;
       deployButton.textContent = connectedAddress ? "Wallet: " + shortAddress(connectedAddress) : "Connect wallet to continue";
       setStatus(connectedAddress ? "Akun wallet diperbarui." : "Wallet terputus. Hubungkan kembali untuk melanjutkan.");
     });
