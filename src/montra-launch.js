@@ -5,11 +5,15 @@ import {
 
 const ELYSIUM_ID = 99901;
 const ELYSIUM_RPC = "https://rpc.montraxyz.com";
-const ELYSIUM_READ_RPC = "https://rpc.elysium.kinetiq.xyz";
-const readTransport = fallback([
-  http(ELYSIUM_READ_RPC, { timeout: 12_000, retryCount: 1 }),
-  http(ELYSIUM_RPC, { timeout: 12_000, retryCount: 1 }),
-], { retryCount: 1 });
+const ELYSIUM_READ_RPCS = [
+  "https://triport.io/public/elysium",
+  "https://rpc.elysium.kinetiq.xyz",
+  "https://rpc.montraxyz.com",
+];
+const readTransport = fallback(
+  ELYSIUM_READ_RPCS.map((url) => http(url, { timeout: 12_000, retryCount: 0 })),
+  { retryCount: 0 },
+);
 const MONTRA_REGISTRY = "0xF1E2FA75422F889e565F3142bdbf60B28dce2aa7";
 const ZERO = zeroAddress;
 const elysium = defineChain({
@@ -214,7 +218,8 @@ if (form && $("cl-platform")) {
       montraFactory = null;
       const reason = error?.shortMessage || error?.details || error?.message || "Kesalahan RPC tidak diketahui.";
       $("cl-montra-config").replaceChildren(new Option("Fee tier gagal dimuat — tekan Muat ulang", ""));
-      setStatus("Gagal membaca fee tier MONTRA: " + reason + " Pastikan koneksi internet aktif; coba muat ulang.", "error");
+      $("cl-montra-launch-fee").textContent = "Tidak tersedia";
+      setStatus("Gagal membaca fee tier MONTRA: " + reason + " Coba muat ulang atau periksa koneksi jaringan.", "error");
       console.error("MONTRA fee tier loading error:", error);
     } finally {
       loadingRows = false;
