@@ -9,7 +9,7 @@
   "dependencies": {
     "clanker-sdk": "5.1.0",
     "viem": "^2.49.3",
-    "@privy-io/react-auth": "latest",
+    "@privy-io/react-auth": "3.51.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "@solana-program/system": "^0.8.0",
