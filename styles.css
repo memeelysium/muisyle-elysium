@@ -454,3 +454,24 @@ main{min-height:calc(100vh - 170px)}
 .hero-visual .cosmic-drag-controls{touch-action:pan-y}
 .hero-visual .cosmic-reset{touch-action:manipulation}
 @media(max-width:760px){.hero-visual{min-height:360px;touch-action:none}.hero-visual .planet-core{width:220px;height:220px}.hero-visual .planet-mark{font-size:94px}}
+
+
+/* MUISYLE static cosmic artwork — replaces the unreliable draggable planet */
+body:before{background-image:url("assets/cosmic-nebula.svg"),radial-gradient(ellipse at 15% 10%,#303c9b55,transparent 33%),radial-gradient(ellipse at 85% 35%,#087a9850,transparent 32%),radial-gradient(ellipse at 50% 85%,#4b2a8a35,transparent 40%),linear-gradient(180deg,#070916,#0a1024 55%,#070916);background-size:cover,auto,auto,auto,auto;background-position:center top,center,center,center,center;background-repeat:no-repeat}
+.hero-visual.cosmic-hero-art{height:500px;min-height:360px;position:relative;display:grid;place-items:center;isolation:isolate;overflow:hidden;touch-action:auto;cursor:default;transform:none;margin:0;background:url("assets/cosmic-hero.svg") center/contain no-repeat}
+.hero-visual.cosmic-hero-art:before{content:"";position:absolute;inset:8% 5%;background:radial-gradient(ellipse at 50% 50%,#6878ff20,transparent 62%);pointer-events:none}
+.cosmic-art-caption{position:absolute;top:7%;left:8%;right:8%;display:flex;justify-content:space-between;gap:12px;color:#d9e4ff;font:700 8px var(--display);letter-spacing:1.8px;text-shadow:0 2px 12px #050817}
+.cosmic-art-caption b{color:#8deaf0;font-weight:600}
+.cosmic-art-orbit{position:absolute;width:72%;height:23%;border:1px solid #aab5ff55;border-radius:50%;pointer-events:none}
+.cosmic-art-orbit.orbit-a{transform:rotate(-19deg)}
+.cosmic-art-orbit.orbit-b{width:82%;height:30%;transform:rotate(27deg);border-color:#79e5ec44}
+.cosmic-art-spark{position:absolute;color:#a9f4f7;text-shadow:0 0 18px #72e7f0;font-size:26px}
+.cosmic-art-spark.spark-a{top:24%;right:14%}
+.cosmic-art-spark.spark-b{bottom:25%;left:12%;font-size:20px}
+.hero-visual.cosmic-hero-art .visual-halo,.hero-visual.cosmic-hero-art .planet-core,.hero-visual.cosmic-hero-art .orbit,.hero-visual.cosmic-hero-art .satellite,.cosmic-drag-controls{display:none!important}
+.home-hub-section{background-image:linear-gradient(180deg,#0b1022e8,#0a0f20ed 65%,#0b1022e8),url("assets/cosmic-orbit.svg");background-size:cover, min(100%,1100px) auto;background-position:center, right 20%;background-repeat:no-repeat}
+.vision-section{background-image:linear-gradient(180deg,#080d1edb,#0b1024ee),url("assets/cosmic-galaxy.svg");background-size:cover,cover;background-position:center;background-repeat:no-repeat}
+.universe-section{background-image:linear-gradient(180deg,#0a1020c9,#0d1228e8,#090d1dd9),url("assets/cosmic-nebula.svg");background-size:cover,cover;background-position:center;background-repeat:no-repeat}
+.token-ecosystem-section{background-image:linear-gradient(180deg,#080d1ee8,#0b1024f0),url("assets/cosmic-orbit.svg");background-size:cover,cover;background-position:center;background-repeat:no-repeat}
+@media(max-width:760px){.hero-visual.cosmic-hero-art{height:350px;min-height:330px;transform:none;margin:0;background-size:contain}.cosmic-art-caption{top:5%;left:5%;right:5%;font-size:7px;letter-spacing:1.1px}.cosmic-art-orbit{width:80%}.cosmic-art-orbit.orbit-b{width:90%}}
+@media(prefers-reduced-motion:reduce){.hero-visual.cosmic-hero-art{animation:none}}
