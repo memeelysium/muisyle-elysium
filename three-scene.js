@@ -1,7 +1,8 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js';
 
 const host = document.querySelector('.hero-visual');
-if (host && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+if (host) {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   try {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
@@ -101,6 +102,7 @@ if (host && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const resetButton = document.getElementById('cosmic-reset');
     const onPointerDown = event => {
       if (event.pointerType === 'mouse' && event.button !== 0) return;
+      if (event.target.closest('button')) return;
       dragging = true;
       pointerId = event.pointerId;
       lastX = event.clientX;
@@ -109,7 +111,7 @@ if (host && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       velocityY = 0;
       lastInteraction = performance.now();
       host.classList.add('is-dragging');
-      try { renderer.domElement.setPointerCapture(pointerId); } catch (_) {}
+      try { host.setPointerCapture(pointerId); } catch (_) {}
     };
     const onPointerMove = event => {
       if (!dragging || event.pointerId !== pointerId) return;
@@ -132,11 +134,11 @@ if (host && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       host.classList.remove('is-dragging');
       lastInteraction = performance.now();
     };
-    renderer.domElement.addEventListener('pointerdown', onPointerDown);
-    renderer.domElement.addEventListener('pointermove', onPointerMove);
-    renderer.domElement.addEventListener('pointerup', onPointerUp);
-    renderer.domElement.addEventListener('pointercancel', onPointerUp);
-    renderer.domElement.addEventListener('lostpointercapture', onPointerUp);
+    host.addEventListener('pointerdown', onPointerDown);
+    host.addEventListener('pointermove', onPointerMove);
+    host.addEventListener('pointerup', onPointerUp);
+    host.addEventListener('pointercancel', onPointerUp);
+    host.addEventListener('lostpointercapture', onPointerUp);
 
     if (resetButton) {
       resetButton.addEventListener('click', () => {
@@ -157,7 +159,7 @@ if (host && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       frame = requestAnimationFrame(animate);
       if (!visible) return;
       if (!dragging) {
-        planet.rotation.y += 0.0018;
+        if (!reducedMotion) planet.rotation.y += 0.0018;
         if (Math.abs(velocityX) > 0.0002 || Math.abs(velocityY) > 0.0002) {
           planetGroup.rotation.y += velocityX;
           planetGroup.rotation.x = THREE.MathUtils.clamp(
@@ -165,7 +167,7 @@ if (host && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           );
           velocityX *= 0.94;
           velocityY *= 0.94;
-        } else if (performance.now() - lastInteraction > 1800) {
+        } else if (!reducedMotion && performance.now() - lastInteraction > 1800) {
           planetGroup.rotation.y += 0.0012;
         }
       }
@@ -178,11 +180,11 @@ if (host && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       cancelAnimationFrame(frame);
       resizeObserver.disconnect();
       visibilityObserver.disconnect();
-      renderer.domElement.removeEventListener('pointerdown', onPointerDown);
-      renderer.domElement.removeEventListener('pointermove', onPointerMove);
-      renderer.domElement.removeEventListener('pointerup', onPointerUp);
-      renderer.domElement.removeEventListener('pointercancel', onPointerUp);
-      renderer.domElement.removeEventListener('lostpointercapture', onPointerUp);
+      host.removeEventListener('pointerdown', onPointerDown);
+      host.removeEventListener('pointermove', onPointerMove);
+      host.removeEventListener('pointerup', onPointerUp);
+      host.removeEventListener('pointercancel', onPointerUp);
+      host.removeEventListener('lostpointercapture', onPointerUp);
       renderer.dispose();
       planetGeometry.dispose();
       planetMaterial.dispose();
@@ -191,5 +193,29 @@ if (host && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     }, { once: true });
   } catch (error) {
     console.warn('Three.js scene unavailable; using the static cosmic artwork.', error);
+    let startX = 0;
+    let startY = 0;
+    let activePointer = null;
+    let angleY = 0;
+    const fallbackPlanet = host.querySelector('.planet-core');
+    const fallbackDown = event => {
+      if (event.target.closest('button')) return;
+      activePointer = event.pointerId; startX = event.clientX; startY = event.clientY;
+      try { host.setPointerCapture(activePointer); } catch (_) {}
+      host.classList.add('is-dragging');
+    };
+    const fallbackMove = event => {
+      if (event.pointerId !== activePointer || !fallbackPlanet) return;
+      const dx = event.clientX - startX; const dy = event.clientY - startY;
+      startX = event.clientX; startY = event.clientY; angleY += dx * 0.8;
+      fallbackPlanet.style.transform = `rotateY(${angleY}deg) rotateX(${Math.max(-25, Math.min(25, dy * 0.5))}deg)`;
+    };
+    const fallbackUp = event => { if (event.pointerId === activePointer) { activePointer = null; host.classList.remove('is-dragging'); } };
+    host.addEventListener('pointerdown', fallbackDown);
+    host.addEventListener('pointermove', fallbackMove);
+    host.addEventListener('pointerup', fallbackUp);
+    host.addEventListener('pointercancel', fallbackUp);
+    const reset = document.getElementById('cosmic-reset');
+    if (reset) reset.addEventListener('click', () => { angleY = 0; if (fallbackPlanet) fallbackPlanet.style.transform = ''; });
   }
 }
