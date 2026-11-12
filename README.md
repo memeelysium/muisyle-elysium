@@ -4,209 +4,171 @@
 
 # MUISYLE
 
-### ELYSIUM CULTURE · MORE THAN A MEME. A WHOLE NEW VIBE.
+### MORE THAN A MEME. A WHOLE NEW UNIVERSE.
 
-A community-first creative universe shaped by internet culture, visual imagination, and the spirit of the Elysium ecosystem.
+An independent, community-powered gateway to the Elysium ecosystem — discover tokens, explore launches, create culture, and participate in the MUISYLE community.
 
-<br />
+[![Explore MUISYLE](https://img.shields.io/badge/OPEN_WEBSITE-MUISYLE-38BDF8?style=for-the-badge&logo=googlechrome&logoColor=white)](https://memeelysium.github.io/muisyle-elysium/)
+[![Repository](https://img.shields.io/badge/SOURCE-GITHUB-171923?style=for-the-badge&logo=github&logoColor=white)](https://github.com/memeelysium/muisyle-elysium)
 
-<a href="https://memeelysium.github.io/">
-  <img src="https://img.shields.io/badge/EXPLORE_MUISYLE-Visit_the_Universe-7667F8?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Explore MUISYLE" />
-</a>
-<a href="https://github.com/memeelysium/muisyle-elysium">
-  <img src="https://img.shields.io/badge/OPEN_SOURCE-View_Repository-171923?style=for-the-badge&logo=github&logoColor=white" alt="View repository" />
-</a>
-
-<br /><br />
-
-<img src="https://img.shields.io/badge/IDENTITY-COMMUNITY_CULTURE-8B7CF6?style=flat-square" alt="Community culture" />
-<img src="https://img.shields.io/badge/EXPERIENCE-COSMIC_WEB-38BDF8?style=flat-square" alt="Cosmic web experience" />
-<img src="https://img.shields.io/badge/PLATFORM-GITHUB_PAGES-64748B?style=flat-square" alt="GitHub Pages" />
+<img src="https://img.shields.io/badge/STATUS-IN_DEVELOPMENT-8B7CF6?style=flat-square" alt="In development" />
+<img src="https://img.shields.io/badge/HOSTING-GITHUB_PAGES-64748B?style=flat-square" alt="GitHub Pages" />
+<img src="https://img.shields.io/badge/LAUNCH-CLANKER_V5-38BDF8?style=flat-square" alt="Clanker V5" />
 
 </div>
 
 ---
 
-## The MUISYLE universe
+## Live website
 
-MUISYLE is an independent creative identity inspired by the energy of internet culture and the possibilities of the Elysium ecosystem.
+**Official website:** https://memeelysium.github.io/muisyle-elysium/
 
-We see memes as more than passing jokes. They are a shared language — a way for people to express ideas, create connections, and build a culture together.
+The site is a responsive, browser-based experience. The repository's GitHub Actions workflow builds the Vite project and publishes the `dist/` directory to GitHub Pages.
 
-> **More than a meme. A whole new vibe.**
+## What you can do
 
-Our universe brings that idea to life through a distinctive cosmic aesthetic and a growing set of community-focused experiences.
-
-## Explore
-
-| Experience | Description |
+| Website area | What it does |
 | --- | --- |
-| **The Visual Universe** | A space-inspired visual world built around the MUISYLE identity. |
-| **Community Meme Gallery** | Explore featured meme concepts and discover how to submit community creations. |
-| **Community Profiles** | Create a public profile, introduce yourself, and find other members in orbit. |
-| **Community Hub** | Follow the project and join the conversation through its official social channels. |
-| **Responsive Interface** | A carefully styled experience for desktop and mobile screens. |
+| **Overview** | Discover MUISYLE, its ecosystem links, and the main site experiences. |
+| **Token Orbit** | Explore the token-focused area of the website and ecosystem resources. |
+| **Launch History** | Browse public launch records collected by the MUISYLE history service. New records appear after successful supported launches are submitted and indexed. |
+| **Launch Portal** | Prepare and deploy a token through the integrated Clanker V5 flow on supported EVM networks. |
+| **Claim Fee** | Continue to the official Clanker tools to review and claim eligible creator rewards. |
+| **Cosmic Missions** | Explore community participation and challenge content. |
+| **Meme Lab** | Find creative prompts and make community-themed content. |
+| **Community** | Find MUISYLE's community channels and project links. |
 
-## Our direction
+Some sections and integrations may evolve as development continues. Availability labels shown in the website are authoritative for what is currently enabled.
 
-We want to build a recognizable home for creativity, humor, and community participation around the Elysium ecosystem.
+## Token launch portal
 
-- **Create freely** — make room for original ideas and unexpected perspectives.
-- **Build together** — give community members ways to participate and be discovered.
-- **Stay curious** — keep exploring new formats, creative tools, and experiences.
-- **Keep it welcoming** — make the universe accessible to newcomers and long-time community members alike.
+The Launch Portal currently integrates **Clanker V5**. A visitor connects an EVM-compatible wallet, enters token details, reviews the configuration, and approves the transaction in their own wallet.
+
+### Supported launch networks
+
+| Network | Chain ID | Gas token | Website status |
+| --- | ---: | --- | --- |
+| Elysium Mainnet | `99901` | HYPE | Available |
+| Base Mainnet | `8453` | ETH | Available |
+| Robinhood Chain | `4663` | ETH | Available |
+| Solana | — | SOL | Coming soon; separate integration required |
+
+### Launch configuration
+
+The portal includes:
+
+- Buy and sell fee selection from **1% to 10%**.
+- Burn allocation settings, with the remaining allocation directed to creator rewards.
+- An optional creator reward recipient address; if left blank, the connected deployer wallet is used.
+- Optional project website and X profile metadata.
+- Token image URL or upload from the device (PNG, JPG, WEBP, or GIF, up to 5 MB).
+
+The selected fee applies equally to buys and sells. The burn and creator-reward split is configurable in the portal. The portal does not offer buyback configuration.
+
+**Launch platform availability:** Clanker V5 is enabled. BANKR and ASCEND LAUNCH are displayed as coming soon and are not active deployment integrations.
+
+### Important transaction notes
+
+- Wallet connection and transaction signing are user-controlled.
+- The website does not ask for or store wallet seed phrases or private keys.
+- Network gas is paid by the connected wallet in the network's native gas token.
+- Token deployment is an on-chain action and may be irreversible. Review the network, token metadata, fee, burn allocation, and reward recipient before signing.
+- Never share your recovery phrase or private key with anyone.
+
+## Logo upload and public launch history
+
+Two supporting Cloudflare Workers provide optional backend services:
+
+- **Logo upload:** the upload Worker accepts supported image files and stores them through the configured Pinata service, returning an IPFS URI. The Pinata JWT is stored as a Cloudflare Worker secret and must never be committed to this repository.
+- **Launch History:** the history Worker accepts launch records after the launch flow confirms a successful deployment and exposes a public listing endpoint. It uses a Cloudflare KV namespace.
+
+Launch History starts collecting records after the service is configured; it does not automatically import older launches. KV updates may take a short time to become visible. Worker configuration and RPC availability are operational dependencies, so the public history service should be monitored independently from the static website.
+
+Setup instructions for the history Worker are in [workers/launch-history/README.md](workers/launch-history/README.md).
 
 ## Technology
 
-MUISYLE is built as a lightweight web experience using browser-native technologies and selected open-source tools.
-
-- HTML, CSS, and JavaScript
-- Three.js for selected visual experiences
-- Lucide icons
-- Supabase-powered community functionality
-- GitHub Pages for website hosting
-
-The site is built with Vite for GitHub Pages. Clanker v5 and viem are bundled for the browser-based launch interface.
-
-## Elysium on-chain structure
-
-MUISYLE is designed around the wider Elysium ecosystem. The following overview separates the website experience from the underlying blockchain infrastructure and provides a clear foundation for future on-chain integrations.
-
-```text
-                  MUISYLE COMMUNITY
-                         │
-                         ▼
-                MUISYLE WEB EXPERIENCE
-          Website · Meme Gallery · Profiles
-                         │
-             Wallet connection / dApp layer
-                  (future integration)
-                         │
-                         ▼
-                ELYSIUM EVM NETWORK
-             Smart contracts · Transactions
-                         │
-              ┌──────────┴──────────┐
-              ▼                     ▼
-        On-chain assets       Blockchain explorer
-        & interactions        Verification & data
-```
-
-### Network reference
-
-The MUISYLE launch integration targets Kinetiq Elysium. The network configuration used by the site is:
-
-| Network | Chain ID | RPC endpoint | Explorer |
-| --- | ---: | --- | --- |
-| Elysium Mainnet | `99901` | [rpc.elysium.kinetiq.xyz](https://rpc.elysium.kinetiq.xyz) | [Elyscan](https://elyscan.live/) |
-| Elysium Testnet | `99801` | [testnet-rpc.elysium.kinetiq.xyz](https://testnet-rpc.elysium.kinetiq.xyz) | [Elyscan](https://elyscan.live/) |
-
-Useful ecosystem resources: [Elysium developer documentation](https://github.com/elysium-foundation/elysium-docs) · [Elysium Foundation](https://github.com/elysium-foundation/elysium).
-
-### Elysium Mainnet token ecosystem
-
-Elysium Mainnet already has an active token ecosystem. The public [Elyscan Token Tracker](https://elyscan.live/tokens) lists ERC-20 assets on the network and provides token pages for checking contract details, supply, holders, and activity.
-
-The following is a **curated sample** of tokens currently surfaced by the tracker, not a complete list or a ranking. Token listings, holder counts, liquidity, and market data can change.
-
-| Token | Symbol | Contract address |
-| --- | --- | --- |
-| [Montra](https://elyscan.live/token/0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327) | `MONTRA` | `0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327` |
-| [Wrapped HYPE](https://elyscan.live/token/0xbA876237B0F021A6c6D852d6c26E107997cC5E81) | `WHYPE` | `0xbA876237B0F021A6c6D852d6c26E107997cC5E81` |
-| [USDC](https://elyscan.live/token/0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65) | `USDC` | `0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65` |
-| [Kinetiq Governance Token](https://elyscan.live/token/0xe45a355d9e9cAd2aD85F2d03E3eE3102A036acF0) | `KNTQ` | `0xe45a355d9e9cAd2aD85F2d03E3eE3102A036acF0` |
-| [Elysium Pepe Acceleration](https://elyscan.live/token/0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0) | `ep/acc` | `0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0` |
-| [MAXIMUS CAT](https://elyscan.live/token/0x979e08A83900336b1BCCb0818E55c7748aB438BE) | `MAXIMUS` | `0x979e08A83900336b1BCCb0818E55c7748aB438BE` |
-| [BoxaV2](https://elyscan.live/token/0xb6825cC93Cc20CC37270C056969136dc439bDFC6) | `$BOXA` | `0xb6825cC93Cc20CC37270C056969136dc439bDFC6` |
-| [Volta](https://elyscan.live/token/0x6721083BB7E56A8b5398f32a02D0AB55C87B63C8) | `VOLTA` | `0x6721083BB7E56A8b5398f32a02D0AB55C87B63C8` |
-| [GOTEM](https://elyscan.live/token/0xA4d91152e453eAc3D6148bc25909b214D6225560) | `GOTEM` | `0xA4d91152e453eAc3D6148bc25909b214D6225560` |
-| [e/acc](https://elyscan.live/token/0x62dC5b1DE5e1D3894639aEdC2ddd23d404BbfB70) | `e/acc` | `0x62dC5b1DE5e1D3894639aEdC2ddd23d404BbfB70` |
-
-**How the token layer fits into the network**
-
-```text
-                 ELYSIUM MAINNET
-                  Chain ID: 99901
-                         │
-                  EVM / ERC-20
-                         │
-              Deployed token contracts
-                         │
-          ┌──────────────┼──────────────┐
-          ▼              ▼              ▼
-      Ecosystem       Community       Stablecoin /
-       tokens          tokens        wrapped assets
-          │              │              │
-          └──────────────┼──────────────┘
-                         ▼
-               Wallets · DEXs · dApps
-                         │
-                         ▼
-                 Elyscan Explorer
-          Contract · Holders · Transfers
-```
-
-**Important:** token names and symbols are not unique. Some assets may have multiple contracts or similarly named copies on the same network. Always verify the full contract address, network, liquidity, and contract details in the explorer before interacting. Inclusion here is informational only and is not an endorsement or investment recommendation. These are ecosystem assets, not MUISYLE-issued tokens.
-
-### Clanker v5 launch integration
-
-The Launch Portal integrates the official Clanker v5 SDK for Elysium. Users connect their own EVM wallet, provide token metadata, review the details and sign the deployment transaction themselves. The site does not collect or store wallet private keys. Gas is paid by the connected wallet in HYPE. Token deployment is an irreversible on-chain action; verify all settings before signing.
-
-The integration uses Clanker SDK v5 with a user-controlled wallet client and the Elysium RPC configured in the browser. See the [official Clanker SDK](https://github.com/clanker-devco/clanker-sdk) and [Clanker v5 contract reference](https://github.com/clanker-devco/DOCS/blob/main/references/core-contracts/v5.md).
-
-### What this means for MUISYLE
-
-- **Community layer:** the website is the public-facing home for MUISYLE content and participation.
-- **Wallet layer:** wallet connectivity can provide a user-controlled way to interact with compatible dApps.
-- **Smart-contract layer:** on-chain features should be implemented through verified contracts and clearly documented addresses.
-- **Verification layer:** transactions and deployed contracts can be inspected through the network's block explorer.
-
-**Implementation status:** this section documents the intended ecosystem architecture and network reference. It does not claim that MUISYLE has deployed its own smart contracts, issued an on-chain token, or enabled wallet transactions. Any future integration will be documented here only after it is implemented and verified. Always confirm network details against the Elysium documentation before connecting a wallet or signing a transaction.
+- **Vite** — development build and production bundling.
+- **HTML, CSS, JavaScript** — responsive website interface and client-side interactions.
+- **Three.js** — selected cosmic visual effects.
+- **Lucide** — interface icons.
+- **viem** — EVM wallet, chain, and transaction utilities.
+- **Clanker SDK V5** — token launch integration.
+- **Cloudflare Workers and KV** — logo upload and public launch-history services.
+- **Pinata / IPFS** — uploaded token logo storage.
+- **GitHub Pages and GitHub Actions** — static website hosting and automated build/deployment.
 
 ## Run locally
 
-Clone the repository:
+You need a recent version of Node.js (the Pages workflow uses Node.js 22) and npm.
 
 ```bash
 git clone https://github.com/memeelysium/muisyle-elysium.git
 cd muisyle-elysium
+npm install
+npm run build
 ```
 
-Then open `index.html` in a modern browser.
+To start Vite's local development server:
 
-> Some community features rely on the configured Supabase project and may require an internet connection.
+```bash
+npx vite
+```
+
+Open the local URL printed by Vite. Do not open `index.html` directly: the launch integration uses bundled modules and dependencies.
+
+## Deployment
+
+The workflow in [`.github/workflows/pages.yml`](.github/workflows/pages.yml):
+
+1. Checks out the repository.
+2. Sets up Node.js 22.
+3. Installs npm dependencies.
+4. Runs `npm run build`.
+5. Publishes the generated `dist/` directory to GitHub Pages.
+
+Push changes to `main` or run the workflow manually from the GitHub Actions tab. A successful build does not guarantee that external services (wallet providers, RPC endpoints, Cloudflare Workers, Pinata, or third-party launch services) are available; those dependencies must be tested separately.
 
 ## Project structure
 
 ```text
 .
-├── assets/             # Visual and brand assets
-├── brand-kit/          # Brand resources
-├── supabase/           # Supabase-related project files
-├── index.html          # Main website
-├── styles.css          # Interface and responsive styling
-├── script.js           # Main client-side interactions
-├── three-scene.js      # Three.js visual experience
-├── motion-effects.js   # Motion effects
-├── chart-effects.js    # Chart-related effects
-└── community-profile.js# Community profile functionality
+├── .github/workflows/       # GitHub Pages build and deployment
+├── assets/                  # Brand, interface, and meme artwork
+├── brand-kit/               # MUISYLE brand resources
+├── src/
+│   ├── clanker-launch.js    # Clanker V5 launch flow
+│   ├── launch-history.js    # Public launch-history interface
+│   ├── launch-history-config.js
+│   └── logo-upload-config.js
+├── supabase/                # Community profile SQL resources
+├── workers/launch-history/  # Launch-history Worker source and setup
+├── index.html               # Website pages and content
+├── styles.css               # Layout and responsive styling
+├── script.js                # Main navigation and interactions
+├── three-scene.js           # Three.js visual experience
+├── motion-effects.js        # Motion effects
+├── chart-effects.js         # Chart effects
+├── community-profile.js     # Community profile functionality
+├── package.json             # Dependencies and scripts
+└── vite.config.js           # Vite configuration
 ```
 
-## Community
+## Security and project status
 
-The MUISYLE universe grows through the people who take part in it.
+MUISYLE is an independent community project. It is not an official Elysium, Clanker, Base, or Robinhood product and is not endorsed by those teams.
 
-- **Website:** [memeelysium.github.io](https://memeelysium.github.io/)
+This repository contains frontend code and Worker source/configuration. External services must be configured with their own credentials and secrets. Do not commit API tokens, JWTs, wallet private keys, seed phrases, or other secrets.
+
+Blockchain interactions involve risk. Always verify contract addresses, network details, transaction parameters, and third-party links independently. Nothing on this website or in this repository is financial or investment advice.
+
+## Community and contributions
+
+- **Website:** [memeelysium.github.io/muisyle-elysium](https://memeelysium.github.io/muisyle-elysium/)
 - **X:** [@memeelysium](https://x.com/memeelysium)
 - **GitHub:** [memeelysium](https://github.com/memeelysium)
 
-Have an idea or something worth building? Open an issue or submit a pull request. Thoughtful contributions and creative suggestions are welcome.
-
-## Independence & disclaimer
-
-MUISYLE is an independent, fan-made community project. It is not an official Elysium product and is not affiliated with, endorsed by, or operated by the Elysium team.
-
-Any references to Elysium are for ecosystem context only. Nothing in this repository or on the website constitutes financial, investment, or token-performance advice.
+Suggestions, bug reports, and thoughtful contributions are welcome through GitHub Issues and Pull Requests.
 
 ---
 
