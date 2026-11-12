@@ -133,3 +133,7 @@
   .montra-settings { padding:13px; }
   .montra-settings-head { align-items:flex-start; flex-direction:column; gap:5px; }
 }
+
+.montra-launch-cost { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:12px 0; padding:12px 14px; border:1px solid rgba(143,125,255,.22); border-radius:10px; background:rgba(255,255,255,.035); }
+.montra-launch-cost span { color:var(--muted); font-size:.82rem; }
+.montra-launch-cost b { font-size:.9rem; }
