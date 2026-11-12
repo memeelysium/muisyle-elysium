@@ -188,7 +188,7 @@ window.addEventListener('load',function renderLucideIcons(){
     onchain:["token-ecosystem"],
     memes:["meme-gallery"],
     profiles:["community-profiles"],
-    community:["community"]
+    community:["community"],\n    launch:["launch-portal"]
   };
   const labels=[
     ["home","Home"],["about","About"],["universe","Universe"],
@@ -255,6 +255,18 @@ window.addEventListener('load',function renderLucideIcons(){
     if(targetPage&&targetPage!==document.body.dataset.page){
       event.preventDefault();navigate(targetPage,"#"+targetId);
     }
+  });
+  // Hidden cosmic portal: five deliberate clicks on clear page backgrounds.
+  let blankClicks=0,blankClickTimer=null;
+  document.addEventListener("click",event=>{
+    if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+    if(event.target.closest('a,button,input,textarea,select,summary,[role="button"],nav,.menu')){blankClicks=0;return;}
+    const surface=event.target.closest('body,main,section,.hero,.home-hub-section,.universe-section,.token-ecosystem-section,.coming-soon-section,.final-cta');
+    if(!surface){blankClicks=0;return;}
+    blankClicks++;
+    window.clearTimeout(blankClickTimer);
+    if(blankClicks>=5){blankClicks=0;window.clearTimeout(blankClickTimer);navigate("launch");return;}
+    blankClickTimer=window.setTimeout(()=>{blankClicks=0;},3500);
   });
   window.addEventListener("popstate",()=>setPage(currentPage()));
   setPage(currentPage(),false);
