@@ -14,6 +14,14 @@ function AuthPanel() {
   const [walletError, setWalletError] = useState("");
   const creationStarted = useRef(false);
 
+  const xAccount = user?.linkedAccounts?.find((account) =>
+    account?.type === "twitter" || account?.type === "x"
+  );
+  const xProfileImage = xAccount?.profilePictureUrl || xAccount?.profile_picture_url ||
+    xAccount?.profileImageUrl || user?.twitter?.profilePictureUrl || "";
+  const xDisplayName = xAccount?.name || xAccount?.username || user?.twitter?.username || "X account";
+  const xHandle = xAccount?.username ? `@${xAccount.username.replace(/^@/, "")}` : "";
+
   const embeddedWallet = wallets.find(
     (wallet) => wallet.walletClientType === "privy"
   );
@@ -115,9 +123,15 @@ function AuthPanel() {
   const address = embeddedWallet?.address || user?.wallet?.address || "";
   const walletReady = Boolean(embeddedWallet?.address);
   return <div className="muisyle-auth-panel">
-    <div className="muisyle-auth-copy">
-      <strong>Signed in with X</strong>
-      <span>{address ? address.slice(0, 8) + "…" + address.slice(-6) : "Preparing your embedded wallet…"}</span>
+    <div className="muisyle-auth-identity">
+      {xProfileImage
+        ? <img className="muisyle-x-avatar" src={xProfileImage} alt="Your X profile picture" referrerPolicy="no-referrer" onError={(event) => { event.currentTarget.style.display = "none"; }} />
+        : <div className="muisyle-x-avatar-fallback" aria-hidden="true">X</div>}
+      <div className="muisyle-auth-copy">
+        <strong>{xDisplayName}</strong>
+        <span>{xHandle || "Signed in with X"}</span>
+        <span>{address ? address.slice(0, 8) + "…" + address.slice(-6) : "Preparing your embedded wallet…"}</span>
+      </div>
     </div>
     <div className="muisyle-auth-actions">
       {!walletReady && walletError && <button className="muisyle-auth-button" type="button" disabled={!walletsReady} onClick={() => { creationStarted.current = false; prepareWallet(); }}>Retry wallet setup</button>}
