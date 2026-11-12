@@ -58,13 +58,3 @@ async function loadHistory() {
 }
 refresh?.addEventListener("click", loadHistory);
 if (list) loadHistory();
- + escapeHtml(item.symbol) + '</span><div class="history-meta"><span>' + escapeHtml(item.network) + '</span><span>VERIFIED ON-CHAIN</span></div><small>' + escapeHtml(dateLabel(item.createdAt)) + '</small><code class="history-address">' + escapeHtml(item.tokenAddress) + '</code><div class="history-links"><a href="' + tokenUrl + '" target="_blank" rel="noopener noreferrer">TOKEN EXPLORER ↗</a><a href="' + txUrl + '" target="_blank" rel="noopener noreferrer">TRANSACTION ↗</a>' + basedBotLink + '</div></div></article>';
-    }).join("");
-  } catch (error) {
-    status.dataset.state = "error";
-    status.textContent = "Failed to load Launch History: " + (error?.message || "service unavailable");
-    list.innerHTML = '<div class="history-empty">The public launch archive could not be reached.<br>Try refreshing in a moment.</div>';
-  }
-}
-refresh?.addEventListener("click", loadHistory);
-if (list) loadHistory();
