@@ -19,12 +19,12 @@ async function loadHistory() {
   if (!list || !status) return;
   if (!LAUNCH_HISTORY_ENDPOINT) {
     status.dataset.state = "error";
-    status.textContent = "Launch History belum dihubungkan ke Cloudflare Worker. Daftar akan tampil setelah konfigurasi selesai.";
+    status.textContent = "Launch History is not connected to the Cloudflare Worker yet. The archive will appear once setup is complete.";
     list.innerHTML = '<div class="history-empty">Public Launch History is being configured.<br>Come back soon to explore MUISYLE launches.</div>';
     return;
   }
   status.dataset.state = "";
-  status.textContent = "Memuat daftar peluncuran terverifikasi…";
+  status.textContent = "Loading verified launches…";
   list.replaceChildren();
   try {
     const endpoint = LAUNCH_HISTORY_ENDPOINT.replace(/\/$/, "") + (LAUNCH_HISTORY_ENDPOINT.endsWith("/launches") ? "" : "/launches");
@@ -32,7 +32,7 @@ async function loadHistory() {
     const data = await response.json();
     if (!response.ok || !data?.ok || !Array.isArray(data.launches)) throw new Error(data?.error || "History service unavailable.");
     if (!data.launches.length) {
-      status.textContent = "Belum ada token yang tercatat. Peluncuran MUISYLE pertama akan muncul di sini setelah terverifikasi.";
+      status.textContent = "No tokens have been recorded yet. The first MUISYLE launch will appear here once verified.";
       list.innerHTML = '<div class="history-empty">No verified launches yet.<br>Be the first to launch through the MUISYLE portal.</div>';
       return;
     }
@@ -49,7 +49,7 @@ async function loadHistory() {
     }).join("");
   } catch (error) {
     status.dataset.state = "error";
-    status.textContent = "Gagal memuat Launch History: " + (error?.message || "service unavailable");
+    status.textContent = "Failed to load Launch History: " + (error?.message || "service unavailable");
     list.innerHTML = '<div class="history-empty">The public launch archive could not be reached.<br>Try refreshing in a moment.</div>';
   }
 }
