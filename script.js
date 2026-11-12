@@ -261,7 +261,7 @@ window.addEventListener('load',function renderLucideIcons(){
   document.addEventListener("click",event=>{
     if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
     if(event.target.closest('a,button,input,textarea,select,summary,[role="button"],nav,.menu')){blankClicks=0;return;}
-    const surface=event.target.closest('body,main,section,.hero,.home-hub-section,.universe-section,.token-ecosystem-section,.coming-soon-section,.final-cta');
+    const surface=event.target.matches('body,main,section,.hero,.home-hub-section,.universe-section,.token-ecosystem-section,.coming-soon-section,.final-cta,.cosmic-hero-art,.home-hub-wrap,.universe-showcase');
     if(!surface){blankClicks=0;return;}
     blankClicks++;
     window.clearTimeout(blankClickTimer);
