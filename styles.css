@@ -43,3 +43,5 @@
 .clanker-result-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
 .clanker-disclaimer{font-size:9px;line-height:1.7;color:#7885a2;margin-top:20px}
 @media(max-width:760px){.clanker-layout{grid-template-columns:1fr}.clanker-form{padding:18px}.clanker-two{grid-template-columns:1fr}.clanker-preview{min-height:280px}.clanker-form-head{align-items:flex-start;flex-direction:column}}
+
+.clanker-connect{width:100%;margin-top:5px;cursor:pointer}
