@@ -126,7 +126,7 @@ The following is a **curated sample** of tokens currently surfaced by the tracke
 
 ```text
                  ELYSIUM MAINNET
-                  Chain ID: 1339
+                  Chain ID: 99901
                          │
                   EVM / ERC-20
                          │
