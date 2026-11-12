@@ -216,7 +216,7 @@ if (form) {
         needsReconciliation = true;
         const safeHash = /^0x[0-9a-fA-F]{64}$/.test(submittedTxHash) ? submittedTxHash : "";
         resultBox.hidden = false;
-        resultBox.innerHTML = '<span class="kicker">TRANSACTION SUBMITTED · CHECK STATUS</span><h2>Verification pending</h2><p>Transaksi sudah dikirim, tetapi SDK belum dapat memverifikasi hasil launch. Jangan kirim transaksi kedua sebelum memeriksa statusnya.</p>' + (safeHash ? '<a class="btn btn-secondary" target="_blank" rel="noreferrer" href="https://elyscan.live/tx/' + safeHash + '">Check transaction on Elyscan</a>' : "");
+        resultBox.innerHTML = '<span class="kicker">TRANSACTION SUBMITTED · CHECK STATUS</span><h2>Verification pending</h2><p>Transaksi sudah dikirim, tetapi SDK belum dapat memverifikasi hasil launch. Jangan kirim transaksi kedua sebelum memeriksa statusnya.</p>' + (safeHash ? '<a class="btn btn-secondary" target="_blank" rel="noreferrer" href="' + selectedNetwork().explorer + '/tx/' + safeHash + '">Check transaction on explorer</a>' : "");
         setStatus("Transaksi sudah dikirim tetapi belum terverifikasi. Jangan deploy ulang sebelum memeriksa hash transaksi.", "pending");
       } else {
         setStatus(error?.shortMessage || error?.message || "Deployment gagal sebelum transaksi dikirim.", "error");
@@ -254,7 +254,7 @@ if (form) {
         needsReconciliation = true;
         const safeHash = /^0x[0-9a-fA-F]{64}$/.test(submittedTxHash) ? submittedTxHash : "";
         resultBox.hidden = false;
-        resultBox.innerHTML = '<span class="kicker">TRANSACTION SUBMITTED · CHECK STATUS</span><h2>Verification pending</h2><p>Transaksi sudah dikirim, tetapi SDK belum dapat memverifikasi hasil launch. Jangan kirim transaksi kedua sebelum memeriksa statusnya.</p>' + (safeHash ? '<a class="btn btn-secondary" target="_blank" rel="noreferrer" href="https://elyscan.live/tx/' + safeHash + '">Check transaction on Elyscan</a>' : "");
+        resultBox.innerHTML = '<span class="kicker">TRANSACTION SUBMITTED · CHECK STATUS</span><h2>Verification pending</h2><p>Transaksi sudah dikirim, tetapi SDK belum dapat memverifikasi hasil launch. Jangan kirim transaksi kedua sebelum memeriksa statusnya.</p>' + (safeHash ? '<a class="btn btn-secondary" target="_blank" rel="noreferrer" href="' + selectedNetwork().explorer + '/tx/' + safeHash + '">Check transaction on explorer</a>' : "");
         setStatus("Transaksi sudah dikirim tetapi belum terverifikasi. Jangan deploy ulang sebelum memeriksa hash transaksi.", "pending");
       } else {
         setStatus(error?.shortMessage || error?.message || "Deployment gagal sebelum transaksi dikirim.", "error");
@@ -269,9 +269,17 @@ if (form) {
       connectButton.textContent = connectedAddress ? "Connected " + shortAddress(connectedAddress) : "Connect wallet";
       setStatus(connectedAddress ? "Akun wallet diperbarui." : "Wallet terputus. Hubungkan kembali untuk melanjutkan.");
     });
-    eventProvider.on?.("chainChanged", () => {
-      connectedAddress = null; deployButton.disabled = true; connectButton.textContent = "Reconnect wallet";
-      setStatus("Jaringan wallet berubah. Hubungkan ulang ke Elysium Mainnet.");
+    eventProvider.on?.("chainChanged", (chainId) => {
+      const activeChainId = Number.parseInt(chainId, 16);
+      if (activeChainId === selectedNetwork().id) {
+        deployButton.disabled = needsReconciliation || !connectedAddress || !$("cl-confirm").checked || busy;
+        setStatus("Wallet terhubung ke " + selectedNetwork().chain.name + ".", "success");
+        return;
+      }
+      connectedAddress = null;
+      deployButton.disabled = true;
+      connectButton.textContent = "Reconnect wallet";
+      setStatus("Jaringan wallet berubah. Hubungkan ulang ke " + selectedNetwork().chain.name + ".");
     });
   }
 }
