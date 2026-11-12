@@ -166,6 +166,7 @@ if (form) {
       try { await connect(); } catch (error) { setStatus(error?.message || "Wallet connection failed.", "error"); return; }
     }
     if (!/^https:\/\//i.test(image) && !/^ipfs:\/\/[A-Za-z0-9]+$/i.test(image)) { setStatus("Logo harus berupa URL HTTPS atau CID IPFS yang valid. Unggah logo melalui galeri atau masukkan URL.", "error"); return; }
+    if (websiteUrl && !/^https:\/\//i.test(websiteUrl)) { setStatus("Website proyek harus menggunakan URL HTTPS yang valid.", "error"); return; }
     if (xUrl && !/^https:\/\/(www\.)?(x\.com|twitter\.com)\//i.test(xUrl)) { setStatus("Masukkan URL profil atau akun X/Twitter yang valid.", "error"); return; }
     if (!name || !/^[A-Z0-9]{2,12}$/.test(symbol)) { setStatus("Nama token wajib diisi. Simbol harus 2–12 karakter A–Z atau angka.", "error"); return; }
     if (!$("cl-confirm").checked) return;
