@@ -1,0 +1,6 @@
+name = "muisyle-logo-upload"
+main = "worker/logo-upload.js"
+compatibility_date = "2026-11-12"
+
+[vars]
+ALLOWED_ORIGIN = "https://memeelysium.github.io"

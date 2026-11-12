@@ -45,3 +45,13 @@
 @media(max-width:760px){.clanker-layout{grid-template-columns:1fr}.clanker-form{padding:18px}.clanker-two{grid-template-columns:1fr}.clanker-preview{min-height:280px}.clanker-form-head{align-items:flex-start;flex-direction:column}}
 
 .clanker-connect{width:100%;margin-top:5px;cursor:pointer}
+
+/* Launch portal: fee selector and secure gallery upload */
+.clanker-file{display:block!important;margin-top:8px;padding:10px!important;font-size:10px!important}
+.clanker-upload-label{display:block!important;margin:11px 0 5px!important;color:#83e9ef!important;font-size:8px!important;letter-spacing:1px!important}
+.clanker-upload-status{margin:6px 0 0;color:#8291ad;font-size:9px;line-height:1.5}
+.clanker-upload-status[data-state=success]{color:#7ce6bd}.clanker-upload-status[data-state=error]{color:#ff9b9b}.clanker-upload-status[data-state=pending]{color:#f0d18b}
+.clanker-fee-row{display:grid;grid-template-columns:130px 1fr;gap:14px;align-items:end;margin-top:12px}
+.clanker-fee-row select{width:100%;border:1px solid #a5b5d333;border-radius:11px;background:#080f20;color:#f5f7ff;padding:13px 14px;font:12px var(--body)}
+.clanker-fee-row p{font-size:9px;line-height:1.6;color:#8291ad;margin:0 0 10px}
+@media(max-width:760px){.clanker-fee-row{grid-template-columns:1fr}}
