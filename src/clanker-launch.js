@@ -165,8 +165,7 @@ if (form) {
   });
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    if ($("cl-platform")?.value === "montra") return;
-    if (busy) return;
+      if (busy) return;
     const name = $("cl-name").value.trim();
     const symbol = $("cl-symbol").value.trim().replace(/^\$/, "").toUpperCase();
     const image = $("cl-image").value.trim();
