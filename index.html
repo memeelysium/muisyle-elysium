@@ -245,10 +245,10 @@
 
 <section class="section profile-section reveal" id="community-profiles">
 <div class="section-kicker">04 <span>/</span> COMMUNITY PROFILES</div>
-<div class="section-intro"><h2>FIND YOUR<br><em>PLACE IN ORBIT.</em></h2><p>Create a public MUISYLE identity, introduce yourself, and discover other members of the community.</p></div>
+<div class="section-intro"><h2>FIND YOUR<br><em>PLACE IN ORBIT.</em></h2><p>Create a personal MUISYLE identity in seconds. No account, wallet, SQL setup, or external login required.</p></div>
 <div class="profile-layout">
 <div class="profile-panel">
-<div class="profile-panel-heading"><span class="profile-panel-kicker">YOUR COSMIC IDENTITY</span><span class="profile-status"><i></i> COMMUNITY</span></div>
+<div class="profile-panel-heading"><span class="profile-panel-kicker">YOUR COSMIC IDENTITY</span><span class="profile-status"><i></i> DEVICE PROFILE</span></div>
 <form id="community-profile-form">
 <label for="profile-display-name">DISPLAY NAME</label>
 <input id="profile-display-name" name="display_name" maxlength="24" required placeholder="Your name in the universe">
@@ -259,17 +259,18 @@
 <textarea id="profile-bio" name="bio" maxlength="160" rows="3" placeholder="A little about you..."></textarea>
 <label for="profile-avatar">AVATAR IMAGE URL <span class="profile-optional">OPTIONAL</span></label>
 <input id="profile-avatar" name="avatar_url" type="url" maxlength="500" placeholder="https://...">
-<p class="profile-field-note">Use a public image URL. Leave blank to use a cosmic avatar.</p>
+<p class="profile-field-note">Use a public image URL. Leave blank for your generated cosmic avatar.</p>
 <button class="button button-primary profile-save" type="submit" id="profile-save">Create my profile <i data-lucide="arrow-up-right" class="inline-icon" aria-hidden="true"></i></button>
-<p class="profile-message" id="profile-message" role="status" aria-live="polite">Your profile will be public to all MUISYLE visitors.</p>
+<button class="profile-clear-button" type="button" id="profile-clear" hidden>Remove my profile</button>
+<p class="profile-message" id="profile-message" role="status" aria-live="polite">Your profile is saved privately in this browser.</p>
 </form>
 </div>
 <div class="profile-directory">
-<div class="profile-directory-heading"><div><span class="profile-panel-kicker">THE COMMUNITY</span><h3>Members in orbit</h3></div><span class="profile-count" id="profile-count">— MEMBERS</span></div>
-<div class="profile-grid" id="community-profile-grid"><div class="profile-loading">Loading community profiles...</div></div>
+<div class="profile-directory-heading"><div><span class="profile-panel-kicker">YOUR LOCAL DIRECTORY</span><h3>Members in orbit</h3></div><span class="profile-count" id="profile-count">0 MEMBERS</span></div>
+<div class="profile-grid" id="community-profile-grid"><div class="profile-loading">Create your identity to see it here.</div></div>
 </div>
 </div>
-<p class="profile-disclaimer">Profiles are public. Do not add private information. Anonymous profile ownership is tied to this browser until an account recovery option is added.</p>
+<p class="profile-disclaimer">This lightweight version stores your profile only in this browser on this device. It is not uploaded or shared with other visitors, and clearing browser data may remove it. Do not enter private information.</p>
 </section>
 
 
@@ -306,5 +307,5 @@
 </main>
 <footer class="site-footer"><a class="brand" href="#home"><img src="assets/muisyle-profile.jpg" alt=""> <span>MUISYLE</span></a><p>Made for the culture. Powered by community.</p><div class="footer-links"><a class="footer-social" href="https://x.com/memeelysium" target="_blank" rel="noreferrer">@memeelysium on X ↗</a><a class="footer-social" href="https://github.com/memeelysium" target="_blank" rel="noreferrer">GitHub ↗</a></div><small>© <span id="year"></span> MUISYLE. Independent community project.</small></footer>
 <script src="script.js"></script>
-<script type="module" src="community-profile.js"></script>
+<script src="community-profile.js" defer></script>
 </body></html>
