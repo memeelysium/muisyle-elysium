@@ -65,7 +65,7 @@ if (form) {
     const avatar = $("cl-avatar");
     avatar.replaceChildren();
     let safeImage = "";
-    try { const parsed = new URL(image); if (parsed.protocol === "https:") safeImage = parsed.href; } catch { /* keep fallback */ }
+    try { const parsed = image.startsWith("ipfs://") ? new URL("https://gateway.pinata.cloud/ipfs/" + image.slice(7)) : new URL(image); if (parsed.protocol === "https:") safeImage = parsed.href; } catch { /* keep fallback */ }
     if (safeImage) {
       const img = document.createElement("img");
       img.alt = "";
@@ -77,6 +77,37 @@ if (form) {
     } else avatar.textContent = "✦";
   };
   ["cl-name", "cl-symbol", "cl-description", "cl-image"].forEach((id) => $(id).addEventListener("input", syncPreview));
+  const feeSelect = $("cl-fee");
+  const feePreview = $("cl-preview-fee");
+  feeSelect.addEventListener("change", () => { feePreview.textContent = feeSelect.value + "% / " + feeSelect.value + "%"; });
+  const logoFile = $("cl-logo-file");
+  const uploadStatus = $("cl-upload-status");
+  logoFile.addEventListener("change", async () => {
+    const file = logoFile.files?.[0];
+    if (!file) return;
+    const allowed = ["image/png", "image/jpeg", "image/webp", "image/gif"];
+    if (!allowed.includes(file.type) || file.size < 1 || file.size > 5 * 1024 * 1024) {
+      uploadStatus.textContent = "Pilih PNG, JPG, WEBP atau GIF dengan ukuran maksimal 5 MB.";
+      uploadStatus.dataset.state = "error"; logoFile.value = ""; return;
+    }
+    const endpoint = window.MUISYLE_LOGO_UPLOAD_ENDPOINT;
+    if (!endpoint || !/^https:\/\//i.test(endpoint)) {
+      uploadStatus.textContent = "Upload belum dikonfigurasi. Worker Cloudflare harus dipublikasikan dan endpoint diatur terlebih dahulu.";
+      uploadStatus.dataset.state = "error"; return;
+    }
+    uploadStatus.textContent = "Mengunggah logo ke IPFS…"; uploadStatus.dataset.state = "pending";
+    const data = new FormData(); data.append("file", file, file.name);
+    try {
+      const response = await fetch(endpoint, { method: "POST", body: data, headers: { "Accept": "application/json" } });
+      const result = await response.json();
+      if (!response.ok || !/^ipfs:\/\/[A-Za-z0-9]+$/.test(result.uri || "")) throw new Error(result.error || "Upload gagal.");
+      $("cl-image").value = result.uri; syncPreview();
+      uploadStatus.textContent = "Logo tersimpan di IPFS: " + result.uri; uploadStatus.dataset.state = "success";
+    } catch (error) {
+      uploadStatus.textContent = error.message || "Gagal mengunggah logo. Coba lagi."; uploadStatus.dataset.state = "error";
+    }
+  });
+
   $("cl-confirm").addEventListener("change", () => { deployButton.disabled = needsReconciliation || !connectedAddress || !$("cl-confirm").checked || busy; });
   connectButton.addEventListener("click", async () => {
     try { await connect(); deployButton.disabled = !$("cl-confirm").checked || busy; }
@@ -93,7 +124,7 @@ if (form) {
     if (!connectedAddress) {
       try { await connect(); } catch (error) { setStatus(error?.message || "Wallet connection failed.", "error"); return; }
     }
-    if (!/^https:\/\//i.test(image) && !/^ipfs:\/\//i.test(image)) { setStatus("Logo harus berupa URL HTTPS atau URI IPFS yang valid.", "error"); return; }
+    if (!/^https:\/\//i.test(image) && !/^ipfs:\/\/[A-Za-z0-9]+$/i.test(image)) { setStatus("Logo harus berupa URL HTTPS atau CID IPFS yang valid. Unggah logo melalui galeri atau masukkan URL.", "error"); return; }
     if (xUrl && !/^https:\/\/(www\.)?(x\.com|twitter\.com)\//i.test(xUrl)) { setStatus("Masukkan URL profil atau akun X/Twitter yang valid.", "error"); return; }
     if (!name || !/^[A-Z0-9]{2,12}$/.test(symbol)) { setStatus("Nama token wajib diisi. Simbol harus 2–12 karakter A–Z atau angka.", "error"); return; }
     if (!$("cl-confirm").checked) return;
@@ -110,7 +141,7 @@ if (form) {
       setStatus("Memeriksa konfigurasi dan menyiapkan transaksi Clanker v5…");
       const payload = {
         chainId: ELYSIUM_ID, name, symbol, image, tokenAdmin: account,
-        buyFee: 1, sellFee: 1, antiSnipeEnabled: true,
+        buyFee: Number($("cl-fee").value), sellFee: Number($("cl-fee").value), antiSnipeEnabled: true,
         metadata: { description, socialMediaUrls: xUrl ? [{ platform: "x", url: xUrl }] : [] },
         context: { interface: "MUISYLE" },
       };
