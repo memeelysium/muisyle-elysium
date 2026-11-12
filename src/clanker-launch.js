@@ -93,6 +93,7 @@ if (form) {
       setStatus("Memeriksa konfigurasi dan menyiapkan transaksi Clanker v5…");
       const payload = {
         chainId: ELYSIUM_ID, name, symbol, image, tokenAdmin: account,
+        buyFee: 1, sellFee: 1, antiSnipeEnabled: true,
         metadata: { description, socialMediaUrls: xUrl ? [{ platform: "twitter", url: xUrl }] : [] },
         context: { interface: "MUISYLE", platform: "https://memeelysium.github.io/" },
       };
@@ -105,7 +106,7 @@ if (form) {
       const tokenAddress = receipt?.address || receipt?.tokenAddress;
       if (!tokenAddress) throw new Error("Transaksi terkonfirmasi, tetapi alamat token tidak ditemukan pada respons SDK. Periksa hash transaksi di explorer.");
       resultBox.hidden = false;
-      resultBox.innerHTML = '<span class="kicker">DEPLOYMENT CONFIRMED</span><h2>' + name.replaceAll("<", "&lt;") + ' ($' + symbol + ')</h2><p>Token berhasil dibuat melalui Clanker v5 di Elysium Mainnet.</p><code>' + tokenAddress + '</code><div class="clanker-result-links"><a class="btn btn-primary" target="_blank" rel="noreferrer" href="https://elyscan.live/token/' + tokenAddress + '">View token <i data-lucide="external-link"></i></a><a class="btn btn-secondary" target="_blank" rel="noreferrer" href="https://elyscan.live/tx/' + txHash + '">View transaction <i data-lucide="arrow-up-right"></i></a></div>';
+      resultBox.innerHTML = '<span class="kicker">DEPLOYMENT CONFIRMED</span><h2>' + name.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;") + ' ($' + symbol + ')</h2><p>Token berhasil dibuat melalui Clanker v5 di Elysium Mainnet.</p><code>' + tokenAddress + '</code><div class="clanker-result-links"><a class="btn btn-primary" target="_blank" rel="noreferrer" href="https://elyscan.live/token/' + tokenAddress + '">View token <i data-lucide="external-link"></i></a><a class="btn btn-secondary" target="_blank" rel="noreferrer" href="https://elyscan.live/tx/' + txHash + '">View transaction <i data-lucide="arrow-up-right"></i></a></div>';
       window.lucide?.createIcons?.();
       setStatus("Selesai. Konfirmasi deployment berhasil diterima dari SDK.", "success");
     } catch (error) {
