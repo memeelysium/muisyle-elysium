@@ -347,3 +347,10 @@
 .creator-rewards-section .claim-fee-panel{max-width:none;margin:0}
 .creator-rewards-section .creator-toolbar{margin-bottom:10px}
 .creator-rewards-intro{max-width:680px;margin:0 0 20px;color:var(--muted);font-size:11px;line-height:1.75}
+
+
+/* MULISYE contract address beneath ecosystem statistics */
+.mulisye-contract-panel{position:relative;display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:16px;padding:17px 18px;border:1px solid #83e9ef30;border-radius:15px;background:linear-gradient(110deg,#15233be8,#11182be8)}
+.mulisye-contract-copy{display:flex;flex-direction:column;gap:7px;min-width:0}.mulisye-contract-copy .kicker{color:var(--cyan);font-size:8px;letter-spacing:1px}.mulisye-contract-copy strong{color:#f4f4fb;font:600 13px var(--display)}.mulisye-contract-copy code{color:#aebbd2;font:10px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere;user-select:all}
+.mulisye-contract-actions{display:flex;align-items:center;gap:9px;flex-shrink:0}.mulisye-copy-btn,.mulisye-explorer-link{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:36px;padding:0 12px;border:1px solid #83e9ef38;border-radius:9px;background:#83e9ef0d;color:#bdeff2;font:700 9px var(--display);text-decoration:none;cursor:pointer}.mulisye-copy-btn svg,.mulisye-explorer-link svg{width:13px;height:13px}.mulisye-copy-btn:hover,.mulisye-explorer-link:hover{background:#83e9ef1b;color:#fff}.mulisye-ca-status{position:absolute;right:18px;bottom:3px;color:#8fe3c1;font:8px var(--body)}
+@media(max-width:640px){.mulisye-contract-panel{align-items:stretch;flex-direction:column;gap:12px;padding:15px}.mulisye-contract-actions{width:100%}.mulisye-copy-btn,.mulisye-explorer-link{flex:1}.mulisye-ca-status{position:static;min-height:10px}}
