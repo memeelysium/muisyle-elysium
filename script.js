@@ -3,12 +3,12 @@ import("./src/privy-auth.jsx").catch((error) => console.error("MUISYLE Privy ini
 (()=>{
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const nav=$('.main-nav'),toggle=$('.menu-toggle');
-const valid=['home','tokens','launch-history','launch','claim-fee','missions','gallery','creator','community','legal'];
+const valid=['home','tokens','launch','claim-fee','missions','gallery','creator','community','legal'];
 function show(page,update=true,address=''){
  const requested=page==='claim-fee'?'creator':page;const active=valid.includes(requested)?requested:'home';
  $$('[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===active));
  $$('[data-page]').forEach(el=>{if(el.dataset.page===active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});
- document.title='MUISYLE — '+({home:'Elysium Ecosystem',tokens:'Token Orbit','launch-history':'Launch History',launch:'Launch Portal','claim-fee':'Creator Profiles',missions:'Cosmic Missions',gallery:'Meme Lab',creator:'Creator Profiles',community:'Community',legal:'Legal & Policies'}[active]);
+ document.title='MUISYLE — '+({home:'Elysium Ecosystem',tokens:'Token Orbit',launch:'Launch Portal','claim-fee':'Creator Profiles',missions:'Cosmic Missions',gallery:'Meme Lab',creator:'Creator Profiles',community:'Community',legal:'Legal & Policies'}[active]);
  if(update){const nextUrl='?page='+active+(active==='creator'&&/^0x[0-9a-fA-F]{40}$/.test(address)?'&address='+address:'');history.pushState({page:active},'',nextUrl);}
  if(nav)nav.classList.remove('open');
  if(toggle)toggle.setAttribute('aria-expanded','false');
