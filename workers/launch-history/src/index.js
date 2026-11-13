@@ -1,4 +1,10 @@
 const CHAINS = {
+  99901: {
+    name: "Elysium",
+    rpc: "https://rpc.elysium.kinetiq.xyz",
+    factory: "0xca111dcdd2ce924c3378d6514fdcbc46217bca16",
+    explorer: "https://elyscan.live",
+  },
   8453: {
     name: "Base",
     rpc: "https://mainnet.base.org",
