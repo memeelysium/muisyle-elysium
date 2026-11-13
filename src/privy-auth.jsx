@@ -30,7 +30,14 @@ function AuthPanel() {
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
   const [walletError, setWalletError] = useState("");
+  const [initializationTimedOut, setInitializationTimedOut] = useState(false);
   const creationStarted = useRef(false);
+
+  useEffect(() => {
+    if (ready) { setInitializationTimedOut(false); return; }
+    const timer = window.setTimeout(() => setInitializationTimedOut(true), 15000);
+    return () => window.clearTimeout(timer);
+  }, [ready]);
 
   const xAccount = user?.linkedAccounts?.find((account) =>
     account?.type === "twitter" || account?.type === "x"
@@ -128,7 +135,7 @@ function AuthPanel() {
     }
   };
 
-  if (!ready) return <div className="muisyle-auth-panel"><span className="muisyle-auth-muted">Loading secure sign-in…</span></div>;
+  if (!ready) return <div className="muisyle-auth-panel"><span className="muisyle-auth-muted">{initializationTimedOut ? "Secure sign-in is taking longer than expected. Check your connection, then reload this page." : "Loading secure sign-in…"}</span>{initializationTimedOut && <button className="muisyle-auth-secondary" type="button" onClick={() => window.location.reload()}>Reload sign-in</button>}</div>;
 
   if (!authenticated) {
     return <div className="muisyle-auth-panel">
