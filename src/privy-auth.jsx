@@ -182,11 +182,9 @@ function App() {
   </PrivyProvider>;
 }
 
-const mount = document.createElement("div");
-mount.id = "muisyle-privy-root";
-mount.className = "muisyle-auth-mount";
-const launchPage = document.querySelector('[data-view="launch"]');
-const launchHeading = launchPage?.querySelector(".page-heading");
-if (launchHeading) launchHeading.insertAdjacentElement("afterend", mount);
-else document.body.appendChild(mount);
-createRoot(mount).render(<App />);
+const mount = document.getElementById("muisyle-privy-root");
+if (mount) {
+  createRoot(mount).render(<App />);
+} else {
+  console.error("MUISYLE sign-in mount point is missing from the Launch Portal.");
+}
