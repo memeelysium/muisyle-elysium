@@ -25,7 +25,7 @@ This Worker stores public records for successful Clanker V5 launches made throug
 
 The Worker checks the transaction receipt status, verifies that the transaction was sent to the configured Clanker V5 factory for the selected supported chain, matches the factory event to the supplied token address, and checks that token contract bytecode exists. This is a launch-history integrity check, not an audit of the token or a safety endorsement. It does not accept private keys and cannot initiate transactions.
 
-Supported chain IDs: Base 8453 and Robinhood Chain 4663. Elysium launches are not currently accepted by this history Worker and will not be recorded there.
+Supported chain IDs: Elysium 99901, Base 8453 and Robinhood Chain 4663. The Worker includes a chain-specific Clanker V5 factory and RPC verification configuration for each network.
 The Elysium RPC endpoint may need to be replaced with a stable RPC if the provider changes or rate-limits public reads.
 
 ## Notes
