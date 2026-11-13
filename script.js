@@ -1,7 +1,7 @@
 import("./src/privy-auth.jsx").catch((error) => console.error("MUISYLE Privy initialization failed:", error));
 
 (()=>{
-const $=(s,r=document)=>r.querySelector(s),$=(s,r=document)=>[...r.querySelectorAll(s)];
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const iconFallbackGlyphs={'arrow-up-right':'↗',rocket:'🚀',info:'i',orbit:'◎',trophy:'♜',image:'▧',network:'⌘',search:'⌕',copy:'▢',check:'✓','shield-check':'⬡','refresh-cw':'↻','external-link':'↗','chevron-down':'⌄','alert-triangle':'△',scale:'⚖',wallet:'▣','sliders-horizontal':'☷','file-check-2':'▤','scan-eye':'◎',sparkles:'✦','heart-handshake':'♡'};
 function refreshIcons(root=document){if(window.lucide&&typeof window.lucide.createIcons==='function'){window.lucide.createIcons({attrs:{'stroke-width':1.8},root});return;}root.querySelectorAll('[data-lucide]').forEach(node=>{const glyph=document.createElement('span');glyph.className='muisyle-icon-fallback';glyph.setAttribute('aria-hidden','true');glyph.textContent=iconFallbackGlyphs[node.getAttribute('data-lucide')]||'✦';node.replaceWith(glyph);});}
 
