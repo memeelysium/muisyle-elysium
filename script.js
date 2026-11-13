@@ -1,7 +1,10 @@
 import("./src/privy-auth.jsx").catch((error) => console.error("MUISYLE Privy initialization failed:", error));
 
 (()=>{
-const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const $=(s,r=document)=>r.querySelector(s),$=(s,r=document)=>[...r.querySelectorAll(s)];
+const iconFallbackGlyphs={'arrow-up-right':'↗',rocket:'🚀',info:'i',orbit:'◎',trophy:'♜',image:'▧',network:'⌘',search:'⌕',copy:'▢',check:'✓','shield-check':'⬡','refresh-cw':'↻','external-link':'↗','chevron-down':'⌄','alert-triangle':'△',scale:'⚖',wallet:'▣','sliders-horizontal':'☷','file-check-2':'▤','scan-eye':'◎',sparkles:'✦','heart-handshake':'♡'};
+function refreshIcons(root=document){if(window.lucide&&typeof window.lucide.createIcons==='function'){window.lucide.createIcons({attrs:{'stroke-width':1.8},root});return;}root.querySelectorAll('[data-lucide]').forEach(node=>{const glyph=document.createElement('span');glyph.className='muisyle-icon-fallback';glyph.setAttribute('aria-hidden','true');glyph.textContent=iconFallbackGlyphs[node.getAttribute('data-lucide')]||'✦';node.replaceWith(glyph);});}
+
 const nav=$('.main-nav'),toggle=$('.menu-toggle');
 const valid=['home','tokens','launch-history','launch','claim-fee','missions','gallery','community','legal'];
 function show(page,update=true){
@@ -49,11 +52,12 @@ if(tokenDirectory){
  const refresh=()=>{const q=(search?.value||'').trim().toLowerCase();let shown=0;cards.forEach(card=>{const visible=(category==='all'||card.dataset.category===category)&&(!q||(card.dataset.search||'').includes(q));card.hidden=!visible;if(visible)shown++;});if(count)count.textContent=String(shown).padStart(2,'0')+' ASSETS';if(empty)empty.hidden=shown!==0;};
  search?.addEventListener('input',refresh);
  filters.forEach(button=>button.addEventListener('click',()=>{category=button.dataset.tokenFilter||'all';filters.forEach(item=>{const active=item===button;item.classList.toggle('is-active',active);item.setAttribute('aria-pressed',String(active));});refresh();}));
- tokenDirectory.addEventListener('click',async event=>{const button=event.target.closest('[data-copy-address]');if(!button)return;const address=button.dataset.copyAddress||'',original=button.innerHTML;try{if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(address);else{const field=document.createElement('textarea');field.value=address;field.setAttribute('readonly','');field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();const copied=document.execCommand('copy');field.remove();if(!copied)throw new Error('Copy unavailable');}button.innerHTML='<i data-lucide="check"></i> Copied';}catch(error){button.textContent='Copy unavailable';}if(window.lucide?.createIcons)window.lucide.createIcons({attrs:{'stroke-width':1.8}});window.setTimeout(()=>{button.innerHTML=original;if(window.lucide?.createIcons)window.lucide.createIcons({attrs:{'stroke-width':1.8}})},1800);});
+ tokenDirectory.addEventListener('click',async event=>{const button=event.target.closest('[data-copy-address]');if(!button)return;const address=button.dataset.copyAddress||'',original=button.innerHTML;try{if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(address);else{const field=document.createElement('textarea');field.value=address;field.setAttribute('readonly','');field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();const copied=document.execCommand('copy');field.remove();if(!copied)throw new Error('Copy unavailable');}button.innerHTML='<i data-lucide="check"></i> Copied';}catch(error){button.textContent='Copy unavailable';}refreshIcons(button.parentElement);window.setTimeout(()=>{button.innerHTML=original;refreshIcons(button.parentElement)},1800);});
  refresh();
 }
 
 $('#year').textContent=new Date().getFullYear();
 show(pageFromUrl(),false);
-window.addEventListener('load',()=>{if(window.lucide?.createIcons)window.lucide.createIcons({attrs:{'stroke-width':1.8}})});
+window.addEventListener('load',()=>refreshIcons());
+if(document.readyState==='complete')refreshIcons();
 })();
