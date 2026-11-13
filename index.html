@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/muisyle-profile.jpg">
 <link rel="stylesheet" href="styles.css">
-<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js" defer onerror="this.onerror=null;this.src='https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js'"></script>
 <script type="module" src="./script.js"></script>
 <script>window.MUISYLE_LOGO_UPLOAD_ENDPOINT = "https://muisyle-logo-upload.pemujarahasiailahi.workers.dev/upload";</script>
 <script type="module" src="./src/clanker-launch.js"></script>
@@ -151,7 +151,7 @@
       </div>
       <select id="cl-network" name="network"><option value="elysium" selected>Elysium Mainnet · Chain 99901</option><option value="base">Base Mainnet · Chain 8453</option><option value="robinhood">Robinhood Chain · Chain 4663</option><option value="solana" disabled>Solana · Coming soon (separate integration)</option></select><p class="clanker-upload-status">Solana requires a separate Solana wallet and launch integration; it is not available through Clanker V5 here yet.</p></div>
       <label for="cl-pair">Token pair</label>
-      <select id="cl-pair" name="pair" aria-describedby="cl-pair-help"></select>
+      <select id="cl-pair" name="pair" aria-label="Token pair" aria-describedby="cl-pair-help"><option value="native" selected>HYPE · Native</option><option value="usdc">USDC · Stablecoin</option></select>
       <p id="cl-pair-help" class="clanker-upload-status">Choose the quote asset for your token pool. Creator rewards are paid in the selected pair token. Available pairs depend on the selected network.</p>
       <label for="cl-name">Token name</label><input id="cl-name" name="name" maxlength="48" placeholder="e.g. Cosmic MUISYLE" required>
       <div class="clanker-two"><div><label for="cl-symbol">Ticker / symbol</label><input id="cl-symbol" name="symbol" maxlength="16" placeholder="e.g. COSMIC" required></div><div><label for="cl-image">Logo image URL / IPFS</label><input id="cl-image" name="image" type="text" placeholder="Upload from gallery or paste HTTPS / IPFS" required><label class="clanker-upload-label" for="cl-logo-file">OR SELECT FROM YOUR GALLERY</label><input id="cl-logo-file" class="clanker-file" type="file" accept="image/png,image/jpeg,image/webp,image/gif"><p id="cl-upload-status" class="clanker-upload-status">PNG, JPG, WEBP or GIF · maximum 5 MB</p></div></div>
