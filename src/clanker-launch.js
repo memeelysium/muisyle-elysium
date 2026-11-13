@@ -66,6 +66,30 @@ if (form) {
   const walletProvider = () => (window.ethereum || window.MUISYLE_PRIVY_PROVIDER)?.providers?.length
     ? ((window.ethereum || window.MUISYLE_PRIVY_PROVIDER).providers.find((provider) => provider.isMetaMask) || (window.ethereum || window.MUISYLE_PRIVY_PROVIDER).providers[0])
     : (window.ethereum || window.MUISYLE_PRIVY_PROVIDER);
+  const listenedProviders = new WeakSet();
+  const attachProviderListeners = (provider) => {
+    if (!provider || typeof provider.on !== "function" || listenedProviders.has(provider)) return;
+    listenedProviders.add(provider);
+    provider.on("accountsChanged", (accounts) => {
+      try { connectedAddress = accounts?.[0] ? getAddress(accounts[0]) : null; }
+      catch { connectedAddress = null; }
+      deployButton.disabled = !connectedAddress || !$('cl-confirm').checked || busy;
+      connectButton.textContent = connectedAddress ? "Connected " + shortAddress(connectedAddress) : "Connect wallet";
+      setStatus(connectedAddress ? "Wallet account updated." : "Wallet disconnected. Reconnect to continue.");
+    });
+    provider.on("chainChanged", (chainId) => {
+      const activeChainId = Number.parseInt(chainId, 16);
+      if (activeChainId === selectedNetwork().id) {
+        deployButton.disabled = needsReconciliation || !connectedAddress || !$('cl-confirm').checked || busy;
+        setStatus("Wallet connected to " + selectedNetwork().chain.name + ".", "success");
+        return;
+      }
+      connectedAddress = null;
+      deployButton.disabled = true;
+      connectButton.textContent = "Reconnect wallet";
+      setStatus("The wallet network changed. Reconnect to " + selectedNetwork().chain.name + ".");
+    });
+  };
   const selectedNetwork = () => NETWORKS[$("cl-network").value] || NETWORKS.elysium;
   const selectedPair = () => selectedNetwork().pairs.find((pair) => pair.value === $("cl-pair").value) || selectedNetwork().pairs[0];
   const syncNetworkUI = () => {
@@ -112,6 +136,7 @@ if (form) {
     connectedAddress = getAddress(accounts[0]);
     await switchNetwork(provider, selectedNetwork());
     activeProvider = provider;
+    attachProviderListeners(provider);
     connectButton.textContent = "Connected " + shortAddress(connectedAddress);
     window.lucide?.createIcons?.();
     setStatus("Wallet connected: " + shortAddress(connectedAddress) + ". Review the form, then approve the confirmation in your wallet.", "success");
@@ -304,25 +329,9 @@ if (form) {
       }
     } finally { busy = false; deployButton.disabled = needsReconciliation || !connectedAddress || !$("cl-confirm").checked; }
   });
-  const eventProvider = activeProvider || walletProvider();
-  if (eventProvider) {
-    eventProvider.on?.("accountsChanged", (accounts) => {
-      connectedAddress = accounts?.[0] ? getAddress(accounts[0]) : null;
-      deployButton.disabled = !connectedAddress || !$("cl-confirm").checked || busy;
-      connectButton.textContent = connectedAddress ? "Connected " + shortAddress(connectedAddress) : "Connect wallet";
-      setStatus(connectedAddress ? "Wallet account updated." : "Wallet disconnected. Reconnect to continue.");
-    });
-    eventProvider.on?.("chainChanged", (chainId) => {
-      const activeChainId = Number.parseInt(chainId, 16);
-      if (activeChainId === selectedNetwork().id) {
-        deployButton.disabled = needsReconciliation || !connectedAddress || !$("cl-confirm").checked || busy;
-        setStatus("Wallet connected to " + selectedNetwork().chain.name + ".", "success");
-        return;
-      }
-      connectedAddress = null;
-      deployButton.disabled = true;
-      connectButton.textContent = "Reconnect wallet";
-      setStatus("The wallet network changed. Reconnect to " + selectedNetwork().chain.name + ".");
-    });
-  }
+  attachProviderListeners(walletProvider());
+  window.addEventListener("muisyle:privy-wallet-ready", () => {
+    const provider = walletProvider();
+    attachProviderListeners(provider);
+  });
 }
