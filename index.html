@@ -74,17 +74,53 @@
 </section>
 
 <section class="page" data-view="tokens">
-  <div class="page-heading"><span class="kicker">01 / ELYSIUM MAINNET</span><h1>THE TOKEN<br><em>ORBIT.</em></h1><p>A curated directory of ecosystem assets surfaced by the MUISYLE community. Use the explorer to inspect contracts, holders and transactions. Listings are informational, not endorsements.</p></div>
-  <div class="chain-banner"><div class="chain-icon"><i data-lucide="layers"></i></div><div><span class="kicker">NETWORK</span><h3>ELYSIUM MAINNET</h3><p>EVM-compatible network · Chain ID 99901</p></div><a href="https://elyscan.live/tokens" target="_blank" rel="noreferrer" class="btn btn-secondary">Explorer token list <i data-lucide="external-link"></i></a></div>
-  <div class="token-toolbar"><div><span class="kicker">CURATED DIRECTORY</span><h2>Projects in orbit</h2></div><span class="directory-count">05 LISTINGS</span></div>
-  <div class="token-grid">
-    <article class="token-card"><div class="token-symbol symbol-purple">M</div><div class="token-info"><span class="token-tag">COMMUNITY PROJECT</span><h3>Montra</h3><b>$MONTRA</b></div><a href="https://elyscan.live/token/0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327" target="_blank" rel="noreferrer" aria-label="View Montra contract"><i data-lucide="arrow-up-right"></i></a><code>0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327</code></article>
-    <article class="token-card"><div class="token-symbol symbol-blue">W</div><div class="token-info"><span class="token-tag">WRAPPED ASSET</span><h3>Wrapped HYPE</h3><b>WHYPE</b></div><a href="https://elyscan.live/token/0xbA876237B0F021A6c6D852d6c26E107997cC5E81" target="_blank" rel="noreferrer" aria-label="View WHYPE contract"><i data-lucide="arrow-up-right"></i></a><code>0xbA876237B0F021A6c6D852d6c26E107997cC5E81</code></article>
-    <article class="token-card"><div class="token-symbol symbol-green">$</div><div class="token-info"><span class="token-tag">STABLE ASSET</span><h3>USD Coin</h3><b>USDC</b></div><a href="https://elyscan.live/token/0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65" target="_blank" rel="noreferrer" aria-label="View USDC contract"><i data-lucide="arrow-up-right"></i></a><code>0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65</code></article>
-    <article class="token-card"><div class="token-symbol symbol-orange">K</div><div class="token-info"><span class="token-tag">GOVERNANCE</span><h3>Kinetiq Governance Token</h3><b>KNTQ</b></div><a href="https://elyscan.live/token/0xe45a355d9e9cAd2aD85F2d03E3eE3102A036acF0" target="_blank" rel="noreferrer" aria-label="View KNTQ contract"><i data-lucide="arrow-up-right"></i></a><code>0xe45a355d9e9cAd2aD85F2d03E3eE3102A036acF0</code></article>
-    <article class="token-card"><div class="token-symbol symbol-pink">e/</div><div class="token-info"><span class="token-tag">ECOSYSTEM CULTURE</span><h3>Elysium Pepe Acceleration</h3><b>ep/acc</b></div><a href="https://elyscan.live/token/0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0" target="_blank" rel="noreferrer" aria-label="View ep/acc contract"><i data-lucide="arrow-up-right"></i></a><code>0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0</code></article>
+  <div class="page-heading token-page-heading"><span class="kicker">01 / ELYSIUM MAINNET</span><h1>THE TOKEN<br><em>ORBIT.</em></h1><p>A considered directory of ecosystem assets on Elysium. Explore token details, verify contract addresses and continue to the network explorer.</p></div>
+  <div class="token-orbit-intro">
+    <div class="token-orbit-intro-copy"><span class="kicker">THE ECOSYSTEM, IN ONE VIEW</span><h2>Find your place<br>in the <em>orbit.</em></h2><p>Browse the assets currently listed in this community directory. Listings are informational and do not imply endorsement.</p><a href="https://elyscan.live/tokens" target="_blank" rel="noreferrer" class="token-explorer-link">Explore all Elysium tokens <i data-lucide="arrow-up-right"></i></a></div>
+    <div class="token-orbit-metrics" aria-label="Directory overview">
+      <div class="orbit-metric"><span>LISTED ASSETS</span><strong>05</strong><small>Curated entries</small></div>
+      <div class="orbit-metric"><span>NETWORK</span><strong>01</strong><small>Elysium Mainnet</small></div>
+      <div class="orbit-metric"><span>DIRECTORY</span><strong>OPEN</strong><small>Public explorer links</small></div>
+    </div>
+    <div class="token-orbit-decoration" aria-hidden="true"><span></span><i></i></div>
   </div>
-  <div class="notice"><i data-lucide="shield-check"></i><p><b>Verify before you interact.</b> Token listings can change. Confirm the chain, contract address and project details on the official explorer.</p></div>
+  <div class="token-directory-head"><div><span class="kicker">CURATED DIRECTORY</span><h2>Projects in orbit</h2><p>Search by project name, ticker or contract address.</p></div><span class="directory-count" id="token-result-count" aria-live="polite">05 ASSETS</span></div>
+  <div class="token-controls">
+    <label class="token-search"><i data-lucide="search"></i><span class="sr-only">Search tokens</span><input id="token-search" type="search" placeholder="Search tokens or paste a contract address…" autocomplete="off"></label>
+    <div class="token-filters" role="group" aria-label="Filter tokens by category">
+      <button class="token-filter is-active" type="button" data-token-filter="all" aria-pressed="true">All assets <span>05</span></button>
+      <button class="token-filter" type="button" data-token-filter="community" aria-pressed="false">Community</button>
+      <button class="token-filter" type="button" data-token-filter="wrapped" aria-pressed="false">Wrapped</button>
+      <button class="token-filter" type="button" data-token-filter="stable" aria-pressed="false">Stablecoin</button>
+      <button class="token-filter" type="button" data-token-filter="governance" aria-pressed="false">Governance</button>
+      <button class="token-filter" type="button" data-token-filter="culture" aria-pressed="false">Culture</button>
+    </div>
+  </div>
+  <div class="token-grid token-orbit-grid" id="token-directory">
+    <article class="token-card token-orbit-card" data-category="community" data-search="montra montra 0x063f7cc5339f92a5fd7baf3d22233044fda1f327">
+      <div class="token-symbol symbol-purple">M</div><div class="token-info"><span class="token-tag">COMMUNITY PROJECT</span><h3>Montra</h3><b>$MONTRA</b></div><span class="token-network-pill">ELYSIUM</span>
+      <code>0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327</code><div class="token-card-actions"><button class="token-copy" type="button" data-copy-address="0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327"><i data-lucide="copy"></i> Copy address</button><a href="https://elyscan.live/token/0x063F7Cc5339f92a5FD7BaF3D22233044FdA1F327" target="_blank" rel="noreferrer" aria-label="View Montra on Elyscan">View on explorer <i data-lucide="arrow-up-right"></i></a></div>
+    </article>
+    <article class="token-card token-orbit-card" data-category="wrapped" data-search="wrapped hype whype 0xba876237b0f021a6c6d852d6c26e107997cc5e81">
+      <div class="token-symbol symbol-blue">W</div><div class="token-info"><span class="token-tag">WRAPPED ASSET</span><h3>Wrapped HYPE</h3><b>WHYPE</b></div><span class="token-network-pill">ELYSIUM</span>
+      <code>0xbA876237B0F021A6c6D852d6c26E107997cC5E81</code><div class="token-card-actions"><button class="token-copy" type="button" data-copy-address="0xbA876237B0F021A6c6D852d6c26E107997cC5E81"><i data-lucide="copy"></i> Copy address</button><a href="https://elyscan.live/token/0xbA876237B0F021A6c6D852d6c26E107997cC5E81" target="_blank" rel="noreferrer" aria-label="View Wrapped HYPE on Elyscan">View on explorer <i data-lucide="arrow-up-right"></i></a></div>
+    </article>
+    <article class="token-card token-orbit-card" data-category="stable" data-search="usd coin usdc 0xb47c4c8f73f009cc0c0d3f92b388d13e293f0b65">
+      <div class="token-symbol symbol-green">$</div><div class="token-info"><span class="token-tag">STABLE ASSET</span><h3>USD Coin</h3><b>USDC</b></div><span class="token-network-pill">ELYSIUM</span>
+      <code>0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65</code><div class="token-card-actions"><button class="token-copy" type="button" data-copy-address="0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65"><i data-lucide="copy"></i> Copy address</button><a href="https://elyscan.live/token/0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65" target="_blank" rel="noreferrer" aria-label="View USDC on Elyscan">View on explorer <i data-lucide="arrow-up-right"></i></a></div>
+    </article>
+    <article class="token-card token-orbit-card" data-category="governance" data-search="kinetiq governance token kntq 0xe45a355d9e9cad2ad85f2d03e3ee3102a036acf0">
+      <div class="token-symbol symbol-orange">K</div><div class="token-info"><span class="token-tag">GOVERNANCE</span><h3>Kinetiq Governance Token</h3><b>KNTQ</b></div><span class="token-network-pill">ELYSIUM</span>
+      <code>0xe45a355d9e9cAd2aD85F2d03E3eE3102A036acF0</code><div class="token-card-actions"><button class="token-copy" type="button" data-copy-address="0xe45a355d9e9cAd2aD85F2d03E3eE3102A036acF0"><i data-lucide="copy"></i> Copy address</button><a href="https://elyscan.live/token/0xe45a355d9e9cAd2aD85F2d03E3eE3102A036acF0" target="_blank" rel="noreferrer" aria-label="View KNTQ on Elyscan">View on explorer <i data-lucide="arrow-up-right"></i></a></div>
+    </article>
+    <article class="token-card token-orbit-card" data-category="culture" data-search="elysium pepe acceleration ep acc 0x716da70796d502b3c9ceb5c4876ba60f511dd8a0">
+      <div class="token-symbol symbol-pink">e/</div><div class="token-info"><span class="token-tag">ECOSYSTEM CULTURE</span><h3>Elysium Pepe Acceleration</h3><b>ep/acc</b></div><span class="token-network-pill">ELYSIUM</span>
+      <code>0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0</code><div class="token-card-actions"><button class="token-copy" type="button" data-copy-address="0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0"><i data-lucide="copy"></i> Copy address</button><a href="https://elyscan.live/token/0x716DA70796D502B3C9CEB5C4876BA60F511dD8A0" target="_blank" rel="noreferrer" aria-label="View ep/acc on Elyscan">View on explorer <i data-lucide="arrow-up-right"></i></a></div>
+    </article>
+  </div>
+  <p class="token-no-results" id="token-no-results" hidden>No assets match your search. Try another name, ticker or address.</p>
+  <div class="notice token-directory-notice"><i data-lucide="shield-check"></i><p><b>Verify before you interact.</b> Listings are informational and may change. Confirm the network and contract address on the official explorer before making a transaction. MUISYLE does not provide investment recommendations.</p></div>
+  <p class="token-directory-footnote">Directory entries are manually curated. Logos, market prices and live trading metrics are not displayed unless they can be sourced and verified reliably.</p>
 </section>
 
 <section class="page" data-view="launch-history">
