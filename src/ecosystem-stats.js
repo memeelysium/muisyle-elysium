@@ -19,7 +19,7 @@ async function loadMuisyleStats() {
     return;
   }
   try {
-    const endpoint = LAUNCH_HISTORY_ENDPOINT.replace(/\\/$/, "") + (LAUNCH_HISTORY_ENDPOINT.endsWith("/launches") ? "" : "/launches");
+    const endpoint = LAUNCH_HISTORY_ENDPOINT.replace(/\/$/, "") + (LAUNCH_HISTORY_ENDPOINT.endsWith("/launches") ? "" : "/launches");
     const response = await fetch(endpoint, { headers: { Accept: "application/json" }, cache: "no-store" });
     const data = await response.json();
     if (!response.ok || !data?.ok || !Array.isArray(data.launches)) throw new Error(data?.error || "Launch service unavailable");
