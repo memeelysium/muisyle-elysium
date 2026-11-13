@@ -22,9 +22,33 @@ const robinhood = defineChain({
   blockExplorers: { default: { name: "Robinhood Blockscout", url: "https://robinhoodchain.blockscout.com" } },
 });
 const NETWORKS = {
-  elysium: { id: ELYSIUM_ID, chain: elysium, title: "ELYSIUM MAINNET", detail: "Chain ID 99901 · Gas token HYPE · Clanker v5", gas: "HYPE", explorer: "https://elyscan.live", label: "Elysium · 99901" },
-  base: { id: base.id, chain: base, title: "BASE MAINNET", detail: "Chain ID 8453 · Gas token ETH · Clanker v5", gas: "ETH", explorer: "https://basescan.org", label: "Base · 8453" },
-  robinhood: { id: ROBINHOOD_ID, chain: robinhood, title: "ROBINHOOD CHAIN", detail: "Chain ID 4663 · Gas token ETH · Clanker v5", gas: "ETH", explorer: "https://robinhoodchain.blockscout.com", label: "Robinhood · 4663" },
+  elysium: {
+    id: ELYSIUM_ID, chain: elysium, title: "ELYSIUM MAINNET",
+    detail: "Chain ID 99901 · Gas token HYPE · Clanker v5", gas: "HYPE",
+    explorer: "https://elyscan.live", label: "Elysium · 99901",
+    pairs: [
+      { value: "native", label: "HYPE · Native", display: "HYPE" },
+      { value: "usdc", label: "USDC · Stablecoin", display: "USDC", token: "0xb47c4C8F73F009CC0C0d3f92B388d13E293F0B65" },
+    ],
+  },
+  base: {
+    id: base.id, chain: base, title: "BASE MAINNET",
+    detail: "Chain ID 8453 · Gas token ETH · Clanker v5", gas: "ETH",
+    explorer: "https://basescan.org", label: "Base · 8453",
+    pairs: [
+      { value: "native", label: "ETH · Native", display: "ETH" },
+      { value: "usdc", label: "USDC · Stablecoin", display: "USDC", token: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" },
+    ],
+  },
+  robinhood: {
+    id: ROBINHOOD_ID, chain: robinhood, title: "ROBINHOOD CHAIN",
+    detail: "Chain ID 4663 · Gas token ETH · Clanker v5", gas: "ETH",
+    explorer: "https://robinhoodchain.blockscout.com", label: "Robinhood · 4663",
+    pairs: [
+      { value: "native", label: "ETH · Native", display: "ETH" },
+      { value: "usdg", label: "USDG · Stablecoin", display: "USDG", token: "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168" },
+    ],
+  },
 };
 const $ = (id) => document.getElementById(id);
 const form = $("clanker-form");
@@ -43,14 +67,25 @@ if (form) {
     ? ((window.ethereum || window.MUISYLE_PRIVY_PROVIDER).providers.find((provider) => provider.isMetaMask) || (window.ethereum || window.MUISYLE_PRIVY_PROVIDER).providers[0])
     : (window.ethereum || window.MUISYLE_PRIVY_PROVIDER);
   const selectedNetwork = () => NETWORKS[$("cl-network").value] || NETWORKS.elysium;
+  const selectedPair = () => selectedNetwork().pairs.find((pair) => pair.value === $("cl-pair").value) || selectedNetwork().pairs[0];
   const syncNetworkUI = () => {
     const network = selectedNetwork();
+    const pairSelect = $("cl-pair");
+    const previousPair = pairSelect.value;
+    pairSelect.replaceChildren(...network.pairs.map((pair) => {
+      const option = document.createElement("option");
+      option.value = pair.value;
+      option.textContent = pair.label;
+      return option;
+    }));
+    pairSelect.value = network.pairs.some((pair) => pair.value === previousPair) ? previousPair : network.pairs[0].value;
     $("cl-network-title").textContent = network.title;
     $("cl-network-details").textContent = network.detail;
     $("cl-network-explorer").href = network.explorer;
     $("cl-preview-network").textContent = network.title + " · CLANKER V5";
     $("cl-fact-network").textContent = network.label;
     $("cl-fact-gas").textContent = "Paid in " + network.gas;
+    $("cl-fact-pair").textContent = selectedPair().display;
   };
   const switchNetwork = async (provider, network = selectedNetwork()) => {
     const chainId = "0x" + network.id.toString(16);
@@ -82,6 +117,9 @@ if (form) {
     setStatus("Wallet connected: " + shortAddress(connectedAddress) + ". Review the form, then approve the confirmation in your wallet.", "success");
     return { provider, address: connectedAddress };
   };
+  $("cl-pair").addEventListener("change", () => {
+    $("cl-fact-pair").textContent = selectedPair().display;
+  });
   $("cl-network").addEventListener("change", async () => {
     syncNetworkUI();
     if (!activeProvider || !connectedAddress) return;
@@ -199,6 +237,7 @@ if (form) {
       const payload = {
         chainId: network.id, name, symbol, image, tokenAdmin: account,
         buyFee: Number($("cl-fee").value), sellFee: Number($("cl-fee").value), burn: Number($("cl-burn").value), antiSnipeEnabled: true,
+        ...(selectedPair().token ? { pool: { pairedToken: selectedPair().token } } : {}),
         rewards: { recipients: [{ recipient: rewardRecipient, admin: account, bps: 10000 }] },
         metadata: { description, socialMediaUrls: [...(xUrl ? [{ platform: "x", url: xUrl }] : []), ...(websiteUrl ? [{ platform: "website", url: websiteUrl }] : [])] },
         context: { interface: "MUISYLE" },
