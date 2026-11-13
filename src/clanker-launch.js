@@ -112,6 +112,7 @@ if (form) {
     connectedAddress = getAddress(accounts[0]);
     await switchNetwork(provider, selectedNetwork());
     activeProvider = provider;
+    attachProviderListeners(provider);
     connectButton.textContent = "Connected " + shortAddress(connectedAddress);
     window.lucide?.createIcons?.();
     setStatus("Wallet connected: " + shortAddress(connectedAddress) + ". Review the form, then approve the confirmation in your wallet.", "success");
@@ -304,15 +305,17 @@ if (form) {
       }
     } finally { busy = false; deployButton.disabled = needsReconciliation || !connectedAddress || !$("cl-confirm").checked; }
   });
-  const eventProvider = activeProvider || walletProvider();
-  if (eventProvider) {
-    eventProvider.on?.("accountsChanged", (accounts) => {
+  const listenedProviders = new WeakSet();
+  const attachProviderListeners = (provider) => {
+    if (!provider || listenedProviders.has(provider)) return;
+    listenedProviders.add(provider);
+    provider.on?.("accountsChanged", (accounts) => {
       connectedAddress = accounts?.[0] ? getAddress(accounts[0]) : null;
-      deployButton.disabled = !connectedAddress || !$("cl-confirm").checked || busy;
+      deployButton.disabled = needsReconciliation || !connectedAddress || !$("cl-confirm").checked || busy;
       connectButton.textContent = connectedAddress ? "Connected " + shortAddress(connectedAddress) : "Connect wallet";
       setStatus(connectedAddress ? "Wallet account updated." : "Wallet disconnected. Reconnect to continue.");
     });
-    eventProvider.on?.("chainChanged", (chainId) => {
+    provider.on?.("chainChanged", (chainId) => {
       const activeChainId = Number.parseInt(chainId, 16);
       if (activeChainId === selectedNetwork().id) {
         deployButton.disabled = needsReconciliation || !connectedAddress || !$("cl-confirm").checked || busy;
@@ -324,5 +327,11 @@ if (form) {
       connectButton.textContent = "Reconnect wallet";
       setStatus("The wallet network changed. Reconnect to " + selectedNetwork().chain.name + ".");
     });
-  }
+  };
+  // Privy exposes its embedded provider asynchronously, after this module loads.
+  // Attach listeners both to wallets already available and to providers exposed later.
+  attachProviderListeners(walletProvider());
+  window.addEventListener("muisyle:privy-wallet-ready", () => {
+    attachProviderListeners(window.MUISYLE_PRIVY_PROVIDER);
+  });
 }
