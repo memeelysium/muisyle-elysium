@@ -308,3 +308,8 @@
 @media(max-width:760px){.token-orbit-intro{grid-template-columns:1fr;gap:22px;padding:23px;margin-bottom:37px}.token-orbit-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.orbit-metric{padding:13px 10px}.orbit-metric strong{margin-top:12px;font-size:23px}.token-orbit-grid{grid-template-columns:1fr}.token-directory-head{align-items:flex-start}}
 @media(max-width:430px){.token-orbit-metrics{gap:6px}.orbit-metric{padding:11px 8px}.orbit-metric>span{font-size:7px;letter-spacing:.6px}.orbit-metric strong{font-size:20px}.orbit-metric small{font-size:8px}.token-orbit-card{grid-template-columns:46px minmax(0,1fr) auto;gap:10px;padding:15px}.token-orbit-card .token-symbol{width:43px;height:43px}.token-orbit-card .token-info h3{font-size:14px}.token-orbit-card code{font-size:8px}.token-card-actions a,.token-copy{font-size:8px;padding-inline:7px}}
 @media(prefers-reduced-motion:reduce){.token-orbit-card,.token-filter{transition:none}.token-orbit-card:hover{transform:none}}
+
+
+/* Token Orbit: prevent legacy token-card styles from leaking into new controls */
+.token-orbit-card[hidden]{display:none!important}
+.token-orbit-card .token-card-actions>a{width:auto;height:auto;min-width:0;min-height:36px;aspect-ratio:auto;border-radius:9px;white-space:nowrap}
