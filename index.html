@@ -135,6 +135,14 @@
 <section class="page" data-view="launch">
   <div class="page-heading"><span class="kicker">02 / MULTI-CHAIN · CLANKER V5</span><h1>THE LAUNCH<br><em>PORTAL.</em></h1><p>Launch tokens on supported EVM networks through Clanker v5. Choose a network, connect your own wallet, review every detail and approve the deployment yourself.</p></div>
   <div id="muisyle-privy-root" class="muisyle-auth-mount" aria-live="polite"><div class="muisyle-auth-panel"><span class="muisyle-auth-muted">Loading secure sign-in…</span></div></div>
+  <script>
+    window.setTimeout(function () {
+      var mount = document.getElementById("muisyle-privy-root");
+      if (mount && mount.dataset.privyMounted !== "true") {
+        mount.innerHTML = '<div class="muisyle-auth-panel"><span class="muisyle-auth-muted">The sign-in module did not start. Reload the page; if this continues, contact MUISYLE support.</span><button class="muisyle-auth-secondary" type="button" onclick="window.location.reload()">Reload sign-in</button></div>';
+      }
+    }, 15000);
+  </script>
   <div class="chain-banner"><div class="chain-icon"><i data-lucide="network"></i></div><div><span class="kicker">DEPLOYMENT NETWORK</span><h3 id="cl-network-title">ELYSIUM MAINNET</h3><p id="cl-network-details">Chain ID 99901 · Gas token HYPE · Clanker v5</p></div><a id="cl-network-explorer" href="https://elyscan.live/" target="_blank" rel="noreferrer" class="btn btn-secondary">Explorer <i data-lucide="external-link"></i></a></div>
 
 
