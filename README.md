@@ -6,6 +6,13 @@
 
 ### MORE THAN A MEME. A WHOLE NEW UNIVERSE.
 
+**OFFICIAL TOKEN — MULISYE (Mulisyle)**
+
+- **Network:** Elysium Mainnet
+- **Contract Address:** `0x2117FAF8600E88cB15383FdA942098FeDE3ACcCC`
+- **Explorer:** [View MULISYE on Elyscan](https://elyscan.live/token/0x2117FAF8600E88cB15383FdA942098FeDE3ACcCC)
+
+
 An independent community project for exploring the Elysium ecosystem, discovering token information, creating community content, and launching tokens through an integrated Clanker V5 interface.
 
 [![Open Website](https://img.shields.io/badge/OPEN_WEBSITE-MUISYLE-38BDF8?style=for-the-badge&logo=googlechrome&logoColor=white)](https://memeelysium.github.io/muisyle-elysium/)
