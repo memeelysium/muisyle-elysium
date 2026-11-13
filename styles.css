@@ -341,3 +341,9 @@
 @media(max-width:760px){.creator-toolbar{align-items:flex-start;flex-direction:column;gap:6px}.creator-search{padding:17px}.creator-search>div{flex-direction:column}.creator-search .btn{width:100%}.creator-directory{grid-template-columns:1fr}.creator-card{padding:15px}.creator-profile-detail{padding:17px}.creator-profile-head{align-items:flex-start}.creator-stat-grid{gap:7px}.creator-stat{padding:11px}.creator-stat strong{font-size:20px}.creator-token{grid-template-columns:1fr}.creator-token-links{justify-content:flex-start}}
 
 .creator-profile-detail[hidden]{display:none!important}
+
+/* Creator rewards section */
+.creator-rewards-section{max-width:860px;margin:42px auto 34px;padding-top:30px;border-top:1px solid var(--line)}
+.creator-rewards-section .claim-fee-panel{max-width:none;margin:0}
+.creator-rewards-section .creator-toolbar{margin-bottom:10px}
+.creator-rewards-intro{max-width:680px;margin:0 0 20px;color:var(--muted);font-size:11px;line-height:1.75}
