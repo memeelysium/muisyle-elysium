@@ -339,3 +339,5 @@
 .creator-empty{grid-column:1/-1;padding:25px;border:1px dashed #a2b2dc44;border-radius:15px;color:var(--muted);font-size:11px;line-height:1.8;text-align:center}
 .creator-directory-toolbar{margin-top:5px}
 @media(max-width:760px){.creator-toolbar{align-items:flex-start;flex-direction:column;gap:6px}.creator-search{padding:17px}.creator-search>div{flex-direction:column}.creator-search .btn{width:100%}.creator-directory{grid-template-columns:1fr}.creator-card{padding:15px}.creator-profile-detail{padding:17px}.creator-profile-head{align-items:flex-start}.creator-stat-grid{gap:7px}.creator-stat{padding:11px}.creator-stat strong{font-size:20px}.creator-token{grid-template-columns:1fr}.creator-token-links{justify-content:flex-start}}
+
+.creator-profile-detail[hidden]{display:none!important}
