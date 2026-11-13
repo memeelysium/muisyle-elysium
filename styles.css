@@ -360,3 +360,11 @@
   }
   .mobile-dock a[aria-current="page"] span{font-weight:800}
 }
+
+/* Reliable Token Pair selector on desktop and mobile */
+.page[data-view="launch"] #cl-pair{display:block;width:100%;min-height:48px;padding:12px 42px 12px 14px;border:1px solid rgba(131,233,239,.34);border-radius:11px;background-color:#080f20;color:#f5f7ff;font:600 12px var(--body);color-scheme:dark;cursor:pointer;appearance:auto}
+.page[data-view="launch"] #cl-pair:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.page[data-view="launch"] #cl-pair option{background:#10182b;color:#f5f7ff}
+.page[data-view="launch"] #cl-pair-help{margin:8px 0 12px;line-height:1.65}
+.muisyle-icon-fallback{display:inline-grid;place-items:center;min-width:1em;min-height:1em;color:currentColor;font:700 1.05em/1 var(--display);vertical-align:-.08em}
+@media(max-width:760px){.page[data-view="launch"] #cl-pair{min-height:50px;font-size:13px}}
