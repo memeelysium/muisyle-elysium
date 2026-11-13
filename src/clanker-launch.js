@@ -86,6 +86,8 @@ if (form) {
     $("cl-fact-network").textContent = network.label;
     $("cl-fact-gas").textContent = "Paid in " + network.gas;
     $("cl-fact-pair").textContent = selectedPair().display;
+    const pairHelp = $("cl-pair-help");
+    if (pairHelp) pairHelp.textContent = "Available on " + network.chain.name + ": " + network.pairs.map((pair) => pair.label).join(" or ") + ". The selected quote asset is used for the Clanker pool; native pair uses " + network.gas + ".";
   };
   const switchNetwork = async (provider, network = selectedNetwork()) => {
     const chainId = "0x" + network.id.toString(16);
@@ -120,6 +122,7 @@ if (form) {
   };
   $("cl-pair").addEventListener("change", () => {
     $("cl-fact-pair").textContent = selectedPair().display;
+    $("cl-pair").setAttribute("aria-label", "Token pair: " + selectedPair().label);
   });
   $("cl-network").addEventListener("change", async () => {
     syncNetworkUI();
