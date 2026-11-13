@@ -34,6 +34,11 @@ function AuthPanel() {
   const creationStarted = useRef(false);
 
   useEffect(() => {
+    const mount = document.getElementById("muisyle-privy-root");
+    if (mount) mount.dataset.privyMounted = "true";
+  }, []);
+
+  useEffect(() => {
     if (ready) { setInitializationTimedOut(false); return; }
     const timer = window.setTimeout(() => setInitializationTimedOut(true), 15000);
     return () => window.clearTimeout(timer);
