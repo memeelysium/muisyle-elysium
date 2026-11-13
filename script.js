@@ -8,7 +8,7 @@ function show(page,update=true){
  const active=valid.includes(page)?page:'home';
  $$('[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===active));
  $$('[data-page]').forEach(el=>{if(el.dataset.page===active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});
- document.title='MUISYLE — '+({home:'Elysium Ecosystem',tokens:'Token Orbit','launch-history':'Launch History',launch:'Launch Portal','claim-fee':'Claim Fee',missions:'Cosmic Missions',gallery:'Meme Lab',community:'Community'}[active]);
+ document.title='MUISYLE — '+({home:'Elysium Ecosystem',tokens:'Token Orbit','launch-history':'Launch History',launch:'Launch Portal','claim-fee':'Claim Fee',missions:'Cosmic Missions',gallery:'Meme Lab',community:'Community',legal:'Legal & Policies'}[active]);
  if(update)history.pushState({page:active},'', '?page='+active);
  if(nav)nav.classList.remove('open');
  if(toggle)toggle.setAttribute('aria-expanded','false');
