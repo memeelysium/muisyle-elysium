@@ -3,13 +3,13 @@ import("./src/privy-auth.jsx").catch((error) => console.error("MUISYLE Privy ini
 (()=>{
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const nav=$('.main-nav'),toggle=$('.menu-toggle');
-const valid=['home','tokens','launch-history','launch','claim-fee','missions','gallery','community','legal'];
-function show(page,update=true){
+const valid=['home','tokens','launch-history','launch','claim-fee','missions','gallery','creator','community','legal'];
+function show(page,update=true,address=''){
  const active=valid.includes(page)?page:'home';
  $$('[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===active));
  $$('[data-page]').forEach(el=>{if(el.dataset.page===active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});
- document.title='MUISYLE — '+({home:'Elysium Ecosystem',tokens:'Token Orbit','launch-history':'Launch History',launch:'Launch Portal','claim-fee':'Claim Fee',missions:'Cosmic Missions',gallery:'Meme Lab',community:'Community',legal:'Legal & Policies'}[active]);
- if(update)history.pushState({page:active},'', '?page='+active);
+ document.title='MUISYLE — '+({home:'Elysium Ecosystem',tokens:'Token Orbit','launch-history':'Launch History',launch:'Launch Portal','claim-fee':'Claim Fee',missions:'Cosmic Missions',gallery:'Meme Lab',creator:'Creator Profiles',community:'Community',legal:'Legal & Policies'}[active]);
+ if(update){const nextUrl='?page='+active+(active==='creator'&&/^0x[0-9a-fA-F]{40}$/.test(address)?'&address='+address:'');history.pushState({page:active},'',nextUrl);}
  if(nav)nav.classList.remove('open');
  if(toggle)toggle.setAttribute('aria-expanded','false');
  window.scrollTo({top:0,behavior:'instant'});
@@ -20,9 +20,9 @@ document.addEventListener('click',e=>{
  if(!link||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||link.target==='_blank')return;
  const url=new URL(link.href,location.href);
  if(url.origin!==location.origin)return;
- e.preventDefault();show(url.searchParams.get('page')||'home');
+ e.preventDefault();show(url.searchParams.get('page')||'home',true,url.searchParams.get('address')||'');
 });
-window.addEventListener('popstate',()=>show(pageFromUrl(),false));
+window.addEventListener('popstate',()=>show(pageFromUrl(),false,new URLSearchParams(location.search).get('address')||''));
 if(toggle&&nav)toggle.addEventListener('click',()=>{const open=!nav.classList.contains('open');nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',String(open));});
 document.addEventListener('click',e=>{if(nav?.classList.contains('open')&&!e.target.closest('.topbar')){nav.classList.remove('open');toggle?.setAttribute('aria-expanded','false')}});
 const prompts=[
@@ -42,6 +42,6 @@ $('#copy-prompt')?.addEventListener('click',async()=>{if(!output)return;try{awai
 const claimAddress=$('#claim-token-address'),claimButton=$('#claim-fee-open'),claimStatus=$('#claim-fee-status');
 claimButton?.addEventListener('click',()=>{const address=claimAddress?.value.trim()||'';if(!/^0x[0-9a-fA-F]{40}$/.test(address)){if(claimStatus)claimStatus.textContent='Enter a valid EVM token contract address (0x followed by 40 hexadecimal characters).';return;}const url='https://www.clanker.world/clanker/'+address+'/admin';window.open(url,'_blank','noopener,noreferrer');if(claimStatus)claimStatus.textContent='Clanker Admin is now open. Review your reward balance and transaction details there.';});
 $('#year').textContent=new Date().getFullYear();
-show(pageFromUrl(),false);
+show(pageFromUrl(),false,new URLSearchParams(location.search).get('address')||'');
 window.addEventListener('load',()=>{if(window.lucide?.createIcons)window.lucide.createIcons({attrs:{'stroke-width':1.8}})});
 })();
