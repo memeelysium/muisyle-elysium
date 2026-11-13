@@ -39,6 +39,9 @@ const output=$('#meme-prompt'),feedback=$('#prompt-feedback');
 $('#generate-prompt')?.addEventListener('click',()=>{let next;do{next=Math.floor(Math.random()*prompts.length)}while(next===previous&&prompts.length>1);previous=next;if(output)output.textContent=prompts[next];if(feedback)feedback.textContent='A fresh idea just entered your orbit.'});
 $('#copy-prompt')?.addEventListener('click',async()=>{if(!output)return;try{await navigator.clipboard.writeText(output.textContent);if(feedback)feedback.textContent='Caption copied. Go make something cosmic!'}catch{if(feedback)feedback.textContent='Copy is unavailable in this browser. Select the caption to copy it.'}});
 
+const mulisyeCopyButton=$('#copy-mulisye-ca'),mulisyeCa=$('#mulisye-contract-address'),mulisyeCaStatus=$('#mulisye-ca-status');
+mulisyeCopyButton?.addEventListener('click',async()=>{if(!mulisyeCa)return;try{await navigator.clipboard.writeText(mulisyeCa.textContent.trim());if(mulisyeCaStatus)mulisyeCaStatus.textContent='Contract address copied.';}catch{if(mulisyeCaStatus)mulisyeCaStatus.textContent='Copy unavailable. Select the address and copy it manually.';}});
+
 const claimAddress=$('#claim-token-address'),claimButton=$('#claim-fee-open'),claimStatus=$('#claim-fee-status');
 claimButton?.addEventListener('click',()=>{const address=claimAddress?.value.trim()||'';if(!/^0x[0-9a-fA-F]{40}$/.test(address)){if(claimStatus)claimStatus.textContent='Enter a valid EVM token contract address (0x followed by 40 hexadecimal characters).';return;}const url='https://www.clanker.world/clanker/'+address+'/admin';window.open(url,'_blank','noopener,noreferrer');if(claimStatus)claimStatus.textContent='Clanker Admin is now open. Review your reward balance and transaction details there.';});
 $('#year').textContent=new Date().getFullYear();
