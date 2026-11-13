@@ -346,3 +346,17 @@
     background:rgba(131,233,239,.12);
   }
 }
+
+
+/* Navigation icon fallback and clearer current-page state */
+@media(max-width:760px){
+  .menu-toggle{width:40px;height:40px;display:grid;place-items:center;padding:0}
+  .menu-toggle svg{width:20px;height:20px;display:block}
+  .mobile-dock a{position:relative;min-height:48px}
+  .mobile-dock a[aria-current="page"]{
+    color:var(--cyan)!important;
+    background:rgba(131,233,239,.16)!important;
+    box-shadow:inset 0 0 0 1px rgba(131,233,239,.28)!important;
+  }
+  .mobile-dock a[aria-current="page"] span{font-weight:800}
+}
