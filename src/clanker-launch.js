@@ -1,5 +1,5 @@
 import { Clanker } from "clanker-sdk/v5";
-import { createPublicClient, createWalletClient, custom, defineChain, getAddress } from "viem";
+import { createPublicClient, createWalletClient, custom, defineChain, getAddress, http } from "viem";
 import { base } from "viem/chains";
 import { LAUNCH_HISTORY_ENDPOINT } from "./launch-history-config.js";
 
@@ -23,7 +23,7 @@ const robinhood = defineChain({
 });
 const NETWORKS = {
   elysium: {
-    id: ELYSIUM_ID, chain: elysium, title: "ELYSIUM MAINNET",
+    id: ELYSIUM_ID, chain: elysium, rpcUrl: ELYSIUM_RPC, title: "ELYSIUM MAINNET",
     detail: "Chain ID 99901 · Gas token HYPE · Clanker v5", gas: "HYPE",
     explorer: "https://elyscan.live", label: "Elysium · 99901",
     pairs: [
@@ -32,7 +32,7 @@ const NETWORKS = {
     ],
   },
   base: {
-    id: base.id, chain: base, title: "BASE MAINNET",
+    id: base.id, chain: base, rpcUrl: "https://mainnet.base.org", title: "BASE MAINNET",
     detail: "Chain ID 8453 · Gas token ETH · Clanker v5", gas: "ETH",
     explorer: "https://basescan.org", label: "Base · 8453",
     pairs: [
@@ -41,7 +41,7 @@ const NETWORKS = {
     ],
   },
   robinhood: {
-    id: ROBINHOOD_ID, chain: robinhood, title: "ROBINHOOD CHAIN",
+    id: ROBINHOOD_ID, chain: robinhood, rpcUrl: ROBINHOOD_RPC, title: "ROBINHOOD CHAIN",
     detail: "Chain ID 4663 · Gas token ETH · Clanker v5", gas: "ETH",
     explorer: "https://robinhoodchain.blockscout.com", label: "Robinhood · 4663",
     pairs: [
@@ -255,7 +255,7 @@ if (form) {
       await switchNetwork(provider, network);
       const account = getAddress((await provider.request({ method: "eth_accounts" }))[0]);
       if (account !== connectedAddress) throw new Error("The connected wallet account has changed. Reconnect your wallet to continue.");
-      const publicClient = createPublicClient({ chain: network.chain, transport: custom(provider) });
+      const publicClient = createPublicClient({ chain: network.chain, transport: http(network.rpcUrl) });
       const wallet = createWalletClient({ account, chain: network.chain, transport: custom(provider) });
       const clanker = new Clanker({ wallet, publicClient });
       setStatus("Checking configuration and preparing the Clanker v5 transaction…");
