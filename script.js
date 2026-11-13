@@ -3,7 +3,7 @@ import("./src/privy-auth.jsx").catch((error) => console.error("MUISYLE Privy ini
 (()=>{
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const nav=$('.main-nav'),toggle=$('.menu-toggle');
-const valid=['home','tokens','launch-history','launch','claim-fee','missions','gallery','community'];
+const valid=['home','tokens','launch-history','launch','claim-fee','missions','gallery','community','legal'];
 function show(page,update=true){
  const active=valid.includes(page)?page:'home';
  $$('[data-view]').forEach(el=>el.classList.toggle('active',el.dataset.view===active));
