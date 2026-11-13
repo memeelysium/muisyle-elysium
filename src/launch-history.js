@@ -41,6 +41,9 @@ async function loadHistory() {
       const explorer = /^https:\/\//.test(item.explorer || "") ? item.explorer.replace(/\/$/, "") : "";
       const tokenUrl = explorer ? explorer + "/token/" + encodeURIComponent(item.tokenAddress) : "#";
       const txUrl = explorer ? explorer + "/tx/" + encodeURIComponent(item.txHash) : "#";
+      const clankerUrl = /^0x[0-9a-fA-F]{40}$/.test(item.tokenAddress || "")
+        ? "https://www.clanker.world/clanker/" + encodeURIComponent(item.tokenAddress)
+        : "";
       const image = imageUrl(item.image);
       const avatar = image
         ? '<div class="history-avatar"><img loading="lazy" src="' + escapeHtml(image) + '" alt=""></div>'
@@ -48,7 +51,7 @@ async function loadHistory() {
       const basedBotLink = Number(item.chainId) === 8453
         ? '<a href="https://trade.basedbot.app" target="_blank" rel="noopener noreferrer" aria-label="Open BasedBot terminal">TRADE WITH BASEDBOT ↗</a>'
         : "";
-      return '<article class="history-card">' + avatar + '<div class="history-main"><h3>' + escapeHtml(item.name) + '</h3><span class="history-symbol">$' + escapeHtml(item.symbol) + '</span><div class="history-meta"><span>' + escapeHtml(item.network) + '</span><span>VERIFIED ON-CHAIN</span></div><small>' + escapeHtml(dateLabel(item.createdAt)) + '</small><code class="history-address">' + escapeHtml(item.tokenAddress) + '</code><div class="history-links"><a href="' + tokenUrl + '" target="_blank" rel="noopener noreferrer">TOKEN EXPLORER ↗</a><a href="' + txUrl + '" target="_blank" rel="noopener noreferrer">TRANSACTION ↗</a>' + basedBotLink + '</div></div></article>';
+      return '<article class="history-card">' + avatar + '<div class="history-main"><h3>' + escapeHtml(item.name) + '</h3><span class="history-symbol">$' + escapeHtml(item.symbol) + '</span><div class="history-meta"><span>' + escapeHtml(item.network) + '</span><span>VERIFIED ON-CHAIN</span></div><small>' + escapeHtml(dateLabel(item.createdAt)) + '</small><code class="history-address">' + escapeHtml(item.tokenAddress) + '</code><div class="history-links"><a href="' + tokenUrl + '" target="_blank" rel="noopener noreferrer">TOKEN EXPLORER ↗</a><a href="' + txUrl + '" target="_blank" rel="noopener noreferrer">TRANSACTION ↗</a>' + (clankerUrl ? '<a class="history-clanker-link" href="' + clankerUrl + '" target="_blank" rel="noopener noreferrer">VIEW ON CLANKER ↗</a>' : "") + basedBotLink + '</div></div></article>';
     }).join("");
   } catch (error) {
     status.dataset.state = "error";
