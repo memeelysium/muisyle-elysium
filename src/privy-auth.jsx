@@ -168,7 +168,7 @@ function App() {
       supportedChains: [elysium, base, robinhood],
       defaultChain: elysium,
       embeddedWallets: {
-        ethereum: { createOnLogin: "all-users" }
+        ethereum: { createOnLogin: "off" }
       },
       appearance: {
         theme: "dark",
