@@ -1,4 +1,3 @@
-import("./src/privy-auth.jsx").catch((error) => console.error("MUISYLE Privy initialization failed:", error));
 
 (()=>{
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
